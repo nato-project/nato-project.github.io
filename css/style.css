@@ -1,0 +1,29 @@
+body{
+    font-family: "Helvetica Neue";
+}
+.navbar {
+    background-color: #005BBB;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+    font-size: 18pt;
+}
+.navbar-default .navbar-nav li a {
+    color: #ffffff;
+    font-size: 12pt;
+}
+.navbar-nav>li>.dropdown-menu{
+    background-color: #005BBB;
+    color: #FFF;
+}
+.navbar-nav>li>.dropdown-menu > li > a:hover, .navbar-nav>li>.dropdown-menu > li > a:focus {
+    background-color:#005BBB;
+    color: #000000;
+}
+h1,h2,h3,h4{
+    color: #317eac;
+    font-family: "Helvetica Neue";
+}
