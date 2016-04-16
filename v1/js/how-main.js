@@ -1,13 +1,15 @@
 
 var iedData = [];
+var iedTextLinks = [];
 
 // Variables for the visualization instances
-var wordCloudVis, timelineVis;
+var wordCloudVis,fullTextVis, timelineVis;
 
 // Start application by loading the data
 queue()
     .defer(d3.csv, "data/ied_data.csv")
-    .await(function(error, iedDataCsv) {
+    .defer(d3.csv, "data/ied_text_links.csv")
+    .await(function(error, iedDataCsv,iedTextLinksCsv) {
 
         // Date parser to convert strings to date objects
         var parseDate = d3.time.format("%m/%d/%Y").parse;
@@ -23,6 +25,14 @@ queue()
         });
         iedData = iedDataCsv;
 
+        iedTextLinksCsv.forEach(function(d) {
+            d.s_id = +d.s_id;
+            d.t_id = +d.t_id;
+            d.cs_value = parseFloat(d.cs_value);
+        });
+        iedTextLinks = iedTextLinksCsv;
+
+
         // Create the visualizations
         createVis();
     })
@@ -30,13 +40,14 @@ queue()
 function createVis() {
     // Instantiate visualization objects here
     //wordCloudVis = new WordCloud("mapVis", iedData, mapData, regionData);
+    fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks);
     timelineVis = new Timeline("timelineVis", iedData);
 }
 
 function brushed() {
     // Set new domain if brush (user selection) is not empty
-    //mapVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+    fullTextVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
 
-    // Update map
-    //mapVis.wrangleData();
+    // Update text vis
+    fullTextVis.wrangleData();
 }

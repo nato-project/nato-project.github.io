@@ -77,3 +77,13 @@ h1,h2,h3,h4{
     width: auto;
     vertical-align: middle;
 }
+
+/* Text Vis*/
+.force-layout-node {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+.force-layout-link {
+    stroke: #999;
+    stroke-opacity: .6;
+}
