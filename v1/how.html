@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h3>&nbsp;How</h3>
+            <h3>&nbsp;How did these IED actions happen?</h3>
         </div>
         <div class="row-spacer"></div>
         <div class="row">
@@ -29,6 +29,23 @@
             <div class="col-md-4"></div>
         </div>
         <div class="row-spacer"></div>
+        <div class="row">
+            <div class="col-md-8">
+                <label>View:&nbsp;</label>
+                <label class="radio-inline"><input type="radio" name="reporttype" checked>Incident Reports</label>
+                <label class="radio-inline"><input type="radio" name="reporttype">Word Cloud</label>
+
+                <label>&nbsp;&nbsp;&nbsp;By:&nbsp;</label>
+                <label class="radio-inline"><input type="radio" name="displaytype" checked>Incident Types</label>
+                <label class="radio-inline"><input type="radio" name="displaytype">Casualities</label>
+                <label class="radio-inline">
+                    Similarity: 50% <input type="range" id="thersholdSlider" name="points" value ="50" min="50" max="100"> 100%
+                </label>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-8">
                 <div id="textVis"></div>
@@ -46,6 +63,7 @@
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/other/queue.min.js"></script>
     <script type="text/javascript" src="lib/d3/d3.min.js"></script>
+    <script type="text/javascript" src="lib/d3/d3.tip.js"></script>
     <script type="text/javascript" src="lib/other/lodash.min.js"></script>
 
     <!-- Load Project libraries -->

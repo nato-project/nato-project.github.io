@@ -20,8 +20,8 @@ FullText.prototype.initVis = function() {
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
-    vis.width = 900 - vis.margin.left - vis.margin.right,
-        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.width = 800 - vis.margin.left - vis.margin.right,
+        vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -52,8 +52,8 @@ FullText.prototype.initVis = function() {
         .size([vis.width, vis.height])
         .friction(.9)
         .linkDistance(30)
-        .charge(-100)
-        .gravity(.6);
+        .charge(-80)
+        .gravity(.8);
 
     // 2a) DEFINE 'NODES' AND 'EDGES'
     vis.force.nodes(vis.nodes)
@@ -87,9 +87,7 @@ FullText.prototype.initVis = function() {
     // 5) Force TICK
     vis.force.on("tick", function() {
 
-        // Update node coordinates
-        vis.nodeItems.attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
+
 
         // Update edge coordinates
         vis.linkItems.attr("x1", function(d) { return d.source.x; })
@@ -97,10 +95,52 @@ FullText.prototype.initVis = function() {
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
+        // Update node coordinates
+        vis.nodeItems.attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+
         // Update Node Text
         //text.attr("x", function(d) { return d.x; })
         //    .attr("y", function(d) { return d.y; });
     });
+
+    // Legend
+    vis.legend = vis.svg.append("g")
+        .attr("transform", "translate(" + (5) + "," + (10) + ")")
+        .selectAll("g")
+        .data(vis.color.range())
+        .enter()
+        .append("g")
+        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+    vis.legendbox = vis.legend.append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", function(d){return d;});
+    vis.legendlabels = vis.legend.append("text")
+        .attr("class", "force-layout-legend-labels")
+        .attr("x", 25)
+        .attr("y", 15)
+        .style("fill", function(d){return d;})
+        .text(function(d,i){
+            return vis.color.domain()[i];
+        });
+
+    // Tool Tip
+    var node;
+    vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        node = vis.findNode(d.index);
+        var tipContent = "";
+        tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
+        tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
+        tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
+
+        return tipContent;
+    });
+
+    // Invoke tooltip
+    vis.nodeItems.on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide);
+    vis.nodeItems.call(vis.tip);
 
     // Wrangle and update
     //vis.wrangleData();
@@ -144,8 +184,8 @@ FullText.prototype.updateVis = function() {
             vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
         }
     });
-    console.log(vis.nodes);
-    console.log(vis.links);
+    //console.log(vis.nodes);
+    //console.log(vis.links);
 
     vis.force.stop();
 
@@ -166,7 +206,7 @@ FullText.prototype.updateVis = function() {
         .style("stroke-width", function(d) {
             return d.cs_value*5;
         });
-    
+
 
     // Update Nodes
     vis.nodeItems = vis.nodeItems.data(vis.nodes);
@@ -177,5 +217,10 @@ FullText.prototype.updateVis = function() {
         .attr("r", 3)
         .style("fill", function(d) { return vis.color(vis.findNode(d.index).type); })
         .style("stroke", function(d) { return vis.color(vis.findNode(d.index).type); });
+
+    // Invoke tooltip
+    vis.nodeItems.on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide);
+    vis.nodeItems.call(vis.tip);
 
 }
