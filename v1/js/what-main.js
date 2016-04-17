@@ -18,8 +18,11 @@ queue()
             d.id = +d.id;
             d.lat = parseFloat(d.lat);
             d.lng = parseFloat(d.lng);
+            d.dateFmt = d.date;
             d.date = parseDate(d.date);
         });
+        iedDataCsv.sort(function(a,b) { return Date(b.date) - Date(a.date) });
+
         iedData = iedDataCsv;
 
         // Create the visualizations
@@ -28,14 +31,32 @@ queue()
 
 function createVis() {
     // Instantiate visualization objects here
-    sankeyVis = new Sankey("sankeyVis", iedData);
+    sankeyVis = new SankeyVis("sankeyVis", iedData);
     timelineVis = new Timeline("timelineVis", iedData);
 }
 
 function brushed() {
     // Set new domain if brush (user selection) is not empty
-    //sankeyVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+    sankeyVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+    sankeyVis.tableFilter.type = "N/A";
+    sankeyVis.tableFilter.outcome = "N/A";
+    sankeyVis.sankeyChanged = 1;
 
     // Update map
-    //sankeyVis.wrangleData();
+    sankeyVis.wrangleData();
 }
+
+
+function iedTypeSelect() {
+
+    var selectBox = document.getElementById("iedTypeSelect");
+
+    if (sankeyVis.sankeySelection != selectBox.options[selectBox.selectedIndex].value) {
+        sankeyVis.sankeySelection = selectBox.options[selectBox.selectedIndex].value;
+        sankeyVis.sankeyChanged = 1;
+        sankeyVis.tableFilter.type = "N/A";
+        sankeyVis.tableFilter.outcome = "N/A";
+        sankeyVis.wrangleData();
+    }
+}
+
