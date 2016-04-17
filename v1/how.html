@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/how.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 
     <div class="container">
         <div class="page-header">
-            <h3>&nbsp;How did these IED actions happen?</h3>
+            <h3>&nbsp;How did the IED actions happen?</h3>
         </div>
         <div class="row-spacer"></div>
         <div class="row">
@@ -31,30 +32,44 @@
         <div class="row-spacer"></div>
         <div class="row">
             <div class="col-md-8">
-                <label>View:&nbsp;</label>
-                <label class="radio-inline"><input type="radio" name="reporttype" checked>Incident Reports</label>
-                <label class="radio-inline"><input type="radio" name="reporttype">Word Cloud</label>
-
-                <label>&nbsp;&nbsp;&nbsp;By:&nbsp;</label>
-                <label class="radio-inline"><input type="radio" name="displaytype" checked>Incident Types</label>
-                <label class="radio-inline"><input type="radio" name="displaytype">Casualities</label>
-                <label class="radio-inline">
-                    Similarity: 50% <input type="range" id="thersholdSlider" name="points" value ="50" min="50" max="100"> 100%
-                </label>
+                <div class="row">
+                    <div class="col-md-5"><label>View:&nbsp;</label></div>
+                    <div class="col-md-4"><label>By:&nbsp;</label></div>
+                    <div class="col-md-3"><label>Similarity:&nbsp;</label></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label class="radio-inline"><input type="radio" name="reporttype" checked>Incident Reports</label>
+                        <label class="radio-inline"><input type="radio" name="reporttype">Word Cloud</label>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="radio-inline"><input type="radio" name="displaytype" value="incidenttype" checked>Incident Types</label>
+                        <label class="radio-inline"><input type="radio" name="displaytype" value="casualities">Casualities</label>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="range range-primary">
+                            <input type="range" id="thersholdSlider" name="range" min="50" max="100" value="50">
+                            <output id="thersholdSliderValue">50%</output>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="textVis"></div>
+                        <div id="fullTextVis"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 text-timeline-container">
+                <section id="text-timeline" class="cd-container">
 
+                </section>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div id="textVis"></div>
-                <div id="fullTextVis"></div>
-            </div>
-            <div class="col-md-4">
 
-            </div>
-        </div>
+
+
+
 
     </div>
 

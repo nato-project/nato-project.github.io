@@ -6,8 +6,11 @@ FullText = function(_parentElement, _iedData,_textLinkData){
 
     this.nodes = [];
     this.links = [];
-    this.displayData = []; // see data wrangling
+    this.displayData = this.iedData;
     this.filter = [];
+    this.threshold =50;
+    this.displaytype = "incidenttype";
+    this.dateFormat = d3.time.format("%b %d %Y");
 
     this.initVis();
 }
@@ -33,8 +36,12 @@ FullText.prototype.initVis = function() {
     vis.color = d3.scale.category10();
     vis.color.domain(d3.keys(this.iedData.type));
 
+    // Link width
+    vis.linkWidth = d3.scale.linear();
+    vis.linkWidth.domain([0.5,1]).range([1,10]);
+
     vis.findNode = function(id){
-        return vis.iedData[id];
+        return vis.displayData[id];
     }
 
     vis.iedData.forEach(function(d) {
@@ -72,7 +79,7 @@ FullText.prototype.initVis = function() {
             return vis.color(vis.findNode(d.source.index).type);
         })
         .style("stroke-width", function(d) {
-            return d.cs_value*5;
+            return vis.linkWidth(d.cs_value);
         });
 
     // 4) DRAW THE NODES (SVG CIRCLE)
@@ -86,8 +93,6 @@ FullText.prototype.initVis = function() {
 
     // 5) Force TICK
     vis.force.on("tick", function() {
-
-
 
         // Update edge coordinates
         vis.linkItems.attr("x1", function(d) { return d.source.x; })
@@ -123,7 +128,13 @@ FullText.prototype.initVis = function() {
         .style("fill", function(d){return d;})
         .text(function(d,i){
             return vis.color.domain()[i];
+        })
+        .on("click", function(d,i) {
+            var nodes = _.filter(vis.displayData, function(o) { return o.type==vis.color.domain()[i]; });
+            vis.displayText(nodes);
         });
+
+    vis.textTimeline = d3.select("#text-timeline");
 
     // Tool Tip
     var node;
@@ -149,7 +160,7 @@ FullText.prototype.initVis = function() {
 
 FullText.prototype.wrangleData = function() {
 
-    var vis = this; // read about the this
+    var vis = this;
 
     // Filter with timeline
     vis.displayData = vis.iedData;
@@ -161,6 +172,24 @@ FullText.prototype.wrangleData = function() {
         });
     }
 
+    // Build Nodes and links from new dataset
+    vis.nodes =[];
+    vis.displayData.forEach(function(d) {
+        vis.nodes.push({name: d.id,id: d.id});
+    });
+    var src,tgt;
+    vis.links = [];
+    vis.textLinkData.forEach(function(d) {
+        if(d.cs_value >= (vis.threshold/100)){
+            src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
+            tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
+            //console.log(src + " / "+ tgt);
+            if(src > -1 && tgt > -1) {
+                vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
+            }
+        }
+    });
+
     // Update the visualization
     vis.updateVis();
 
@@ -170,22 +199,17 @@ FullText.prototype.updateVis = function() {
 
     var vis = this; // read about the this
 
-    vis.nodes =[];
-    vis.displayData.forEach(function(d) {
-        vis.nodes.push({name: d.id,id: d.id});
-    });
-    var src,tgt;
-    vis.links = [];
-    vis.textLinkData.forEach(function(d) {
-        src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
-        tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
-        //console.log(src + " / "+ tgt);
-        if(src > -1 && tgt > -1) {
-            vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
-        }
-    });
-    //console.log(vis.nodes);
-    //console.log(vis.links);
+    //console.log(vis.displaytype);
+
+    // Update Color
+    if(vis.displaytype == "incidenttype"){
+        vis.color = d3.scale.category10();
+        vis.color.domain(d3.keys(this.displayData.type));
+    }else{
+        vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
+    }
+    //console.log(vis.color.domain());
+    //console.log(vis.color.range());
 
     vis.force.stop();
 
@@ -199,12 +223,22 @@ FullText.prototype.updateVis = function() {
     vis.linkItems = vis.linkItems.data(vis.links);
     vis.linkItems.exit().remove();
     vis.linkItems.enter().append("line")
-        .attr("class", "force-layout-link")
-        .style("stroke", function(d) {
-            return vis.color(vis.findNode(d.source.index).type);
+        .attr("class", "force-layout-link");
+    vis.linkItems.style("stroke", function(d) {
+            if(vis.displaytype == "incidenttype") {
+                return vis.color(vis.findNode(d.source.index).type);
+            }else{
+                if(vis.findNode(d.source.index).kia >0){
+                    return vis.color("Killed");
+                }else if(vis.findNode(d.source.index).wia >0){
+                    return vis.color("Wounded");
+                }else{
+                    return vis.color("No Casualities");
+                }
+            }
         })
         .style("stroke-width", function(d) {
-            return d.cs_value*5;
+            return vis.linkWidth(d.cs_value);
         });
 
 
@@ -214,13 +248,126 @@ FullText.prototype.updateVis = function() {
     vis.nodeItems.enter()
         .append("circle")
         .attr("class", "force-layout-node")
-        .attr("r", 3)
-        .style("fill", function(d) { return vis.color(vis.findNode(d.index).type); })
-        .style("stroke", function(d) { return vis.color(vis.findNode(d.index).type); });
+        .attr("r", 3);
+
+    vis.nodeItems.style("fill", function(d) {
+            if(vis.displaytype == "incidenttype") {
+                return vis.color(vis.findNode(d.index).type);
+            }else{
+                if(vis.findNode(d.index).kia >0){
+                    return vis.color("Killed");
+                }else if(vis.findNode(d.index).wia >0){
+                    return vis.color("Wounded");
+                }else{
+                    return vis.color("No Casualities");
+                }
+            }
+        })
+        .style("stroke", function(d) {
+            if(vis.displaytype == "incidenttype") {
+                return vis.color(vis.findNode(d.index).type);
+            }else{
+                if(vis.findNode(d.index).kia >0){
+                    return vis.color("Killed");
+                }else if(vis.findNode(d.index).wia >0){
+                    return vis.color("Wounded");
+                }else{
+                    return vis.color("No Casualities");
+                }
+            }
+        });
+
+    // Legend
+    vis.legend = vis.legend.data(vis.color.range());
+    vis.legend.exit().remove();
+    vis.legend.enter()
+        .append("g")
+        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+    vis.legendbox.remove();
+    vis.legendbox = vis.legend.append("rect")
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", function(d){return d;});
+    vis.legendlabels.remove();
+    vis.legendlabels = vis.legend.append("text")
+        .attr("class", "force-layout-legend-labels")
+        .attr("x", 25)
+        .attr("y", 15)
+        .style("fill", function(d){return d;})
+        .text(function(d,i){
+            return vis.color.domain()[i];
+        })
+        .on("click", function(d,i) {
+            if(vis.displaytype == "incidenttype") {
+                var nodes = _.filter(vis.displayData, function (o) {
+                    return o.type == vis.color.domain()[i];
+                });
+                vis.displayText(nodes);
+            }else{
+                if(vis.color.domain()[i] == "Killed"){
+                    var nodes = _.filter(vis.displayData, function (o) {
+                        return o.kia >0;
+                    });
+                    vis.displayText(nodes);
+                }else if(vis.color.domain()[i] == "Wounded"){
+                    var nodes = _.filter(vis.displayData, function (o) {
+                        return o.wia >0;
+                    });
+                    vis.displayText(nodes);
+                }else{
+                    var nodes = _.filter(vis.displayData, function (o) {
+                        return o.kia ==0 && o.wia ==0;
+                    });
+                    vis.displayText(nodes);
+                }
+            }
+        });
 
     // Invoke tooltip
     vis.nodeItems.on('mouseover', vis.tip.show)
         .on('mouseout', vis.tip.hide);
-    vis.nodeItems.call(vis.tip);
+    //vis.nodeItems.call(vis.tip);
 
 }
+
+FullText.prototype.displayText = function(nodes){
+    var vis = this;
+
+    console.log(nodes);
+
+    vis.textTimeline.selectAll("div").remove();
+
+    vis.textTimelineBlock = vis.textTimeline.selectAll("div")
+        .data(nodes)
+        .enter()
+        .append("div")
+        .attr("class","cd-timeline-block");
+
+    vis.textTimelineBlockImg = vis.textTimelineBlock.append("div")
+        .attr("class","cd-timeline-img cd-picture")
+        .append("img")
+        .attr("src",function(d){
+            if(d.kia >0){
+                return "img/person-killed.svg";
+            }else if(d.wia >0){
+                return "img/person-wounded.svg";
+            }else {
+                return "img/bomb.svg";
+            }
+        });
+
+    vis.textTimelineBlockContent = vis.textTimelineBlock.append("div").attr("class","cd-timeline-content");
+    vis.textTimelineBlockContent.append("h2").text(function(d){
+        return vis.dateFormat(d.date);
+    });
+    vis.textTimelineBlockContent.append("p").text(function(d){
+        return d.text;
+    });
+    vis.textTimelineBlockContent.append("span")
+        .attr("class","cd-date")
+        .text(function(d){
+            return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+        });
+
+}
+

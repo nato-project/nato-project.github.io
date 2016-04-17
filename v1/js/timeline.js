@@ -5,9 +5,16 @@
  * @param _data				-- the ied data
  */
 
-Timeline = function(_parentElement, _data){
+Timeline = function(_parentElement, _data,_width){
 	this.parentElement = _parentElement;
 	this.data = _data;
+
+	if(_width){
+		this.width = _width;
+	}else{
+		this.width = 900;
+	}
+
 
 	this.initVis();
 }
@@ -22,7 +29,7 @@ Timeline.prototype.initVis = function(){
 
 	vis.margin = {top: 10, right: 10, bottom: 20, left: 10};
 
-	vis.width = 900 - vis.margin.left - vis.margin.right,
+	vis.width = vis.width - vis.margin.left - vis.margin.right,
 	vis.height = 90 - vis.margin.top - vis.margin.bottom;
 
 	// SVG drawing area

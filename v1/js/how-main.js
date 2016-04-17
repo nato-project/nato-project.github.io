@@ -35,13 +35,13 @@ queue()
 
         // Create the visualizations
         createVis();
-    })
+    });
 
 function createVis() {
     // Instantiate visualization objects here
     //wordCloudVis = new WordCloud("mapVis", iedData, mapData, regionData);
     fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks);
-    timelineVis = new Timeline("timelineVis", iedData);
+    timelineVis = new Timeline("timelineVis", iedData,760);
 }
 
 function brushed() {
@@ -51,3 +51,20 @@ function brushed() {
     // Update text vis
     fullTextVis.wrangleData();
 }
+
+// Threshold slider onchange
+$('#thersholdSlider').on("change", function() {
+
+    fullTextVis.threshold = $(this).val();
+    $('#thersholdSliderValue').val($(this).val()+"%");
+    // Update text vis
+    fullTextVis.wrangleData();
+});
+$("input:radio[name=displaytype]").click(function(){
+
+    fullTextVis.displaytype = $("input:radio[name=displaytype]:checked").val();
+    // Update text vis
+    fullTextVis.wrangleData();
+});
+
+
