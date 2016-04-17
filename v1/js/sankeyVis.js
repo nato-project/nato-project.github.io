@@ -29,8 +29,8 @@ SankeyVis.prototype.initVis = function() {
 
     vis.margin = {top: 10, right: 0, bottom: 10, left: 0};
 
-    vis.width = 600 - vis.margin.left - vis.margin.right,
-        vis.height = 900 - vis.margin.top - vis.margin.bottom;
+    vis.width = 550 - vis.margin.left - vis.margin.right,
+        vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     //Initialize global variables
     vis.tableFilter = new Object();
@@ -39,7 +39,7 @@ SankeyVis.prototype.initVis = function() {
     vis.sankeyChanged = 1;
     vis.sankeySelection = "byType";
 
-    width = 600 - vis.margin.left - vis.margin.right,
+    width = 550 - vis.margin.left - vis.margin.right,
 
     // SVG drawing area
     vis.svg = d3.select("#sankeyVis").append("svg")
@@ -69,7 +69,21 @@ SankeyVis.prototype.initVis = function() {
         .data(vis.displayColumns)
         .enter()
         .append("th")
-        .text(function(column) { return column; });
+        .text(function(column) {
+              switch(column) {
+                  case "dateFmt":
+                      return "Date";
+                  case "city":
+                      return "City";
+                  case "wia":
+                      return "WIA";
+                  case "kia":
+                      return "KIA";
+                  case "type":
+                      return "Type";
+              }
+
+        });
 
     // create a row for each object in the data
     rows = vis.tbody.selectAll("tr")
