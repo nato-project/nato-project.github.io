@@ -30,5 +30,5 @@ queue()
 function createVis() {
     // Instantiate visualization objects here
     timelineVis = new TimelineIndex("timelineVis", iedData,1100,400);
-    countsVis = new Counts("countsVis", iedData,900,300);
+    countsVis = new Counts("countsVis", iedData,800,300);
 }
