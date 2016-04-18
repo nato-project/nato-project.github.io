@@ -3,6 +3,8 @@
 var mapData = [];
 var iedData = [];
 var regionData = [];
+var topCityData = [];
+var matrixW = 700, matrixH = 700;
 
 // Variables for the visualization instances
 var mapVis, timelineVis;
@@ -34,11 +36,19 @@ queue()
 			d.pop_density = parseFloat(d.pop_density);
 		});
 		regionData = regionDataCsv;
-		console.log(iedData);
+		regionDataCsv.forEach(function(d) {
+			d.IEDevents = 0;
+			d.KIA = 0;
+			d.WIA = 0;
+		});
+		//console.log(iedData);
+		
+		// Arrange data by cities
+		arrangeDataByCity();
 		
 		// Copy topo json data
 		mapData = mapTopoJson;
-		console.log(mapData);
+		//console.log(mapData);
 		
 		// Add IED events to region data for region coloring
 		var idMap = {};
@@ -85,6 +95,9 @@ function createVis() {
 	// Instantiate visualization objects here
 	mapVis = new Map("mapVis", iedData, mapData, regionData);
 	timelineVis = new Timeline("timelineVis", iedData);
+	timeBarChartVis = new TimeBarChart("timeBarChartVis", topCityData);
+	cityBarChartVis = new CityBarChart("cityBarChartVis", topCityData);
+	heatMatrixVis = new HeatMatrix("heatMatrixVis", topCityData);
 }
 
 function brushed() {
@@ -103,4 +116,46 @@ function regionColorSelect() {
 		mapVis.dataLabel = selectBox.options[selectBox.selectedIndex].text;
 		mapVis.updateVis();
 	}
+}
+
+function arrangeDataByCity() {
+
+	var idMap = {};
+	var cityData= [];
+	iedData.forEach(function(d) {
+		var cityName = d.city.trim(); // Remove whitespaces in some names
+		if (cityName == "NULL") {
+			// Do not include unidentified cities
+		}
+		else if (idMap[cityName] == null) {
+			var cityObj = {};
+			cityObj.ID = cityName;
+			cityObj.IEDeventTotal = 1;
+			var monthIndex = getMonthIndex(d.date);
+			cityObj.IEDevents = new Array(24).fill(0);
+			cityObj.IEDevents[monthIndex] += 1;
+			idMap[cityName] = cityData.length;
+			cityData.push(cityObj);
+		}
+		else {
+			cityData[idMap[cityName]].IEDeventTotal += 1;
+			var monthIndex = getMonthIndex(d.date);
+			cityData[idMap[cityName]].IEDevents[monthIndex] += 1;
+		}
+	});
+
+	delete idMap; // Next op makes it out of synch
+
+	// Sort cities
+	var sortedCityData = cityData.sort(function(a,b) {return b.IEDeventTotal- a.IEDeventTotal;});
+
+	// Keep top cities
+	topCityData = sortedCityData.slice(0, 35);
+}
+
+function getMonthIndex(date) {
+	// 01-11 for 2014, 12-23 for 2015
+	var monthIndex = date.getMonth();
+	if (date.getYear() == 115) monthIndex += 12;
+	return monthIndex;
 }
