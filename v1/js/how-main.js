@@ -51,6 +51,10 @@ function brushed() {
 
     // Update text vis
     fullTextVis.wrangleData();
+
+    // Count Vis
+    countsVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+    countsVis.wrangleData();
 }
 
 // Threshold slider onchange
@@ -66,6 +70,12 @@ $("input:radio[name=displaytype]").click(function(){
     fullTextVis.displaytype = $("input:radio[name=displaytype]:checked").val();
     // Update text vis
     fullTextVis.wrangleData();
+});
+$("input:radio[name=reporttype]").click(function(){
+
+    //fullTextVis.displaytype = $("input:radio[name=displaytype]:checked").val();
+    // Update text vis
+    //fullTextVis.wrangleData();
 });
 
 
