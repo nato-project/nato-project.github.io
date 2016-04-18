@@ -153,6 +153,22 @@ FullText.prototype.initVis = function() {
         .on('mouseout', vis.tip.hide);
     vis.nodeItems.call(vis.tip);
 
+    // Brush
+    //vis.brush = d3.svg.brush()
+    //    .x(d3.scale.linear().range([0, vis.width]))
+    //    .y(d3.scale.linear().range([0, vis.height]))
+    //    .on("brushstart", function(){})
+    //    .on("brush", function(){})
+    //    .on("brushend", function(){});
+
+    // Append brush component
+    //vis.svg.append("g")
+    //    .attr("class", "x brush")
+    //    .call(vis.brush)
+    //    .selectAll("rect")
+    //    .attr("y", -6)
+    //    .attr("height", vis.height + 7);
+
     // Wrangle and update
     //vis.wrangleData();
 

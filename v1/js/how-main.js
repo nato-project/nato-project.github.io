@@ -3,7 +3,7 @@ var iedData = [];
 var iedTextLinks = [];
 
 // Variables for the visualization instances
-var wordCloudVis,fullTextVis, timelineVis;
+var wordCloudVis,fullTextVis, timelineVis,countsVis;
 
 // Start application by loading the data
 queue()
@@ -42,6 +42,7 @@ function createVis() {
     //wordCloudVis = new WordCloud("mapVis", iedData, mapData, regionData);
     fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks);
     timelineVis = new Timeline("timelineVis", iedData,760);
+    countsVis = new Counts("countsVis", iedData,900,300);
 }
 
 function brushed() {
