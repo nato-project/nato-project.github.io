@@ -43,8 +43,9 @@ SankeyVis.prototype.initVis = function() {
 
     // SVG drawing area
     vis.svg = d3.select("#sankeyVis").append("svg")
-        .attr("width", vis.width + vis.margin.left + vis.margin.right)
-        .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+        .attr("x",0)
+        .attr("y",0)
+        .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
         .append("g")
         .attr("transform",
             "translate(" + vis.margin.left + "," + vis.margin.top + ")");

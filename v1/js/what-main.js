@@ -1,7 +1,7 @@
 var iedData = [];
 
 // Variables for the visualization instances
-var sankeyVis, timelineVis;
+var sankeyVis, timelineVis,countsVis;
 
 // Start application by loading the data
 queue()
@@ -33,6 +33,7 @@ function createVis() {
     // Instantiate visualization objects here
     sankeyVis = new SankeyVis("sankeyVis", iedData);
     timelineVis = new Timeline("timelineVis", iedData);
+    countsVis = new Counts("countsVis", iedData,900,300);
 }
 
 function brushed() {
@@ -44,6 +45,10 @@ function brushed() {
 
     // Update map
     sankeyVis.wrangleData();
+
+    // Count Vis
+    countsVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+    countsVis.wrangleData();
 }
 
 

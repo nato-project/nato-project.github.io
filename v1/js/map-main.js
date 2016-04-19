@@ -7,7 +7,7 @@ var topCityData = [];
 var matrixW = 700, matrixH = 700;
 
 // Variables for the visualization instances
-var mapVis, timelineVis;
+var mapVis, timelineVis,countsVis;
 //var dsv = d3.dsv(";", "text/plain");
 
 // Start application by loading the data
@@ -98,6 +98,7 @@ function createVis() {
 	timeBarChartVis = new TimeBarChart("timeBarChartVis", topCityData);
 	cityBarChartVis = new CityBarChart("cityBarChartVis", topCityData);
 	heatMatrixVis = new HeatMatrix("heatMatrixVis", topCityData);
+	countsVis = new Counts("countsVis", iedData,900,300);
 }
 
 function brushed() {
@@ -106,6 +107,10 @@ function brushed() {
 
 	// Update map
 	mapVis.wrangleData();
+
+	// Count Vis
+	countsVis.filter = timelineVis.brush.empty() ? [] : timelineVis.brush.extent();
+	countsVis.wrangleData();
 }
 
 function regionColorSelect() {
