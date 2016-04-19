@@ -1,0 +1,105 @@
+body{
+    font-family: "Helvetica Neue";
+}
+.navbar {
+    background-color: #005BBB;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+    font-size: 18pt;
+}
+.navbar-default .navbar-nav li a {
+    color: #ffffff;
+    font-size: 12pt;
+}
+.navbar-nav>li>.dropdown-menu{
+    background-color: #005BBB;
+    color: #FFF;
+}
+.navbar-nav>li>.dropdown-menu > li > a:hover, .navbar-nav>li>.dropdown-menu > li > a:focus {
+    background-color:#005BBB;
+    color: #000000;
+}
+h1,h2,h3,h4{
+    color: #317eac;
+    font-family: "Helvetica Neue";
+}
+.page-header{
+    padding-bottom: 0px;
+    margin: 0px 0 0px;
+}
+
+/* Timeline */
+.timeline-axis text {
+    font: 10px sans-serif;
+}
+.timeline-axis title {
+    font-size: 10px;
+}
+
+.timeline-axis path,
+.timeline-axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.timeline-bar {
+    fill: #dfdfdf;
+    stroke-width: 0;
+}
+.timeline-circle {
+    fill: #494949;
+    stroke-width: 0;
+}
+
+/* Brush */
+.brush .extent {
+    stroke: #8c8c8c;
+    fill: #737373;
+    fill-opacity: .1;
+    shape-rendering: crispEdges;
+}
+
+.row-spacer{
+    height:15px;
+}
+.form-group label {
+    float: left;
+    text-align: left;
+    font-weight: normal;
+}
+
+.form-group select {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}
+
+
+
+
+/*********************/
+/*  TOOLTIP OVERLAY  */
+/*********************/
+
+.tooltip-title {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.d3-tip {
+    line-height: 1;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+
+}
