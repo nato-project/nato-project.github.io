@@ -3,7 +3,7 @@
 var mapData = [];
 var iedData = [];
 var regionData = [];
-var topCityData = [];
+var cityData = [];
 
 // Variables for the visualization instances
 var mapVis, timelineVis,countsVis;
@@ -91,7 +91,7 @@ function createVis() {
 	// Instantiate visualization objects here
 	mapVis = new Map("mapVis", iedData, mapData, regionData);
 	timelineVis = new Timeline("timelineVis", iedData);
-	heatMatrixVis = new HeatMatrix("heatMatrixVis", topCityData);
+	heatMatrixVis = new HeatMatrix("heatMatrixVis", cityData);
 	countsVis = new Counts("countsVis", iedData,900,300);
 }
 
@@ -107,6 +107,20 @@ function brushed() {
 	countsVis.wrangleData();
 }
 
+function regionClick(regionId) {
+	if (mapVis.selectedRegion == regionId) {
+		mapVis.selectedRegion = "";
+		heatMatrixVis.selectedRegion = "";
+	}
+	else {
+		mapVis.selectedRegion = regionId;
+		heatMatrixVis.selectedRegion = regionId;
+	}
+	// Update
+	mapVis.updateVis();
+	heatMatrixVis.wrangleData();
+}
+
 function regionColorSelect() {
 
 	var selectBox = document.getElementById("regionColorSelect");
@@ -120,7 +134,6 @@ function regionColorSelect() {
 function arrangeDataByCity() {
 
 	var idMap = {};
-	var cityData= [];
 	iedData.forEach(function(d) {
 		var cityName = d.city.trim(); // Remove whitespaces in some names
 		if (cityName == "NULL") {
@@ -128,6 +141,7 @@ function arrangeDataByCity() {
 		}
 		else if (idMap[cityName] == null) {
 			var cityObj = {};
+			cityObj.RegionID = d.region_id;
 			cityObj.ID = cityName;
 			cityObj.IEDeventTotal = 1;
 			var monthIndex = getMonthIndex(d.date);
@@ -145,11 +159,6 @@ function arrangeDataByCity() {
 
 	delete idMap; // Next op makes it out of synch
 
-	// Sort cities
-	var sortedCityData = cityData.sort(function(a,b) {return b.IEDeventTotal- a.IEDeventTotal;});
-
-	// Keep top cities
-	topCityData = sortedCityData.slice(0, 35);
 }
 
 function getMonthIndex(date) {

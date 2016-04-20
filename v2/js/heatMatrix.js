@@ -8,6 +8,8 @@
 HeatMatrix = function(_parentElement, _data, _margin){
 	this.parentElement = _parentElement;
 	this.data = _data;
+    this.displayData = []; // see data wrangling
+    this.selectedRegion = "";
 
 	this.initVis();
 }
@@ -23,6 +25,9 @@ HeatMatrix.prototype.initVis = function(){
 	vis.matrixW = 600, vis.matrixH = 600, vis.cityBarW = 80, vis.timeBarH = 80;
 	vis.timeBottom = 15; // Included in vis.height
 	vis.cityLeft = 5; // Included in vis.width
+	vis.maxRows = 35;
+	vis.rowHeight = vis.matrixH/vis.maxRows;
+	vis.colWidth = vis.matrixW/24;
 	
 	vis.margin = {top: 15, right: 25, bottom: 0, left: 150};
 
@@ -48,6 +53,10 @@ HeatMatrix.prototype.initVis = function(){
 
 	// Initialize Legend
 	vis.initLegend();
+	
+	// Wrangle data
+	vis.wrangleData();
+	
 }
 
 HeatMatrix.prototype.initHeatMatrix = function() {
@@ -56,52 +65,38 @@ HeatMatrix.prototype.initHeatMatrix = function() {
     // Create heat matrix group
     var hmsvg = vis.svg.append("g")
 	    .attr("transform", "translate(0," + (vis.timeBarH + vis.timeBottom) + ")");
-    
+
     // Create matrix data
 	vis.matrixData = [];
-	vis.data.forEach(function(d,i) {
+	for(i=0;i<vis.maxRows;i++) {
 		for(j=0;j<24;j++) {
 			var cell = {};
 			cell["i"] = i;
 			cell["j"] = j;
-			cell["value"] = d.IEDevents[j];
+			cell["value"] = 0;
 			vis.matrixData.push(cell);
 		}
-	})
-
-	// Set type and color scales
-	var maxValue = d3.max(vis.matrixData, function(d) {return d.value;});
-    var values = [0, 0.05, 0.1, 0.2, 0.5, 0.8, 1.0];
-	var colors = ["#eeeeee", "yellow", "gold", "orange", "orangered", "red", "darkred"];
-    vis.colors = d3.scale.quantile().domain(values).range(colors);
-    vis.typeScale = d3.scale.linear().domain([0,maxValue]).range([0,1]);
+	}
     
-	// Create a rectangle for each city
-	var rowHeight = vis.matrixH/vis.data.length;
-	var colWidth = vis.matrixW/24;
+    // Create color and type scales
+    var values = [0, 0.05, 0.1, 0.2, 0.5, 0.8, 1.0];
+    var colors = ["#eeeeee", "yellow", "gold", "orange", "orangered", "red", "darkred"];
+    vis.colors = d3.scale.quantile().domain(values).range(colors);
+	vis.typeScale = d3.scale.linear().range([0,1]);
 	
-	hmsvg.append("g").selectAll(".cityRow")
+	// Create a rectangle for each city
+	hmsvg.append("g").attr("id", "cityRowG").selectAll(".cityRow")
 		.data(vis.matrixData)
 		.enter()
 		.append("rect")
-		.attr("class", "cityRow")
-		.attr("x", function(d) {return d.j*colWidth;})
-		.attr("y", function(d) {return d.i*rowHeight;})
-		.attr("width", colWidth-1)
-		.attr("height", rowHeight-1)
-		.style("fill", function(d) {
-			return vis.colors(vis.typeScale(d.value));
-		});
+		.attr("class", "cityRow");
 
 	// Create city labels
-	hmsvg.append("g").selectAll(".cityLabel")
-		.data(vis.data)
+	hmsvg.append("g").attr("id", "cityLabelG").selectAll(".cityLabel")
+		.data(vis.data.slice(0, vis.maxRows))
 		.enter()
 		.append("text")
 		.attr("class", "cityLabel")
-		.attr("x", -5)
-		.attr("y", function(d, i) {return (i+0.5)*rowHeight+4;})
-		.text(function(d){ return d.ID;})
 		.style("text-anchor", "end");
 }
 
@@ -112,60 +107,50 @@ HeatMatrix.prototype.initTimeBarChart = function() {
     var tbcsvg = vis.svg.append("g");
     
     // Create bar data
-    vis.barData = [];
-    vis.data.forEach(function(d,i) {
-        if (i == 0) vis.barData = d.IEDevents;
-        else {
-            for (j=0; j<24; j++) {
-                vis.barData[j] += d.IEDevents[j];
-            }
-        }
-    })
-
-    // Create scales
-    var maxValue = d3.max(vis.barData);
+    vis.timeBarData = [];
+	for(i=0;i<24;i++) {
+		vis.timeBarData.push(0);
+	}
+	
+    // Create scale
     vis.yScale = d3.scale.linear()
-        .domain([0, maxValue])
         .range([0, vis.timeBarH]);
 
     // Create a bar for each month
-    var colWidth = vis.matrixW/24;
-    tbcsvg.append("g").selectAll(".monthBar")
-        .data(vis.barData)
+    tbcsvg.append("g").attr("id", "monthBarG").selectAll(".monthBar")
+        .data(vis.timeBarData)
         .enter()
         .append("rect")
         .attr("class", "monthBar")
-        .attr("x", function(d,i) {return i*colWidth;})
-        .attr("y", function(d) {return vis.timeBarH-vis.yScale(d);})
-        .attr("width", colWidth-1)
-        .attr("height", function(d) {return vis.yScale(d);})
+        .attr("x", function(d,i) {return i*vis.colWidth;})
+        .attr("width", vis.colWidth-1)
         .style("fill", "orange");
     
     // Create bar labels
-    tbcsvg.append("g").selectAll(".monthBarLabel")
-	    .data(vis.barData)
+    tbcsvg.append("g").attr("id", "monthBarLabelG").selectAll(".monthBarLabel")
+	    .data(vis.timeBarData)
 	    .enter()
 	    .append("text")
 	    .attr("class", "monthBarLabel")
-	    .attr("x", function(d,i) {return (i+0.5)*colWidth-8;})
-	    .attr("y", function(d) {return vis.timeBarH-vis.yScale(d)-3;})
-	    .text(function(d) {return d;})
-   	    .style("font-size", "10px");
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-3;})
+   	    .style("font-size", "10px")
+   	    .style("text-anchor", "end");
 
     // Custom bar axis labels
-    tbcsvg.append("g").selectAll(".monthLabel")
-	    .data(vis.barData)
+    tbcsvg.append("g").attr("id", "monthLabelG").selectAll(".monthLabel")
+	    .data(vis.timeBarData)
 	    .enter()
 	    .append("text")
 	    .attr("class", "monthLabel")
-	    .attr("x", function(d,i) {return (i)*colWidth+5;})
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth;})
 	    .attr("y", function(d) {return vis.timeBarH+11;})
 	    .text(function(d,i) {
 	    	var year = i>11 ? "15" : "14";
 	    	var month = i>11 ? (i-11): i+1;
 	    	return month + "/" + year;
 	    })
-	    .style("font-size", "10px");
+	    .style("font-size", "10px")
+	    .style("text-anchor", "end");
 }
 
 HeatMatrix.prototype.initCityBarChart = function(){
@@ -177,39 +162,33 @@ HeatMatrix.prototype.initCityBarChart = function(){
 	    		+  "," + (vis.timeBarH + vis.timeBottom) + ")");
 
     // Create bar data
-    vis.barData = [];
-    vis.data.forEach(function(d) {
-        vis.barData.push(d3.sum(d.IEDevents));
-    })
+    vis.cityBarData = [];
+	for(i=0;i<vis.maxRows;i++) {
+		vis.cityBarData.push(0);
+	}
 
     // Create scales
-    var maxValue = d3.max(vis.barData);
     vis.xScale = d3.scale.linear()
-        .domain([0, maxValue])
         .range([0, vis.cityBarW]);
 
-    // Create a bar for each month
-    var rowHeight = vis.matrixH/vis.data.length;
-    cbcsvg.append("g").selectAll(".cityBar")
-        .data(vis.barData)
+    // Create a bar for each city
+    cbcsvg.append("g").attr("id", "cityBarG").selectAll(".cityBar")
+        .data(vis.cityBarData)
         .enter()
         .append("rect")
         .attr("class", "cityBar")
         .attr("x", 0)
-        .attr("y", function(d,i) {return i*rowHeight;})
-        .attr("width", function(d) {return vis.xScale(d);})
-        .attr("height", rowHeight-1)
+        .attr("y", function(d,i) {return i*vis.rowHeight;})
+        .attr("height", vis.rowHeight-1)
         .style("fill", "orange");
 
-    // Create bar labels
-    cbcsvg.append("g").selectAll(".cityBarLabel")
-	    .data(vis.barData)
-	    .enter()
-	    .append("text")
-	    .attr("class", "cityBarLabel")
-	    .attr("x", function(d) {return 3+vis.xScale(d);})
-	    .attr("y", function(d,i) {return (i+0.5)*rowHeight + 5;})
-	    .text(function(d) {return d;})
+	// Create city bar labels
+    cbcsvg.append("g").attr("id", "cityBarLabelG").selectAll(".cityBarLabel")
+		.data(vis.data.slice(0, vis.maxRows))
+		.enter()
+		.append("text")
+		.attr("class", "cityBarLabel")
+	    .attr("y", function(d,i) {return (i+0.5)*vis.rowHeight + 5;})
 	    .style("font-size", "10px");
 }
 
@@ -227,11 +206,7 @@ HeatMatrix.prototype.initLegend = function(){
 
     // Legend data
     var legendColors = vis.colors.range();
-    var legendValues = [0];
-    vis.colors.range().forEach(function(d,i) {
-        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
-    });
- 
+
 	// Legend title
 	legend.append("text")
 	    .attr("id","heatLegendTitle")
@@ -249,6 +224,11 @@ HeatMatrix.prototype.initLegend = function(){
 	    .attr("transform", function(d, i) {
 	        return "translate(" + (i*(side+3) + transH) +"," + 15 + ")";
 	    });
+
+	var legendValues = [0];
+	vis.colors.range().forEach(function(d,i) {
+	    legendValues.push(0);
+	});	
 	
 	// Add values
 	legend.append("g").selectAll("text")
@@ -261,16 +241,214 @@ HeatMatrix.prototype.initLegend = function(){
 	        return "translate(" + (i*(side+3) + transH) +"," + (25+side)+")";
 	    })
    	    .style("font-size", "10px");
+}
 
-    // Update legend
-    vis.svg.select("#heatLegendTitle").text("IED Events");
-    var legendValues = [0];
-    vis.colors.range().forEach(function(d,i) {
-        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
-    });
-    var entries = vis.svg.selectAll(".heatLegendValue")
-        .data(legendValues)
-        .text(function (d) {return d;});
+HeatMatrix.prototype.wrangleData = function() {
+    var vis = this; // read about the this
+
+    // Filter cities
+    var cityData;
+    if (vis.selectedRegion != "") {
+    	cityData = vis.data.filter(function (d) {return (d.RegionID == vis.selectedRegion);});
+    } else {
+    	cityData = vis.data;
+    }
+
+    // Sort cities
+	var sortedCityData = cityData.sort(function(a,b) {return b.IEDeventTotal- a.IEDeventTotal;});
+
+	// Keep top cities
+	vis.displayData = sortedCityData.slice(0, vis.maxRows);
+    
+	// Update the visualization
+   	vis.updateVis();
+
+}
+
+HeatMatrix.prototype.updateVis = function() {
+    var vis = this; // read about the this
+	
+    // Initialize Heat Matrix
+	vis.updateHeatMatrix();
+	
+	// Initialize Time Bar Chart
+	vis.updateTimeBarChart();
+
+	// Initialize City Bar Chart
+	vis.updateCityBarChart();
+
+	// Initialize Legend
+	vis.updateLegend();
+
+}
+
+HeatMatrix.prototype.updateHeatMatrix = function() {
+    var vis = this; // read about the this
+
+    // Create matrix data
+	vis.matrixData = [];
+	vis.displayData.forEach(function(d,i) {
+		for(j=0;j<24;j++) {
+			var cell = {};
+			cell["i"] = i;
+			cell["j"] = j;
+			cell["value"] = d.IEDevents[j];
+			vis.matrixData.push(cell);
+		}
+	})
+
+	// Update type scale
+	var maxValue = d3.max(vis.matrixData, function(d) {return d.value;});
+	vis.typeScale.domain([0,maxValue]);
+	
+	// Enter Update Exit city rectangles
+	var selection = d3.select("#cityRowG").selectAll(".cityRow").data(vis.matrixData);
+
+	selection.enter()
+		.append("rect")
+		.attr("class", "cityRow");
+
+	selection
+		.attr("x", function(d) {return d.j*vis.colWidth;})
+		.attr("y", function(d) {return d.i*vis.rowHeight;})
+		.attr("width", vis.colWidth-1)
+		.attr("height", vis.rowHeight-1)
+		.style("fill", function(d) {
+			return vis.colors(vis.typeScale(d.value));
+		});
+	
+	selection.exit().remove();
+
+	// Enter Update Exit city labels
+	selection = d3.select("#cityLabelG").selectAll(".cityLabel").data(vis.displayData);
+	
+	selection.enter()
+		.append("text")
+		.attr("class", "cityLabel")
+		.style("text-anchor", "end");
+
+	selection
+		.attr("x", -5)
+		.attr("y", function(d, i) {return (i+0.5)*vis.rowHeight+4;})
+		.text(function(d){ return d.ID;});
+	
+	selection.exit().remove();
+}
+
+HeatMatrix.prototype.updateTimeBarChart = function(){
+    var vis = this; // read about the this
+
+    // Create bar data
+    vis.timeBarData = [];
+    vis.displayData.forEach(function(d,i) {
+        if (i == 0) vis.timeBarData = d.IEDevents;
+        else {
+            for (j=0; j<24; j++) {
+                vis.timeBarData[j] += d.IEDevents[j];
+            }
+        }
+    })
+
+    // Update scale
+    var maxValue = d3.max(vis.timeBarData);
+    vis.yScale.domain([0, maxValue])
+
+   	// Enter Update Exit month bars
+	var selection = d3.select("#monthBarG").selectAll(".monthBar").data(vis.timeBarData);
+
+    selection.enter()
+        .append("rect")
+        .attr("class", "monthBar")
+        .attr("x", function(d,i) {return i*vis.colWidth-3;})
+        .attr("width", vis.colWidth-1)
+        .style("fill", "orange");
+    
+    selection.attr("y", function(d) {return vis.timeBarH-vis.yScale(d);})
+    	.attr("height", function(d) {return vis.yScale(d);})
+    
+   	selection.exit().remove();
+
+   	// Enter Update Exit month bar labels
+	selection = d3.select("#monthBarLabelG").selectAll(".monthBarLabel").data(vis.timeBarData);
+
+    selection.enter()
+	    .append("text")
+	    .attr("class", "monthBarLabel")
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-3;})
+   	    .style("font-size", "10px")
+   	    .style("text-anchor", "end");
+    
+    selection.text(function(d) {return d;})
+    	.attr("y", function(d) {return vis.timeBarH-vis.yScale(d);});
+    
+   	selection.exit().remove();
+}
+
+HeatMatrix.prototype.updateCityBarChart = function(){
+    var vis = this; // read about the this
+
+    // Create bar data
+    vis.cityBarData = [];
+    vis.displayData.forEach(function(d) {
+        vis.cityBarData.push(d3.sum(d.IEDevents));
+    })
+
+    // Update scale
+    var maxValue = d3.max(vis.cityBarData);
+    vis.xScale.domain([0, maxValue])
+
+   	// Enter Update Exit city bars
+	selection = d3.select("#cityBarG").selectAll(".cityBar").data(vis.cityBarData);
+
+    selection.enter()
+        .append("rect")
+        .attr("class", "cityBar")
+        .attr("x", 0)
+        .attr("y", function(d,i) {return i*vis.rowHeight;})
+        .attr("height", vis.rowHeight-1)
+        .style("fill", "orange");
+    
+    selection.attr("width", function(d) {return vis.xScale(d);})
+
+   	selection.exit().remove();
+
+   	// Enter Update Exit city bars labels
+	selection = d3.select("#cityBarLabelG").selectAll(".cityBarLabel").data(vis.cityBarData);
+
+	selection.enter()
+	    .append("text")
+	    .attr("class", "cityBarLabel")
+	    .attr("y", function(d,i) {return (i+0.5)*vis.rowHeight + 5;})
+	    .style("font-size", "10px");
+
+	selection.attr("x", function(d) {return 3+vis.xScale(d);})
+		.text(function(d) {return d;});
+	
+	selection.exit().remove();
 }
 
 
+HeatMatrix.prototype.updateLegend = function() {
+    var vis = this; // read about the this
+
+    if (vis.displayData.length == 0) {
+	    vis.svg.select("#heatLegendTitle").text("No IED Events");
+	    d3.selectAll(".heatLegendValue").attr("visibility","hidden");
+	    d3.selectAll(".heatLegendColor").attr("visibility","hidden");
+    }
+    else {
+    	// Show
+	    d3.selectAll(".heatLegendValue").attr("visibility","visible");
+	    d3.selectAll(".heatLegendColor").attr("visibility","visible");
+    
+	    // Update legend
+	    vis.svg.select("#heatLegendTitle").text("IED Events");
+	    var legendValues = [0];
+	    vis.colors.range().forEach(function(d,i) {
+	        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
+	    });
+	    var entries = vis.svg.selectAll(".heatLegendValue")
+	        .data(legendValues)
+	        .text(function (d) {return d;});
+	}
+}

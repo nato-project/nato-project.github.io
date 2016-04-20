@@ -13,6 +13,7 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.regionData = _regionData;
     this.displayData = []; // see data wrangling
     this.filter = [];
+    this.selectedRegion = "";
 
     // For region color
     this.dataType = "population";
@@ -41,6 +42,15 @@ Map.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    vis.svg.append("rect")
+        .attr("height", vis.height)
+        .attr("width", vis.width)
+        .attr("opacity", 0)
+    	.on("click", function(){
+    		regionClick("");
+    	});
+    
+    
     // Set type and color scales
     vis.colors = d3.scale.quantize().domain([0,1]).range(colorbrewer.Blues[7]);
     vis.typeScale = d3.scale.linear().range([0,1]);
@@ -101,18 +111,52 @@ Map.prototype.initVis = function(){
     var countries = topojson.feature(mapData, mapData.objects.countries).features;
     var regions = topojson.feature(mapData, mapData.objects.regions).features;
 
+    // Tool Tip
+    vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        // Color
+        var data;
+        regionData.forEach(function(r) {
+            if (r.region_id == d.id) data = r;
+        });
+        var tipContent = "";
+        tipContent += "<div class='tooltip-content text-center'>" + d.properties.name + " Oblast</div>";
+        tipContent += "<div class='tooltip-content text-center'>IED Events: " + data.IEDevents + " / Killed: " + data.KIA + " / Wounded: "+data.WIA+"</div>";
+        tipContent += "<div class='tooltip-content text-center'>Area: " + data.area + "km2 / Population: "+ data.population + "</div>";
+
+        return tipContent;
+    });
+    
     // Map TopoJSON data to the screen
     // Regions
     regionsG = vis.svg.append("g");
     regionsG.selectAll("path")
         .data(regions)
         .enter().append("path")
-        .attr("class", "country")
+        .attr("class", "region")
         .attr("id", function(d) { return d.id;})
         .attr("d", path)
         .style("stroke", "grey")
         .style("stroke-width", 1)
-        .style("fill", "lightgrey");
+        .style("fill", "lightgrey")
+        .on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide)
+        .call(vis.tip)
+   	    .on("click", function(d){
+   	    	regionClick(d.id);
+   	    });
+
+    regionsG.selectAll("text")
+	    .data(regions)
+	    .enter().append("text")
+	    .text(function (d) {return d.id;})
+	    .attr("transform", function(d) {
+	    	var trans = vis.proj([d.properties.label_point[0], d.properties.label_point[1]]);
+	    	return "translate("+trans[0]+"," +trans[1]+ ")";
+	    })
+	    .attr("id", function(d) { return d.id;})
+	    .on("mouseover", vis.tip.show)
+	    .on("mouseout", vis.tip.hide)
+	    .call(vis.tip);
 
     // Create circles group
     vis.circlesG = vis.svg.append("g");
@@ -130,7 +174,6 @@ Map.prototype.initVis = function(){
 }
 
 Map.prototype.wrangleData = function() {
-
     var vis = this; // read about the this
 
     // Filter with timeline
@@ -149,7 +192,6 @@ Map.prototype.wrangleData = function() {
 }
 
 Map.prototype.updateVis = function() {
-
     var vis = this; // read about the this
 
     // Update scale
@@ -159,6 +201,7 @@ Map.prototype.updateVis = function() {
     // Colors
     vis.svg.selectAll("path")
         .style("fill",function(d) {
+        	if (d.id == vis.selectedRegion) return "orange";
             // Color
             var data;
             regionData.forEach(function(r) {
