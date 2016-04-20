@@ -4,7 +4,6 @@ var mapData = [];
 var iedData = [];
 var regionData = [];
 var topCityData = [];
-var matrixW = 700, matrixH = 700;
 
 // Variables for the visualization instances
 var mapVis, timelineVis,countsVis;
@@ -41,14 +40,12 @@ queue()
 			d.KIA = 0;
 			d.WIA = 0;
 		});
-		//console.log(iedData);
 		
 		// Arrange data by cities
 		arrangeDataByCity();
 		
 		// Copy topo json data
 		mapData = mapTopoJson;
-		//console.log(mapData);
 		
 		// Add IED events to region data for region coloring
 		var idMap = {};
@@ -85,7 +82,6 @@ queue()
 				regionData[idMap[regionId]].WIA += d.wia;
 			}
 		});
-		console.log(regionData);
 
 		// Create the visualizations
 		createVis();
@@ -95,8 +91,6 @@ function createVis() {
 	// Instantiate visualization objects here
 	mapVis = new Map("mapVis", iedData, mapData, regionData);
 	timelineVis = new Timeline("timelineVis", iedData);
-	timeBarChartVis = new TimeBarChart("timeBarChartVis", topCityData);
-	cityBarChartVis = new CityBarChart("cityBarChartVis", topCityData);
 	heatMatrixVis = new HeatMatrix("heatMatrixVis", topCityData);
 	countsVis = new Counts("countsVis", iedData,900,300);
 }

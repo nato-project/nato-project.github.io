@@ -15,8 +15,8 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.filter = [];
 
     // For region color
-    this.dataType = "IEDevents";
-    this.dataLabel = "Nb IED Incidents";
+    this.dataType = "population";
+    this.dataLabel = "Population";
 
     this.initVis();
 }
@@ -63,8 +63,7 @@ Map.prototype.initVis = function(){
     // Legend title
     legend.append("text")
         .attr("text-anchor","end")
-        .attr("id","legendTitle")
-        .attr("transform", "translate(30,0)");
+        .attr("id","legendTitle");
 
     // Add color squares
     legend.append("g").selectAll("rect")
