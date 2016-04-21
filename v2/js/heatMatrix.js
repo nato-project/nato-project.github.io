@@ -90,7 +90,6 @@ HeatMatrix.prototype.initHeatMatrix = function() {
 
 	// Tool Tip
 	vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-		console.log(d);
 		var monthNames = ["January", "February", "March", "April", "May", "June",
 			"July", "August", "September", "October", "November", "December"];
 		var theDate = monthNames[(d.j >11 ? d.j-12 : d.j)] + " 201" + (d.j >11 ? 5 : 4);
