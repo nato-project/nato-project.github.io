@@ -1,6 +1,7 @@
 
 var iedData = [];
 var iedTextLinks = [];
+var topwords = [];
 
 // Variables for the visualization instances
 var wordCloudVis,fullTextVis, timelineVis,countsVis;
@@ -9,7 +10,8 @@ var wordCloudVis,fullTextVis, timelineVis,countsVis;
 queue()
     .defer(d3.csv, "data/ied_data.csv")
     .defer(d3.csv, "data/ied_text_links.csv")
-    .await(function(error, iedDataCsv,iedTextLinksCsv) {
+    .defer(d3.csv, "data/topwords.csv")
+    .await(function(error, iedDataCsv,iedTextLinksCsv,topwordsCSV) {
 
         // Date parser to convert strings to date objects
         var parseDate = d3.time.format("%m/%d/%Y").parse;
@@ -32,6 +34,11 @@ queue()
         });
         iedTextLinks = iedTextLinksCsv;
 
+        topwordsCSV.forEach(function(d) {
+            d.id = +d.id;
+        });
+        topwords = topwordsCSV;
+
 
         // Create the visualizations
         createVis();
@@ -40,7 +47,7 @@ queue()
 function createVis() {
     // Instantiate visualization objects here
     //wordCloudVis = new WordCloud("mapVis", iedData, mapData, regionData);
-    fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks);
+    fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks,topwords);
     timelineVis = new Timeline("timelineVis", iedData,760);
     countsVis = new Counts("countsVis", iedData,900,300);
 }
