@@ -22,10 +22,10 @@ HeatMatrix = function(_parentElement, _data, _margin){
 HeatMatrix.prototype.initVis = function(){
 	var vis = this; // read about the this
 
-	vis.matrixW = 600, vis.matrixH = 600, vis.cityBarW = 80, vis.timeBarH = 80;
+	vis.matrixW = 600, vis.matrixH = 900, vis.cityBarW = 80, vis.timeBarH = 80;
 	vis.timeBottom = 15; // Included in vis.height
 	vis.cityLeft = 5; // Included in vis.width
-	vis.maxRows = 35;
+	vis.maxRows = 60;
 	vis.rowHeight = vis.matrixH/vis.maxRows;
 	vis.colWidth = vis.matrixW/24;
 	
@@ -79,7 +79,7 @@ HeatMatrix.prototype.initHeatMatrix = function() {
 	}
     
     // Create color and type scales
-    var values = [0, 0.05, 0.1, 0.2, 0.5, 0.8, 1.0];
+    var values = [0, 0.01, 0.1, 0.2, 0.5, 0.8, 1.0];
     var colors = ["#eeeeee", "yellow", "gold", "orange", "orangered", "red", "darkred"];
     vis.colors = d3.scale.quantile().domain(values).range(colors);
 	vis.typeScale = d3.scale.linear().range([0,1]);
@@ -132,7 +132,7 @@ HeatMatrix.prototype.initTimeBarChart = function() {
 	    .enter()
 	    .append("text")
 	    .attr("class", "monthBarLabel")
-	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-3;})
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-5;})
    	    .style("font-size", "10px")
    	    .style("text-anchor", "end");
 
@@ -341,8 +341,11 @@ HeatMatrix.prototype.updateTimeBarChart = function(){
     // Create bar data
     vis.timeBarData = [];
     vis.displayData.forEach(function(d,i) {
-        if (i == 0) vis.timeBarData = d.IEDevents;
-        else {
+        if (i == 0) {
+            for (j=0; j<24; j++) {
+                vis.timeBarData[j] = d.IEDevents[j];
+            }
+        } else {
             for (j=0; j<24; j++) {
                 vis.timeBarData[j] += d.IEDevents[j];
             }
@@ -374,12 +377,12 @@ HeatMatrix.prototype.updateTimeBarChart = function(){
     selection.enter()
 	    .append("text")
 	    .attr("class", "monthBarLabel")
-	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-3;})
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-5;})
    	    .style("font-size", "10px")
    	    .style("text-anchor", "end");
     
     selection.text(function(d) {return d;})
-    	.attr("y", function(d) {return vis.timeBarH-vis.yScale(d);});
+    	.attr("y", function(d) {return vis.timeBarH-vis.yScale(d)-3;});
     
    	selection.exit().remove();
 }

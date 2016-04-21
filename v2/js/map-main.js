@@ -131,6 +131,16 @@ function regionColorSelect() {
 	}
 }
 
+function circleColorSelect() {
+
+	var selectBox = document.getElementById("circleColorSelect");
+	if (mapVis.circleType != selectBox.options[selectBox.selectedIndex].value) {
+		mapVis.circleType = selectBox.options[selectBox.selectedIndex].value;
+		mapVis.circleLabel = selectBox.options[selectBox.selectedIndex].text;
+		mapVis.updateVis();
+	}
+}
+
 function arrangeDataByCity() {
 
 	var idMap = {};
@@ -156,7 +166,6 @@ function arrangeDataByCity() {
 			cityData[idMap[cityName]].IEDevents[monthIndex] += 1;
 		}
 	});
-
 	delete idMap; // Next op makes it out of synch
 
 }
