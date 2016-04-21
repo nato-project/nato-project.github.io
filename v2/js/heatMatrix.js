@@ -22,14 +22,15 @@ HeatMatrix = function(_parentElement, _data, _margin){
 HeatMatrix.prototype.initVis = function(){
 	var vis = this; // read about the this
 
-	vis.matrixW = 600, vis.matrixH = 900, vis.cityBarW = 80, vis.timeBarH = 80;
+	vis.barColor = "lightgrey";
+	vis.matrixW = 550, vis.matrixH = 900, vis.cityBarW = 60, vis.timeBarH = 60;
 	vis.timeBottom = 15; // Included in vis.height
 	vis.cityLeft = 5; // Included in vis.width
 	vis.maxRows = 60;
 	vis.rowHeight = vis.matrixH/vis.maxRows;
 	vis.colWidth = vis.matrixW/24;
 	
-	vis.margin = {top: 15, right: 25, bottom: 0, left: 150};
+	vis.margin = {top: 15, right: 25, bottom: 0, left: 130};
 
 	vis.width = vis.matrixW + vis.cityBarW + vis.cityLeft;
 	vis.height = vis.matrixH + vis.timeBarH + vis.timeBottom;
@@ -74,6 +75,9 @@ HeatMatrix.prototype.initHeatMatrix = function() {
 			cell["i"] = i;
 			cell["j"] = j;
 			cell["value"] = 0;
+			cell["city"] = "";
+			cell["kia"] = 0;
+			cell["wia"] = 0;
 			vis.matrixData.push(cell);
 		}
 	}
@@ -83,7 +87,19 @@ HeatMatrix.prototype.initHeatMatrix = function() {
     var colors = ["#eeeeee", "yellow", "gold", "orange", "orangered", "red", "darkred"];
     vis.colors = d3.scale.quantile().domain(values).range(colors);
 	vis.typeScale = d3.scale.linear().range([0,1]);
-	
+
+	// Tool Tip
+	vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+		console.log(d);
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+			"July", "August", "September", "October", "November", "December"];
+		var theDate = monthNames[(d.j >11 ? d.j-12 : d.j)] + " 201" + (d.j >11 ? 5 : 4);
+		var tipContent = "";
+		tipContent += "<div class='tooltip-content text-center'>" + d.city + " in "+ theDate +"</div>";
+		tipContent += "<div class='tooltip-content text-center'>IED Events: " + d.value + " / Killed: " + d.kia + " / Wounded: "+d.wia+"</div>";
+		return tipContent;
+	});
+
 	// Create a rectangle for each city
 	hmsvg.append("g").attr("id", "cityRowG").selectAll(".cityRow")
 		.data(vis.matrixData)
@@ -124,7 +140,7 @@ HeatMatrix.prototype.initTimeBarChart = function() {
         .attr("class", "monthBar")
         .attr("x", function(d,i) {return i*vis.colWidth;})
         .attr("width", vis.colWidth-1)
-        .style("fill", "orange");
+        .style("fill", vis.barColor);
     
     // Create bar labels
     tbcsvg.append("g").attr("id", "monthBarLabelG").selectAll(".monthBarLabel")
@@ -180,7 +196,7 @@ HeatMatrix.prototype.initCityBarChart = function(){
         .attr("x", 0)
         .attr("y", function(d,i) {return i*vis.rowHeight;})
         .attr("height", vis.rowHeight-1)
-        .style("fill", "orange");
+        .style("fill", vis.barColor);
 
 	// Create city bar labels
     cbcsvg.append("g").attr("id", "cityBarLabelG").selectAll(".cityBarLabel")
@@ -195,8 +211,8 @@ HeatMatrix.prototype.initCityBarChart = function(){
 HeatMatrix.prototype.initLegend = function(){
     var vis = this; // read about the this
 
-    var transH = 10;
-    var transV = 40;
+    var transH = 15;
+    var transV = 20;
     var side = ((vis.margin.left-transH)/(1+vis.colors.range().length))-4;
 
     // Create legend
@@ -210,8 +226,8 @@ HeatMatrix.prototype.initLegend = function(){
 	// Legend title
 	legend.append("text")
 	    .attr("id","heatLegendTitle")
-	    .attr("transform", "translate(5,10)");
-	
+	    .attr("transform", "translate(" +(transH-5) + ",10)");
+
 	// Add color squares
 	legend.append("g").selectAll("rect")
 	    .data(legendColors)
@@ -268,16 +284,16 @@ HeatMatrix.prototype.wrangleData = function() {
 HeatMatrix.prototype.updateVis = function() {
     var vis = this; // read about the this
 	
-    // Initialize Heat Matrix
+    // Update Heat Matrix
 	vis.updateHeatMatrix();
 	
-	// Initialize Time Bar Chart
+	// Update Time Bar Chart
 	vis.updateTimeBarChart();
 
-	// Initialize City Bar Chart
+	// Update City Bar Chart
 	vis.updateCityBarChart();
 
-	// Initialize Legend
+	// Update Legend
 	vis.updateLegend();
 
 }
@@ -293,6 +309,9 @@ HeatMatrix.prototype.updateHeatMatrix = function() {
 			cell["i"] = i;
 			cell["j"] = j;
 			cell["value"] = d.IEDevents[j];
+			cell["city"] = d.ID;
+			cell["kia"] = d.KIA[j];
+			cell["wia"] = d.WIA[j];
 			vis.matrixData.push(cell);
 		}
 	})
@@ -315,7 +334,10 @@ HeatMatrix.prototype.updateHeatMatrix = function() {
 		.attr("height", vis.rowHeight-1)
 		.style("fill", function(d) {
 			return vis.colors(vis.typeScale(d.value));
-		});
+		})
+		.on('mouseover', vis.tip.show)
+		.on('mouseout', vis.tip.hide)
+		.call(vis.tip);
 	
 	selection.exit().remove();
 
@@ -364,7 +386,7 @@ HeatMatrix.prototype.updateTimeBarChart = function(){
         .attr("class", "monthBar")
         .attr("x", function(d,i) {return i*vis.colWidth-3;})
         .attr("width", vis.colWidth-1)
-        .style("fill", "orange");
+        .style("fill", vis.barColor);
     
     selection.attr("y", function(d) {return vis.timeBarH-vis.yScale(d);})
     	.attr("height", function(d) {return vis.yScale(d);})
@@ -377,7 +399,7 @@ HeatMatrix.prototype.updateTimeBarChart = function(){
     selection.enter()
 	    .append("text")
 	    .attr("class", "monthBarLabel")
-	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-5;})
+	    .attr("x", function(d,i) {return (i+1)*vis.colWidth-6;})
    	    .style("font-size", "10px")
    	    .style("text-anchor", "end");
     
@@ -409,7 +431,7 @@ HeatMatrix.prototype.updateCityBarChart = function(){
         .attr("x", 0)
         .attr("y", function(d,i) {return i*vis.rowHeight;})
         .attr("height", vis.rowHeight-1)
-        .style("fill", "orange");
+        .style("fill", vis.barColor);
     
     selection.attr("width", function(d) {return vis.xScale(d);})
 

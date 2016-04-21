@@ -5,7 +5,6 @@
  * @param _mapData			-- the map data
  * @param _regionData			-- the map regions data
  */
-
 Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.parentElement = _parentElement;
     this.iedData = _iedData;
@@ -19,8 +18,8 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.dataType = "population";
     this.dataLabel = "Population";
     // For circle color
-    this.circleType = "effect";
-    this.cirleLabel = "Effect";
+    this.circleType = "type";
+    this.circleLabel = "Type";
 
     this.initVis();
 }
@@ -34,7 +33,7 @@ Map.prototype.initVis = function(){
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
-    vis.width = 900 - vis.margin.left - vis.margin.right,
+    vis.width = 700 - vis.margin.left - vis.margin.right,
         vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
@@ -53,83 +52,8 @@ Map.prototype.initVis = function(){
     		regionClick("");
     	});
         
-    // Set region type and color scales
-    vis.colors = d3.scale.quantize().domain([0,1]).range(colorbrewer.Blues[7]);
-    vis.typeScale = d3.scale.linear().range([0,1]);
-
-    // Region legend data
-    var legendColors = vis.colors.range();
-    var legendValues = [0];
-    vis.colors.range().forEach(function(d,i) {
-        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
-    });
-    legendValues.push("No data");
-    legendColors.push("lightgrey");
-    vis.side = 20;
-
-    // Create legend
-    var legend = vis.svg.append("g")
-        .attr("transform", "translate(120, 360)")
-        .attr("id", "legend");
-
-    // Legend title
-    legend.append("text")
-        .attr("text-anchor","end")
-        .attr("transform", "translate(10, 0)")
-        .attr("id","legendTitle");
-
-    // Add color squares
-    legend.append("g").selectAll("rect")
-        .data(legendColors)
-        .enter()
-        .append("rect")
-        .attr("class", "legendColor")
-        .attr("fill", function (d) {return d;})
-        .attr("height", vis.side)
-        .attr("width", vis.side)
-        .attr("transform", function(d, i) {
-            return "translate(2," + (i*(vis.side+3)+5) +")";
-        });
-
-    // Add values
-    legend.append("g").selectAll("text")
-        .data(legendValues)
-        .enter()
-        .append("text")
-        .attr("class", "legendValue")
-        .attr("text-anchor","end")
-        .attr("transform", function(d, i) {
-            if (i==8) return "translate(0," + (i*(vis.side+3)+15) +")";
-            return "translate(0," + (i*(vis.side+3) + 20) +")";
-        });
-
-    // Set circle color legend
-    vis.circleColor = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
-
-    // Legend
-    vis.clegend = vis.svg.append("g")
-        .attr("transform", "translate(150,350)")
-        .selectAll("g")
-        .data(vis.circleColor.range())
-        .enter()
-        .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side+3) + 15) + ")"; });
-    // Legend title
-    vis.clegend.append("text")
-        .attr("id","colorLegendTitle")
-        .attr("transform", "translate(5,-5)")
-    // Legend squares
-    vis.clegendbox = vis.clegend.append("rect")
-        .attr("width", vis.side)
-        .attr("height", vis.side)
-        .style("fill", function(d){return d;});
-    vis.clegendlabels = vis.clegend.append("text")
-        .attr("class", "circleColorLabels")
-        .attr("x", 25)
-        .attr("y", 15);
-    
     // Create projection
-    var projection = d3.geo.mercator().scale([2650]).center([32, 49.05]);
+    var projection = d3.geo.mercator().scale([2150]).center([34.5, 48.5]);
     vis.proj = projection;
 
     // Create D3 geo path
@@ -143,7 +67,7 @@ Map.prototype.initVis = function(){
     vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
         // Color
         var data;
-        regionData.forEach(function(r) {
+        vis.regionData.forEach(function(r) {
             if (r.region_id == d.id) data = r;
         });
         var tipContent = "";
@@ -153,8 +77,26 @@ Map.prototype.initVis = function(){
 
         return tipContent;
     });
-    
+    vis.ctrtip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        var tipContent = "<div class='tooltip-content text-center'>" + d.properties.name + "</div>";
+        return tipContent;
+    });
+
     // Map TopoJSON data to the screen
+    // Countries
+    ctrG = vis.svg.append("g");
+    ctrG.selectAll("path")
+        .data(countries)
+        .enter().append("path")
+        .attr("id", function(d) { return d.id;})
+        .attr("d", path)
+        .style("stroke", "grey")
+        .style("stroke-width", 1)
+        .style("fill", "#eeeeee")
+        .on('mouseover', vis.ctrtip.show)
+        .on('mouseout', vis.ctrtip.hide)
+        .call(vis.ctrtip);
+
     // Regions
     regionsG = vis.svg.append("g");
     regionsG.selectAll("path")
@@ -185,6 +127,82 @@ Map.prototype.initVis = function(){
 	    .on("mouseover", vis.tip.show)
 	    .on("mouseout", vis.tip.hide)
 	    .call(vis.tip);
+
+    // Set region type and color scales
+    vis.colors = d3.scale.quantize().domain([0,1]).range(colorbrewer.Blues[7]);
+    vis.typeScale = d3.scale.linear().range([0,1]);
+
+    // Region legend data
+    var legendColors = vis.colors.range();
+    var legendValues = [0];
+    vis.colors.range().forEach(function(d,i) {
+        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
+    });
+    legendValues.push("No data");
+    legendColors.push("lightgrey");
+    vis.side = 20;
+
+    // Create legend
+    var legend = vis.svg.append("g")
+        .attr("transform", "translate(100, 315)")
+        .attr("id", "legend");
+
+    // Legend title
+    legend.append("text")
+        .attr("text-anchor","end")
+        .attr("transform", "translate(10, -8)")
+        .attr("id","legendTitle");
+
+    // Add color squares
+    legend.append("g").selectAll("rect")
+        .data(legendColors)
+        .enter()
+        .append("rect")
+        .attr("class", "legendColor")
+        .attr("fill", function (d) {return d;})
+        .style("stroke", "grey")
+        .attr("height", vis.side)
+        .attr("width", vis.side)
+        .attr("transform", function(d, i) {
+            return "translate(2," + (i*(vis.side+3)+5) +")";
+        });
+
+    // Add values
+    legend.append("g").selectAll("text")
+        .data(legendValues)
+        .enter()
+        .append("text")
+        .attr("class", "legendValue")
+        .attr("text-anchor","end")
+        .attr("transform", function(d, i) {
+            if (i==8) return "translate(0," + (i*(vis.side+3)-3) +")";
+            return "translate(0," + (i*(vis.side+3) + 5) +")";
+        });
+
+    // Set circle color legend
+    vis.circleColorType = d3.scale.category10();
+    vis.circleColorType.domain(d3.keys(vis.displayData.type));
+    vis.circleColorEffect = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
+    vis.circleColor = vis.circleColorType;
+
+    // Legend
+    vis.clegend = vis.svg.append("g")
+        .attr("transform", "translate(130,300)")
+        .selectAll("g")
+        .data(vis.circleColor.range())
+        .enter()
+        .append("g")
+        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side) + 15) + ")"; });
+    // Legend title
+    vis.clegend.append("text")
+        .attr("id","colorLegendTitle")
+        .attr("transform", "translate(5,-5)")
+    // Legend circles
+    vis.clegendbox = vis.clegend.append("circle")
+        .attr("class", "circleColorCircles");
+    vis.clegendlabels = vis.clegend.append("text")
+        .attr("class", "circleColorLabels");
+
 
     // Create circles group
     vis.circlesG = vis.svg.append("g");
@@ -227,7 +245,7 @@ Map.prototype.updateVis = function() {
     vis.typeScale.domain([0, maxValue]);
 
     // Region colors
-    vis.svg.selectAll("path")
+    vis.svg.selectAll(".region")
         .style("fill",function(d) {
         	if (d.id == vis.selectedRegion) return "orange";
             // Color
@@ -255,11 +273,10 @@ Map.prototype.updateVis = function() {
         .text(function (d) {return d;});
 
     // Update circle color
-    if(vis.circleType == "type"){
-        vis.circleColor = d3.scale.category10();
-        vis.circleColor.domain(d3.keys(vis.displayData.type));
-    }else{
-        vis.circleColor = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
+    if (vis.circleType == "type") {
+        vis.circleColor = vis.circleColorType;
+    } else {
+        vis.circleColor = vis.circleColorEffect;
     }
     
     // Add event circles
@@ -298,21 +315,22 @@ Map.prototype.updateVis = function() {
     circ.exit().remove();
 
     // Circle legend
-    d3.select("#colorLegendTitle").text(vis.cirleLabel);
+    d3.select("#colorLegendTitle").text(vis.circleLabel);
     vis.clegend = vis.clegend.data(vis.circleColor.range());
     vis.clegend.exit().remove();
     vis.clegend.enter()
         .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side+3) + 20) + ")"; });
+        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side) + 20) + ")"; });
     vis.clegendbox.remove();
-    vis.clegendbox = vis.clegend.append("rect")
-        .attr("width", vis.side)
-        .attr("height", vis.side)
+    vis.clegendbox = vis.clegend.append("circle")
+        .attr("r", 5)
+        .attr("cx", vis.side/2)
+        .attr("cy", vis.side/2)
         .style("fill", function(d){return d;});
     vis.clegendlabels.remove();
     vis.clegendlabels = vis.clegend.append("text")
         .attr("class", "circleLegendLabels")
-        .attr("x", 25)
+        .attr("x", 19)
         .attr("y", 15)
         .style("fill", function(d){return d;})
         .text(function(d,i){

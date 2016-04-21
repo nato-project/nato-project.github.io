@@ -32,7 +32,7 @@
         </div>
         <div class="row-spacer"></div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label><strong>Region color</strong>&nbsp;
                         <select class="form-control" id="regionColorSelect" onchange="regionColorSelect()">
@@ -45,30 +45,24 @@
                     </label>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label><strong>Circle color</strong>&nbsp;
                         <select class="form-control" id="circleColorSelect" onchange="circleColorSelect()">
-                            <option value="effect">Effect</option>
                             <option value="type">IED Type</option>
+                            <option value="effect">Effect</option>
                         </select>
                     </label>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
 
             </div>
         </div>
         <div class="row">
-            <div class="col-md-9">
-                <div id="mapVis"></div>
-            </div>
+            <div id="mapVis" class="col-md-5" style="padding: 0px"></div>
+            <div id="heatMatrixVis" class="col-md-7" style="padding: 0px"></div>
         </div>
-
-        <div class="row-spacer"></div>
-		<div class="row">
-		        <div id="heatMatrixVis" class="col-md-9"></div>
-		</div>
 
     </div>
 

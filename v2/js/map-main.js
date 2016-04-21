@@ -157,6 +157,10 @@ function arrangeDataByCity() {
 			var monthIndex = getMonthIndex(d.date);
 			cityObj.IEDevents = new Array(24).fill(0);
 			cityObj.IEDevents[monthIndex] += 1;
+			cityObj.KIA = new Array(24).fill(0);
+			cityObj.KIA[monthIndex] = d.kia;
+			cityObj.WIA = new Array(24).fill(0);
+			cityObj.WIA[monthIndex] = d.wia;
 			idMap[cityName] = cityData.length;
 			cityData.push(cityObj);
 		}
@@ -164,6 +168,8 @@ function arrangeDataByCity() {
 			cityData[idMap[cityName]].IEDeventTotal += 1;
 			var monthIndex = getMonthIndex(d.date);
 			cityData[idMap[cityName]].IEDevents[monthIndex] += 1;
+			cityData[idMap[cityName]].KIA[monthIndex] += d.wia;
+			cityData[idMap[cityName]].WIA[monthIndex] += d.kia;
 		}
 	});
 	delete idMap; // Next op makes it out of synch
