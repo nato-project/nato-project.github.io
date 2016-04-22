@@ -182,3 +182,73 @@ function getMonthIndex(date) {
 	if (date.getYear() == 115) monthIndex += 12;
 	return monthIndex;
 }
+
+function showMapKiev() {
+
+	// Set new brush domain
+	var newFilter = [];
+	timelineVis.brush.clear();
+	timelineVis.brush(d3.select(".brush"));
+	timelineVis.brush.event(d3.select(".brush"))
+	mapVis.filter = newFilter;
+
+	// Count Vis
+	countsVis.filter = newFilter;
+	countsVis.wrangleData();
+
+	// Select Donestk region
+	mapVis.selectedRegion = "kiev";
+	heatMatrixVis.selectedRegion = "kiev";
+
+	// Color regions by number of events
+	var selectBox = document.getElementById("regionColorSelect");
+	selectBox.selectedIndex = 2;
+	mapVis.dataType = selectBox.options[selectBox.selectedIndex].value;
+	mapVis.dataLabel = selectBox.options[selectBox.selectedIndex].text;
+
+	// Color circles by effect
+	var selectBox2 = document.getElementById("circleColorSelect");
+	selectBox2.selectedIndex = 0;
+	mapVis.circleType = selectBox2.options[selectBox2.selectedIndex].value;
+	mapVis.circleLabel = selectBox2.options[selectBox2.selectedIndex].text;
+
+	// Update
+	mapVis.wrangleData();
+	heatMatrixVis.wrangleData();
+
+}
+
+function showMapDonestk() {
+
+	// Set new brush domain
+	var newFilter = [new Date(2015,9,1), new Date(2015,12,31)];
+	timelineVis.brush.extent(newFilter);
+	timelineVis.brush(d3.select(".brush").transition());
+	timelineVis.brush.event(d3.select(".brush").transition().delay(1000))
+	mapVis.filter = newFilter;
+
+	// Count Vis
+	countsVis.filter = newFilter;
+	countsVis.wrangleData();
+
+	// Select Donestk region
+	mapVis.selectedRegion = "dn";
+	heatMatrixVis.selectedRegion = "dn";
+
+	// Color regions by number of events
+	var selectBox = document.getElementById("regionColorSelect");
+	selectBox.selectedIndex = 3;
+	mapVis.dataType = selectBox.options[selectBox.selectedIndex].value;
+	mapVis.dataLabel = selectBox.options[selectBox.selectedIndex].text;
+
+	// Color circles by effect
+	var selectBox2 = document.getElementById("circleColorSelect");
+	selectBox2.selectedIndex = 1;
+	mapVis.circleType = selectBox2.options[selectBox2.selectedIndex].value;
+	mapVis.circleLabel = selectBox2.options[selectBox2.selectedIndex].text;
+
+	// Update
+	mapVis.wrangleData();
+	heatMatrixVis.wrangleData();
+
+}

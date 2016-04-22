@@ -89,13 +89,17 @@ Map.prototype.initVis = function(){
         .data(countries)
         .enter().append("path")
         .attr("id", function(d) { return d.id;})
+        .attr("class", "country")
         .attr("d", path)
         .style("stroke", "grey")
         .style("stroke-width", 1)
-        .style("fill", "#eeeeee")
+        .style("fill", "#efefef")
         .on('mouseover', vis.ctrtip.show)
         .on('mouseout', vis.ctrtip.hide)
-        .call(vis.ctrtip);
+        .call(vis.ctrtip)
+        .on("click", function(d){
+            regionClick("");
+        });
 
     // Regions
     regionsG = vis.svg.append("g");
@@ -326,14 +330,15 @@ Map.prototype.updateVis = function() {
         .attr("r", 5)
         .attr("cx", vis.side/2)
         .attr("cy", vis.side/2)
-        .style("fill", function(d){return d;});
+        .style("fill", function(d){return d;})
+        .attr("stroke", "black")
+        .attr("stroke-width", 1);
     vis.clegendlabels.remove();
     vis.clegendlabels = vis.clegend.append("text")
         .attr("class", "circleLegendLabels")
         .attr("x", 19)
         .attr("y", 15)
-        .style("fill", function(d){return d;})
         .text(function(d,i){
             return vis.circleColor.domain()[i];
-        })
+        });
 }
