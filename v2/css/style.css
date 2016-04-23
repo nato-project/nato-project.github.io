@@ -1,6 +1,10 @@
 body{
     font-family: "Helvetica Neue";
 }
+#header {
+
+    border-bottom: 4px solid #FFD500;
+}
 .navbar {
     background-color: #005BBB;
     border-radius: 0px;
@@ -10,10 +14,52 @@ body{
 .navbar-default .navbar-brand {
     color: #ffffff;
     font-size: 18pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+    background-color: transparent;
+    color: #ffffff;
+}
+.navbar-default .navbar-brand small {
+    color: #ffffff;
+    font-size: 10pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    display:block;
 }
 .navbar-default .navbar-nav li a {
     color: #ffffff;
-    font-size: 12pt;
+    font-size: 10pt;
+    font-family: "Open Sans", sans-serif;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: #FFD500;
+}
+.navbar-default .navbar-nav li .button-line {
+    height: 100%;
+    border-right: 1px solid #FFD500;
+    position: absolute;
+    left: 0;
+    /* top: 50%; */
+    margin-top: -15px;
+}
+.navbar-default .navbar-nav li a:hover {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav li .hover-color {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .navbar-nav>li>.dropdown-menu{
     background-color: #005BBB;
