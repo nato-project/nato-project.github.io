@@ -1,9 +1,12 @@
 body{
     font-family: "Helvetica Neue";
 }
-#header {
+#nav-header {
 
     border-bottom: 4px solid #FFD500;
+}
+#body-container{
+    margin-top: 50px;
 }
 .navbar {
     background-color: #005BBB;
