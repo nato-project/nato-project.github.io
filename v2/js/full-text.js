@@ -28,8 +28,8 @@ FullText.prototype.initVis = function() {
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
-    vis.width = 800 - vis.margin.left - vis.margin.right,
-        vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right,
+        vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -44,11 +44,13 @@ FullText.prototype.initVis = function() {
 
     // Link width
     vis.linkWidth = d3.scale.linear();
-    vis.linkWidth.domain([0.5,1]).range([1,10]);
+    vis.linkWidth.domain([0.5,1]).range([2,9]);
+    vis.linkDistance = d3.scale.linear();
+    vis.linkDistance.domain([0.5,1]).range([40,10]);
 
     // Node Text Font Size
     vis.nodeTextFontSize = d3.scale.linear();
-    vis.nodeTextFontSize.domain([1,600]).range([10,50]);
+    vis.nodeTextFontSize.domain([1,600]).range([10,40]);
 
     vis.findNode = function(id){
         return vis.displayData[id];
@@ -56,21 +58,39 @@ FullText.prototype.initVis = function() {
 
     // Create nodes and links
     vis.iedData.forEach(function(d) {
-        vis.nodes.push({name: d.id,id: d.id});
+        //vis.nodes.push({name: d.id,id: d.id});
+        // Add nodes only if we have a link
+        if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
+            vis.nodes.push({name: d.id,id: d.id});
+        }
     });
+    var src,tgt;
     vis.textLinkData.forEach(function(d) {
-        vis.links.push({source: d.s_id-1,target: d.t_id-1,cs_value: d.cs_value});
+        src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
+        tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
+        if(src > -1 && tgt > -1) {
+            vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
+            //vis.displayTextLinkData.push({s_id: d.s_id,t_id: d.t_id,cs_value: d.cs_value});
+        }
+        //vis.links.push({source: d.s_id-1,target: d.t_id-1,cs_value: d.cs_value});
     });
-    //console.log(vis.nodes);
-    //console.log(vis.links);
+    console.log(vis.nodes);
+    console.log(vis.links);
 
     // 1) INITIALIZE FORCE-LAYOUT
     vis.force = d3.layout.force()
         .size([vis.width, vis.height])
-        .friction(.9)
-        .linkDistance(30)
-        .charge(-80)
-        .gravity(.8);
+        .linkDistance(function(d){
+            //return vis.linkDistance(d.cs_value);
+            return 30;
+        })
+        .gravity(.1)
+        .charge(-30)
+
+        //.friction(.8)
+        //.linkDistance(30)
+        //.charge(-200)
+        //.gravity(.8);
 
     // 2a) DEFINE 'NODES' AND 'EDGES'
     vis.force.nodes(vis.nodes)
@@ -133,7 +153,7 @@ FullText.prototype.initVis = function() {
         vis.nodeTextItems.attr("x", function(d) {
                 var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
                 if(node){
-                    return node.x-100;
+                    return node.x-50;
                 }else{
                     return 2000;
                 }
@@ -194,33 +214,33 @@ FullText.prototype.initVis = function() {
     //vis.nodeItems.call(vis.tip);
 
     // Brush
-    vis.brush = d3.svg.brush()
-        .x(d3.scale.linear().domain([0, vis.width]).range([0, vis.width]))
-        .y(d3.scale.linear().domain([0, vis.height]).range([0, vis.height]))
-        .on("brush", function(){
-            vis.nodeFilter = vis.brush.empty() ? [] : vis.brush.extent();
-            console.log(vis.nodeFilter);
-
-            var extent = vis.brush.extent();
-            //d3.selectAll(".force-layout-node").select("circle").classed("selected", function(d) {
-            //
-            //    return d.selected = (extent[0][0] <= d.x && d.x < extent[1][0]
-            //    && extent[0][1] <= d.y && d.y < extent[1][1]);
-            //
-            //});
-            var selected = d3.selectAll(".force-layout-node").filter(function(d){
-                return (extent[0][0] <= d.x && d.x < extent[1][0] && extent[0][1] <= d.y && d.y < extent[1][1]);
-            });
-            console.log(selected);
-        });
-
-    // Append brush component
-    vis.svg.append("g")
-        .attr("class", "x brush")
-        .call(vis.brush)
-        .selectAll("rect")
-        .attr("y", -6)
-        .attr("height", vis.height + 7);
+    //vis.brush = d3.svg.brush()
+    //    .x(d3.scale.linear().domain([0, vis.width]).range([0, vis.width]))
+    //    .y(d3.scale.linear().domain([0, vis.height]).range([0, vis.height]))
+    //    .on("brush", function(){
+    //        vis.nodeFilter = vis.brush.empty() ? [] : vis.brush.extent();
+    //        console.log(vis.nodeFilter);
+    //
+    //        var extent = vis.brush.extent();
+    //        //d3.selectAll(".force-layout-node").select("circle").classed("selected", function(d) {
+    //        //
+    //        //    return d.selected = (extent[0][0] <= d.x && d.x < extent[1][0]
+    //        //    && extent[0][1] <= d.y && d.y < extent[1][1]);
+    //        //
+    //        //});
+    //        var selected = d3.selectAll(".force-layout-node").filter(function(d){
+    //            return (extent[0][0] <= d.x && d.x < extent[1][0] && extent[0][1] <= d.y && d.y < extent[1][1]);
+    //        });
+    //        console.log(selected);
+    //    });
+    //
+    //// Append brush component
+    //vis.svg.append("g")
+    //    .attr("class", "x brush")
+    //    .call(vis.brush)
+    //    .selectAll("rect")
+    //    .attr("y", -6)
+    //    .attr("height", vis.height + 7);
 
     // Wrangle and update
     //vis.wrangleData();
@@ -244,7 +264,10 @@ FullText.prototype.wrangleData = function() {
     // Build Nodes and links from new dataset
     vis.nodes =[];
     vis.displayData.forEach(function(d) {
-        vis.nodes.push({name: d.id,id: d.id});
+        // Add nodes only if we have a link
+        if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
+            vis.nodes.push({name: d.id,id: d.id});
+        }
     });
     var src,tgt;
     vis.links = [];
