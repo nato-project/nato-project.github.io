@@ -28,3 +28,19 @@ $(function() {
 
 
 });
+
+var COMMON_COLORS ={
+    "KILLED": "#900808",
+    "WOUNDED": "#ff8100",
+    "INCIDENT": "#bdbdbd",
+    "CACHE/FOUND":"#fccde5",
+    "CWIED":"#bc80bd",
+    "HOAX/FALSE":"#ccebc5",
+    "PROJECTED":"#8dd3c7",
+    "RCIED":"#ffffb3",
+    "S-PBIED":"#bebada",
+    "TIME DELAY":"#fb8072",
+    "UNKNOWN":"#80b1d3",
+    "VBIED":"#fdb462",
+    "VOIED":"#b3de69"
+}

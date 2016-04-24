@@ -151,11 +151,9 @@ h1,h2,h3,h4{
     shape-rendering: crispEdges;
 }
 .timeline-bar {
-    fill: #dfdfdf;
     stroke-width: 0;
 }
 .timeline-circle {
-    fill: #494949;
     stroke-width: 0;
 }
 

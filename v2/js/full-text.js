@@ -302,7 +302,7 @@ FullText.prototype.updateVis = function() {
         vis.color = d3.scale.category10();
         vis.color.domain(d3.keys(this.displayData.type));
     }else{
-        vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
+        vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualties"]).range(["#de2d26","#494949", "#dfdfdf"]);
     }
     //console.log(vis.color.domain());
     //console.log(vis.color.range());

@@ -92,10 +92,10 @@ Timeline.prototype.initVis = function(){
 
 	// Incidents
 	vis.bar.append("rect")
-		.attr("class", "timeline-bar")
 		.attr("y", function(d) { return 0; })
 		.attr("height", function(d) { return 60; })
-		.attr("width", 1);
+		.attr("width", 1)
+		.attr("fill",COMMON_COLORS.INCIDENT);
 
 	// Killed or Wounded
 	vis.circle.append("circle")
@@ -107,9 +107,9 @@ Timeline.prototype.initVis = function(){
 		.attr("r", 2)
 		.style("fill",function(d) {
 			if(d.kia >0){
-				return "#de2d26";
+				return COMMON_COLORS.KILLED;
 			}else{
-				return "#494949";
+				return COMMON_COLORS.WOUNDED;
 			}
 
 		});

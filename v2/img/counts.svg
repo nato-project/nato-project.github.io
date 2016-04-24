@@ -5,32 +5,35 @@
 	 viewBox="0 0 963 162" style="enable-background:new 0 0 963 162;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
-	.st1{fill:#4A494A;}
+	.st1{fill:#ff8100;}
 	.st2{font-family:'HelveticaNeue-Bold';}
 	.st3{font-size:36px;}
-	.st4{fill:#DE2F27;}
+	.st4{fill:#900808;}
 	.st5{font-size:72px;}
-	.st6{fill:#DFDFDF;stroke:#4A494A;stroke-width:3;stroke-miterlimit:10;}
-	.st7{fill:#4B4A4B;}
-	.st8{fill:#4B4B4B;}
-	.st9{fill:#DFDFDF;stroke:#DE2F27;stroke-width:3;stroke-miterlimit:10;}
-	.st10{fill:#DF3427;}
+	.st6{fill:#ff8100;stroke:#ff8100;stroke-width:3;stroke-miterlimit:10;}
+	.st7{fill:#ff8100;}
+	.st8{fill:#ffffff;}
+	.st9{fill:#900808;stroke:#900808;stroke-width:3;stroke-miterlimit:10;}
+	.st10{fill:#ffffff;}
+	.st11{fill:#bdbdbd;stroke:#bdbdbd;stroke-width:3;stroke-miterlimit:10;}
+    .st12{fill:#ffffff;}
+    .st13{fill:#bdbdbd;}
 </style>
 <rect x="800" y="100" class="st0" width="163" height="55"/>
-<text transform="matrix(1 0 0 1 800 125.7036)" class="st1 st2 st3">Incidents</text>
+<text transform="matrix(1 0 0 1 800 125.7036)" class="st13 st2 st3">Incidents</text>
 <rect x="452" y="100" class="st0" width="163" height="55"/>
 <text transform="matrix(1 0 0 1 452 125.7036)" class="st1 st2 st3">Wounded</text>
 <rect x="165" y="100" class="st0" width="115" height="55"/>
 <text transform="matrix(1 0 0 1 165 125.7036)" class="st4 st2 st3">Killed</text>
 <rect x="800" y="33" class="st0" width="124" height="61"/>
-<text id="counts_total" transform="matrix(1 0 0 1 800 84.4072)" class="st1 st2 st5">650</text>
+<text id="counts_total" transform="matrix(1 0 0 1 800 84.4072)" class="st13 st2 st5">650</text>
 <rect x="443" y="33" class="st0" width="124" height="61"/>
 <text id="counts_wia" transform="matrix(1 0 0 1 443 84.4072)" class="st1 st2 st5">152</text>
 <rect x="164" y="33" class="st0" width="110" height="61"/>
 <text id="counts_kia" transform="matrix(1 0 0 1 164 84.4072)" class="st4 st2 st5">65</text>
 <g>
-	<ellipse class="st6" cx="716.9" cy="80.5" rx="75" ry="74.9"/>
-	<path class="st7" d="M761.8,33.8c-4.1,0-7.3,3.2-7.3,7.3s-3.2,7.3-7.3,7.3c-4.1,0-7.3-3.2-7.3-7.3c0-8.2-6.8-15.1-15.1-15.1
+	<ellipse class="st11" cx="716.9" cy="80.5" rx="75" ry="74.9"/>
+	<path class="st12" d="M761.8,33.8c-4.1,0-7.3,3.2-7.3,7.3s-3.2,7.3-7.3,7.3c-4.1,0-7.3-3.2-7.3-7.3c0-8.2-6.8-15.1-15.1-15.1
 		s-15.1,6.8-15.1,15.1v10H702c-1.4,0.5-2.7,1.4-2.7,2.7v5.5c-15.1,5.9-25.1,20.5-25.1,37c0,21.9,17.8,39.7,39.7,39.7
 		s39.7-17.8,39.7-39.7c0-16.4-10-31-25.1-37v-5.5c0-1.4-0.9-2.3-2.3-2.3h-12.3v-10c0-5.5,4.6-10,10-10s10,4.6,10,10
 		c0.5,6.8,5.9,12.3,12.8,12.3c6.8,0,12.3-5.5,12.3-12.3c0-1.4,0.9-2.3,2.3-2.3c1.4,0,2.3-0.9,2.3-2.3

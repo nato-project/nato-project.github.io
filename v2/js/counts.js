@@ -49,60 +49,6 @@ Counts.prototype.initVis = function() {
 
     });
 
-    //var sectionWidth = vis.width/3;
-    //
-    //vis.killedGroup = vis.svg.append("g");
-    //vis.woundedGroup = vis.svg.append("g");
-    //vis.totalGroup = vis.svg.append("g");
-    //
-    //// Add circles
-    //vis.killedGroup.append("circle")
-    //    .attr("cx",sectionWidth*0.25)
-    //    .attr("cy",vis.height/2)
-    //    .attr("r",70)
-    //    .style("fill","dfdfdf")
-    //    .style("stroke-width",3)
-    //    .style("stroke","#494949");
-    //vis.woundedGroup.append("circle")
-    //    .attr("cx",sectionWidth+sectionWidth*0.25)
-    //    .attr("cy",vis.height/2)
-    //    .attr("r",70)
-    //    .style("fill","dfdfdf")
-    //    .style("stroke-width",3)
-    //    .style("stroke","#494949");
-    //vis.totalGroup.append("circle")
-    //    .attr("cx",sectionWidth+sectionWidth+sectionWidth*0.25)
-    //    .attr("cy",vis.height/2)
-    //    .attr("r",70)
-    //    .style("fill","dfdfdf")
-    //    .style("stroke-width",3)
-    //    .style("stroke","#494949");
-    //
-    //// Add icons
-    //vis.killedGroup.append("svg:image")
-    //    .attr("x",sectionWidth*0.10)
-    //    .attr("y",vis.height/2)
-    //    .attr("width",100)
-    //    .attr("height",100)
-    //    .attr('xlink:href',"img/person-killed.svg");
-    //vis.woundedGroup.append("svg:image")
-    //    .attr("x",sectionWidth+sectionWidth*0.10)
-    //    .attr("y",vis.height/2)
-    //    .attr("width",100)
-    //    .attr("height",100)
-    //    .attr('xlink:href',"img/person-wounded.svg");
-    //vis.totalGroup.append("svg:image")
-    //    .attr("x",sectionWidth+sectionWidth+sectionWidth*0.10)
-    //    .attr("y",vis.height/2)
-    //    .attr("width",100)
-    //    .attr("height",100)
-    //    .attr('xlink:href',"img/bomb.svg");
-
-    // Set Data as counter
-    //vis.data.forEach(function (d, i) {
-    //
-    //});
-
 }
 
 Counts.prototype.wrangleData = function() {

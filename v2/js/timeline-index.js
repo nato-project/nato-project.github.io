@@ -94,27 +94,12 @@ TimelineIndex.prototype.initVis = function(){
 
     // Incidents
     vis.bar.append("rect")
-        .attr("class", "timeline-bar")
         .attr("y", function(d) { return 20; })
         .attr("height", function(d) { return vis.height-20; })
-        .attr("width", 1);
+        .attr("width", 1)
+        .attr("fill",COMMON_COLORS.INCIDENT);
 
     // Killed or Wounded
-    //vis.circle.append("circle")
-    //    .attr("class", "timeline-circle")
-    //    .attr("cx",1)
-    //    .attr("cy", function(d) {
-    //        return ((vis.height-12)- d.index*24);
-    //    })
-    //    .attr("r", 12)
-    //    .style("fill",function(d) {
-    //        if(d.kia >0){
-    //            return "#de2d26";
-    //        }else{
-    //            return "#494949";
-    //        }
-    //
-    //    });
     vis.circle.append("svg:image")
         .attr("x",1)
         .attr("y", function(d) {
