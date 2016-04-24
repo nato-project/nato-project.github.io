@@ -16,6 +16,7 @@ FullText = function(_parentElement, _iedData,_textLinkData,_topwordsData){
     this.displaytype = "incidenttype";
     this.dateFormat = d3.time.format("%b %d %Y");
     this.nodeWords = [];
+    this.killed_wounded = [];
 
     this.initVis();
 }
@@ -59,7 +60,7 @@ FullText.prototype.initVis = function() {
 
     // Node Text Font Size
     vis.nodeTextFontSize = d3.scale.linear();
-    vis.nodeTextFontSize.domain([1,600]).range([10,40]);
+    vis.nodeTextFontSize.domain([1,600]).range([10,30]);
 
     vis.typeList = [];
 
@@ -101,7 +102,7 @@ FullText.prototype.initVis = function() {
             //return vis.linkDistance(d.cs_value);
             return 30;
         })
-        .gravity(.13)
+        .gravity(.15)
         .charge(-30)
 
         //.friction(.8)
@@ -114,6 +115,8 @@ FullText.prototype.initVis = function() {
         .links(vis.links);
 
     vis.generateNodeWords();
+    vis.generateKilledWounded();
+    //console.log(vis.killed_wounded);
 
     // 2b) START RUNNING THE SIMULATION
     vis.force.start();
@@ -138,7 +141,38 @@ FullText.prototype.initVis = function() {
         .attr("class", "force-layout-node")
         .attr("r", 3)
         .style("fill", function(d) { return vis.color(vis.findNode(d.id).type); })
-        .style("stroke", function(d) { return vis.color(vis.findNode(d.id).type); });
+        .style("stroke", function(d) { return vis.color(vis.findNode(d.id).type); })
+        .on("click", function(d) {
+            vis.nodeClick(d);
+        });
+
+    vis.nodeClickTextList = [];
+    vis.nodeClick = function(d){
+        vis.nodeClickTextList.unshift(vis.findNode(d.id));
+        vis.displayText(vis.nodeClickTextList);
+    }
+
+    // Casualty Icons
+    vis.nodeCasualtyItems = vis.svg.append("g").selectAll(".force-layout-casualty")
+        .data(vis.killed_wounded)
+        .enter().append("svg:image")
+        .attr("width",13)
+        .attr("height",13)
+        .attr('xlink:href',function(d){
+            if(d.kia >0){
+                return "img/person-killed.svg";
+            }else{
+                return "img/person-wounded.svg";
+            }
+        })
+        .on("click", function(d) {
+            vis.nodeCasualtyClick(d);
+        });
+
+    vis.nodeCasualtyClick = function(d){
+        vis.nodeClickTextList.unshift(vis.findNode(d.id));
+        vis.displayText(vis.nodeClickTextList);
+    }
 
     // Node Text
     vis.nodeTextItems = vis.svg.append("g").selectAll(".force-layout-text")
@@ -150,7 +184,24 @@ FullText.prototype.initVis = function() {
             return 1;
         })
         .style("stroke", "#000000")
-        .text(function(d) { return d.words; });
+        .text(function(d) { return d.words; })
+        .on("click", function(d) {
+            vis.nodeTextClick(d);
+        });
+
+    vis.nodeTextClick = function(d){
+
+        // Find all children for node word
+        var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
+        console.log(relatedNodes);
+        //vis.nodeClickTextList.unshift(vis.findNode(d.id));
+        var nodes = [];
+        nodes.push(vis.findNode(d.id));
+        relatedNodes.forEach(function(d){
+            nodes.unshift(vis.findNode(d.t_id));
+        });
+        vis.displayText(nodes);
+    }
 
 
     // 5) Force TICK
@@ -165,6 +216,24 @@ FullText.prototype.initVis = function() {
         // Update node coordinates
         vis.nodeItems.attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });
+
+        // Update casualty icons
+        vis.nodeCasualtyItems.attr("x",function(d) {
+            var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
+            if(node){
+                return node.x-5;
+            }else{
+                return 2000;
+            }
+
+        }).attr("y", function(d) {
+            var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
+            if(node){
+                return node.y-5;
+            }else{
+                return 2000;
+            }
+        });
 
         // Update Node Text
         vis.nodeTextItems.attr("x", function(d) {
@@ -211,63 +280,43 @@ FullText.prototype.initVis = function() {
         })
         .style("font-size",8)
         .on("click", function(d) {
-            var allNodes = _.filter(vis.displayData, function(o) { return o.type==d; });
-            var nodes =[];
-            allNodes.forEach(function(d){
-                if(_.findIndex(vis.nodes,function(o){return d.id== o.id;}) > -1){
-                    nodes.push(d);
-                }
-            });
-            vis.displayText(nodes);
+            vis.legendClick(d);
         });
+
+    vis.legendClick = function(d){
+        console.log(d);
+        var allNodes = _.filter(vis.displayData, function(o) { return o.type==d; });
+        console.log(allNodes.length);
+        var nodes =[];
+        allNodes.forEach(function(d){
+            if(_.findIndex(vis.nodes,function(o){return d.id== o.id;}) > -1){
+                nodes.push(d);
+            }
+        });
+        console.log(nodes.length);
+        vis.displayText(nodes);
+    }
+
+
 
     vis.textTimeline = d3.select("#text-timeline");
 
     // Tool Tip
-    var node;
-    vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-        node = vis.findNode(d.id);
-        var tipContent = "";
-        tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
-        tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
-        tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
-
-        return tipContent;
-    });
+    //var node;
+    //vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+    //    node = vis.findNode(d.id);
+    //    var tipContent = "";
+    //    tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
+    //    tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
+    //    tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
+    //
+    //    return tipContent;
+    //});
 
     // Invoke tooltip
-    vis.nodeItems.on('mouseover', vis.tip.show)
-        .on('mouseout', vis.tip.hide);
-    vis.nodeItems.call(vis.tip);
-
-    // Brush
-    //vis.brush = d3.svg.brush()
-    //    .x(d3.scale.linear().domain([0, vis.width]).range([0, vis.width]))
-    //    .y(d3.scale.linear().domain([0, vis.height]).range([0, vis.height]))
-    //    .on("brush", function(){
-    //        vis.nodeFilter = vis.brush.empty() ? [] : vis.brush.extent();
-    //        console.log(vis.nodeFilter);
-    //
-    //        var extent = vis.brush.extent();
-    //        //d3.selectAll(".force-layout-node").select("circle").classed("selected", function(d) {
-    //        //
-    //        //    return d.selected = (extent[0][0] <= d.x && d.x < extent[1][0]
-    //        //    && extent[0][1] <= d.y && d.y < extent[1][1]);
-    //        //
-    //        //});
-    //        var selected = d3.selectAll(".force-layout-node").filter(function(d){
-    //            return (extent[0][0] <= d.x && d.x < extent[1][0] && extent[0][1] <= d.y && d.y < extent[1][1]);
-    //        });
-    //        console.log(selected);
-    //    });
-    //
-    //// Append brush component
-    //vis.svg.append("g")
-    //    .attr("class", "x brush")
-    //    .call(vis.brush)
-    //    .selectAll("rect")
-    //    .attr("y", -6)
-    //    .attr("height", vis.height + 7);
+    //vis.nodeItems.on('mouseover', vis.tip.show)
+    //    .on('mouseout', vis.tip.hide);
+    //vis.nodeItems.call(vis.tip);
 
     // Wrangle and update
     //vis.wrangleData();
@@ -320,6 +369,7 @@ FullText.prototype.wrangleData = function() {
     });
 
     vis.generateNodeWords();
+    vis.generateKilledWounded();
 
     // Update the visualization
     vis.updateVis();
@@ -330,17 +380,6 @@ FullText.prototype.updateVis = function() {
 
     var vis = this; // read about the this
     var node;
-    //console.log(vis.displaytype);
-
-    // Update Color
-    //if(vis.displaytype == "incidenttype"){
-    //    vis.color = d3.scale.category10();
-    //    vis.color.domain(d3.keys(this.displayData.type));
-    //}else{
-    //    vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualties"]).range([COMMON_COLORS.KILLED,COMMON_COLORS.WOUNDED, COMMON_COLORS.NO_CASUALITY]);
-    //}
-    //console.log(vis.color.domain());
-    //console.log(vis.color.range());
 
     vis.force.stop();
 
@@ -411,6 +450,21 @@ FullText.prototype.updateVis = function() {
             }
         });
 
+    // Update Casualty Icon
+    vis.nodeCasualtyItems = vis.nodeCasualtyItems.data(vis.killed_wounded);
+    vis.nodeCasualtyItems.exit().remove();
+    vis.nodeCasualtyItems.enter()
+        .append("svg:image")
+        .attr("width",13)
+        .attr("height",13)
+        .attr('xlink:href',function(d){
+            if(d.kia >0){
+                return "img/person-killed.svg";
+            }else{
+                return "img/person-wounded.svg";
+            }
+        });
+
     // Update Text
     vis.nodeTextItems = vis.nodeTextItems.data(vis.nodeWords);
     vis.nodeTextItems.exit().remove();
@@ -435,42 +489,24 @@ FullText.prototype.updateVis = function() {
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
     vis.legendbox.remove();
     vis.legendbox = vis.legend.append("rect")
-        .attr("width", 20)
-        .attr("height", 20)
+        .attr("width", 15)
+        .attr("height", 15)
         .style("fill", function(d){return vis.color(d);});
     vis.legendlabels.remove();
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
-        .attr("x", 25)
-        .attr("y", 15)
-        .style("fill", function(d){return d;})
+        .attr("x", 20)
+        .attr("y", 10)
+        .style("fill", function(d){
+            //return d;
+            return "#000000";
+        })
         .text(function(d){
             return d;
         })
-        .on("click", function(d,i) {
-            if(vis.displaytype == "incidenttype") {
-                var nodes = _.filter(vis.displayData, function (o) {
-                    return o.type == vis.color.domain()[i];
-                });
-                vis.displayText(nodes);
-            }else{
-                if(vis.color.domain()[i] == "Killed"){
-                    var nodes = _.filter(vis.displayData, function (o) {
-                        return o.kia >0;
-                    });
-                    vis.displayText(nodes);
-                }else if(vis.color.domain()[i] == "Wounded"){
-                    var nodes = _.filter(vis.displayData, function (o) {
-                        return o.wia >0;
-                    });
-                    vis.displayText(nodes);
-                }else{
-                    var nodes = _.filter(vis.displayData, function (o) {
-                        return o.kia ==0 && o.wia ==0;
-                    });
-                    vis.displayText(nodes);
-                }
-            }
+        .style("font-size",8)
+        .on("click", function(d) {
+            vis.legendClick(d);
         });
 
     // Invoke tooltip
@@ -656,5 +692,18 @@ FullText.prototype.generateNodeWords = function (){
     // Option 3: Get the top 3 words for each node - Based on word score
 
     //console.log(vis.nodeWords);
+}
+
+FullText.prototype.generateKilledWounded = function () {
+    var vis = this;
+
+    vis.killed_wounded = [];
+    var node;
+    vis.nodes.forEach(function(d) {
+        node = vis.findNode(d.id);
+        if(node.kia > 0 || node.wia >0){
+            vis.killed_wounded.push(node);
+        }
+    });
 }
 
