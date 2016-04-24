@@ -128,12 +128,17 @@ body{
     color: #000000;
 }
 h1,h2,h3,h4{
-    color: #317eac;
+    color: #005BBB;
     font-family: "Helvetica Neue";
 }
 .page-header{
-    padding-bottom: 0px;
-    margin: 0px 0 0px;
+    padding-bottom: 9px;
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    border-bottom: 0px;
+
 }
 
 /* Timeline */
@@ -166,7 +171,7 @@ h1,h2,h3,h4{
 }
 
 .row-spacer{
-    height:20px;
+    height:30px;
 }
 .form-group label {
     float: left;
@@ -180,10 +185,20 @@ h1,h2,h3,h4{
     vertical-align: middle;
 }
 
+.factbox{
+    background: linear-gradient(to top, #14babd 10%, #005BBB) !important;;
+    margin-right: 0px;
+    margin-left: 0px;
+    color: rgba(255, 255, 255, 0.9);;
+}
+.factbutton{
+    /*background-color: rgba(0, 0, 0, 0.08);*/
+}
 .fact {
-    background-color: #efefef;
-    margin: 10px;
+    /*background-color: #efefef;*/
+    /*margin: 10px;*/
     padding: 10px;
+    text-align:justify;
 }
 
 

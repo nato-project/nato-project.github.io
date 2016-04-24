@@ -20,6 +20,9 @@ $(function() {
             case "how.html":
                 $('#how_page_menu').addClass("active");
                 break;
+            case "process.html":
+                $('#process_menu').addClass("active");
+                break;
             default:
                 $('#index_page_menu').addClass("active");
         }
