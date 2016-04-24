@@ -1,5 +1,5 @@
 body{
-    font-family: "Helvetica Neue";
+    font-family: "Open Sans", sans-serif;
 }
 #nav-header {
 
@@ -27,7 +27,40 @@ body{
 }
 .bgimage-inside {
     height: 338px;
-    background: linear-gradient(to right, #14babd 0%, rgba(20, 186, 189, 0.3) 50%, rgba(20, 186, 189, 0) 100%) !important;
+    background: linear-gradient(to bottom, #14babd 0%, rgba(20, 186, 189, 0.3) 50%, rgba(20, 186, 189, 0) 100%) !important;
+}
+
+.bgimage-text {
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+
+    color: #ffffff;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 20px;
+}
+.bgimage-text .line1{
+    font-size: 24px;
+    line-height: 30px;
+}
+.bgimage-text .line2{
+    padding-top: 10px;
+    font-size: 24px;
+    line-height: 30px;
+}
+.panel-info {
+    border-color: #005BBB;
+    border-radius: 0px;
+}
+.panel-info>.panel-heading {
+    color: #ffffff;
+    background-color: #005BBB;
+    border-color: #005BBB;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .navbar {
@@ -135,7 +168,7 @@ h1,h2,h3,h4{
 }
 
 .row-spacer{
-    height:15px;
+    height:20px;
 }
 .form-group label {
     float: left;
