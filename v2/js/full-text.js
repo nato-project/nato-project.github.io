@@ -36,8 +36,16 @@ FullText.prototype.initVis = function() {
         .attr("x",0)
         .attr("y",0)
         .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
+        .attr("class","vis-container")
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+
+    vis.svg.append("rect")
+        .attr("x",0)
+        .attr("y",0)
+        .attr("width",(vis.width + vis.margin.left + vis.margin.right))
+        .attr("height",(vis.height + vis.margin.top + vis.margin.bottom))
+        .style("fill","#e9f0f5");
 
     vis.color = d3.scale.ordinal();
     vis.color.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED"]);
@@ -202,8 +210,14 @@ FullText.prototype.initVis = function() {
             return d;
         })
         .style("font-size",8)
-        .on("click", function(d,i) {
-            var nodes = _.filter(vis.displayData, function(o) { return o.type==vis.color.domain()[i]; });
+        .on("click", function(d) {
+            var allNodes = _.filter(vis.displayData, function(o) { return o.type==d; });
+            var nodes =[];
+            allNodes.forEach(function(d){
+                if(_.findIndex(vis.nodes,function(o){return d.id== o.id;}) > -1){
+                    nodes.push(d);
+                }
+            });
             vis.displayText(nodes);
         });
 
@@ -277,9 +291,15 @@ FullText.prototype.wrangleData = function() {
     // Build Nodes and links from new dataset
     vis.nodes =[];
     vis.typeList = [];
+    vis.displayTextLinkData = [];
+    vis.textLinkData.forEach(function(d) {
+        if (d.cs_value >= (vis.threshold / 100)) {
+            vis.displayTextLinkData.push(d);
+        }
+    });
     vis.displayData.forEach(function(d) {
         // Add nodes only if we have a link
-        if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
+        if((_.findIndex(vis.displayTextLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
             vis.nodes.push({name: d.id,id: d.id});
             if(vis.typeList.indexOf(d.type) == -1){
                 vis.typeList.push(d.type);
@@ -288,16 +308,14 @@ FullText.prototype.wrangleData = function() {
     });
     var src,tgt;
     vis.links = [];
-    vis.displayTextLinkData = [];
-    vis.textLinkData.forEach(function(d) {
-        if(d.cs_value >= (vis.threshold/100)){
-            src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
-            tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
-            //console.log(src + " / "+ tgt);
-            if(src > -1 && tgt > -1) {
-                vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
-                vis.displayTextLinkData.push({s_id: d.s_id,t_id: d.t_id,cs_value: d.cs_value});
-            }
+
+    vis.displayTextLinkData.forEach(function(d) {
+        src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
+        tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
+        //console.log(src + " / "+ tgt);
+        if(src > -1 && tgt > -1) {
+            vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
+            vis.displayTextLinkData.push({s_id: d.s_id,t_id: d.t_id,cs_value: d.cs_value});
         }
     });
 

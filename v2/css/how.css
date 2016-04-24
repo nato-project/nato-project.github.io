@@ -11,14 +11,18 @@
     font-size: 10px;
 }
 
+.text-vis-container{
+    background-color: #e9f0f5;
+}
+
 /*******************************************************************/
 /*  Timeline  */
 /*  Code referenced from: */
 /* https://codyhouse.co/gem/vertical-timeline/  */
 /*******************************************************************/
 .text-timeline-container {
-    background-color: #e9f0f5;
-    min-height: 500px;
+    /*background-color: #e9f0f5;*/
+    /*min-height: 500px;*/
 }
 .cd-container {
     width: 100%;

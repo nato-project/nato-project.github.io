@@ -58,45 +58,48 @@
             </div>
         </div>
         <div class="row-spacer"></div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-5"><label>View:&nbsp;</label></div>
-                    <div class="col-md-4"><label>By:&nbsp;</label></div>
-                    <div class="col-md-3"><label>Similarity:&nbsp;</label></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <label class="radio-inline"><input type="radio" name="reporttype" checked>Incident Reports</label>
-                        <label class="radio-inline"><input type="radio" name="reporttype">Word Cloud</label>
+        <div class="text-vis-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-5"><label>View:&nbsp;</label></div>
+                        <div class="col-md-4"><label>By:&nbsp;</label></div>
+                        <div class="col-md-3"><label>Similarity:&nbsp;</label></div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="radio-inline"><input type="radio" name="displaytype" value="incidenttype" checked>Incident Types</label>
-                        <label class="radio-inline"><input type="radio" name="displaytype" value="casualities">Casualities</label>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="range range-primary">
-                            <input type="range" id="thersholdSlider" name="range" min="50" max="100" value="50">
-                            <output id="thersholdSliderValue">50%</output>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label class="radio-inline"><input type="radio" name="reporttype" checked>Incident Reports</label>
+                            <label class="radio-inline"><input type="radio" name="reporttype">Word Cloud</label>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="radio-inline"><input type="radio" name="displaytype" value="incidenttype" checked>Incident Types</label>
+                            <label class="radio-inline"><input type="radio" name="displaytype" value="casualities">Casualities</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="range range-primary">
+                                <input type="range" id="thersholdSlider" name="range" min="50" max="100" value="50">
+                                <output id="thersholdSliderValue">50%</output>
+                            </div>
                         </div>
                     </div>
+                    <div class="row">
+
+                    </div>
                 </div>
-                <div class="row">
 
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="fullTextVis" ></div>
+                </div>
+                <div class="col-md-5 text-timeline-container">
+                    <section id="text-timeline" class="cd-container">
+
+                    </section>
                 </div>
             </div>
-
         </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div id="fullTextVis" ></div>
-            </div>
-            <div class="col-md-5 text-timeline-container">
-                <section id="text-timeline" class="cd-container">
 
-                </section>
-            </div>
-        </div>
 
 
 
