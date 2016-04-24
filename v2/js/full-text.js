@@ -26,10 +26,10 @@ FullText = function(_parentElement, _iedData,_textLinkData,_topwordsData){
 FullText.prototype.initVis = function() {
     var vis = this; // read about the this
 
-    vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
+    vis.margin = {top: 10, right: 0, bottom: 10, left: 0};
 
-    vis.width = 600 - vis.margin.left - vis.margin.right,
-        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right;
+    vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -39,8 +39,9 @@ FullText.prototype.initVis = function() {
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-    vis.color = d3.scale.category10();
-    vis.color.domain(d3.keys(this.iedData.type));
+    vis.color = d3.scale.ordinal();
+    vis.color.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED"]);
+    vis.color.range([COMMON_COLORS["CACHE/FOUND"],COMMON_COLORS["CRIME"],COMMON_COLORS["CWIED"],COMMON_COLORS["HOAX/FALSE"],COMMON_COLORS["PROJECTED"],COMMON_COLORS["RCIED"],COMMON_COLORS["S-PBIED"],COMMON_COLORS["TIME DELAY"],COMMON_COLORS["UNKNOWN"],COMMON_COLORS["VBIED"],COMMON_COLORS["VOIED"]]);
 
     // Link width
     vis.linkWidth = d3.scale.linear();
@@ -52,8 +53,12 @@ FullText.prototype.initVis = function() {
     vis.nodeTextFontSize = d3.scale.linear();
     vis.nodeTextFontSize.domain([1,600]).range([10,40]);
 
+    vis.typeList = [];
+
+    var node;
     vis.findNode = function(id){
-        return vis.displayData[id];
+        //return vis.nodes[id];
+        return _.find(this.displayData, function(o) { return o.id == id; });
     }
 
     // Create nodes and links
@@ -62,6 +67,9 @@ FullText.prototype.initVis = function() {
         // Add nodes only if we have a link
         if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
             vis.nodes.push({name: d.id,id: d.id});
+            if(vis.typeList.indexOf(d.type) == -1){
+                vis.typeList.push(d.type);
+            }
         }
     });
     var src,tgt;
@@ -76,6 +84,7 @@ FullText.prototype.initVis = function() {
     });
     console.log(vis.nodes);
     console.log(vis.links);
+    console.log(vis.typeList);
 
     // 1) INITIALIZE FORCE-LAYOUT
     vis.force = d3.layout.force()
@@ -84,7 +93,7 @@ FullText.prototype.initVis = function() {
             //return vis.linkDistance(d.cs_value);
             return 30;
         })
-        .gravity(.1)
+        .gravity(.13)
         .charge(-30)
 
         //.friction(.8)
@@ -108,7 +117,7 @@ FullText.prototype.initVis = function() {
         .append("line")
         .attr("class", "force-layout-link")
         .style("stroke", function(d) {
-            return vis.color(vis.findNode(d.source.index).type);
+            return vis.color(vis.findNode(d.source.id).type);
         })
         .style("stroke-width", function(d) {
             return vis.linkWidth(d.cs_value);
@@ -120,8 +129,8 @@ FullText.prototype.initVis = function() {
         .enter().append("circle")
         .attr("class", "force-layout-node")
         .attr("r", 3)
-        .style("fill", function(d) { return vis.color(vis.findNode(d.index).type); })
-        .style("stroke", function(d) { return vis.color(vis.findNode(d.index).type); });
+        .style("fill", function(d) { return vis.color(vis.findNode(d.id).type); })
+        .style("stroke", function(d) { return vis.color(vis.findNode(d.id).type); });
 
     // Node Text
     vis.nodeTextItems = vis.svg.append("g").selectAll(".force-layout-text")
@@ -173,22 +182,26 @@ FullText.prototype.initVis = function() {
     vis.legend = vis.svg.append("g")
         .attr("transform", "translate(" + (5) + "," + (10) + ")")
         .selectAll("g")
-        .data(vis.color.range())
+        .data(vis.typeList)
         .enter()
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
     vis.legendbox = vis.legend.append("rect")
-        .attr("width", 20)
-        .attr("height", 20)
-        .style("fill", function(d){return d;});
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill", function(d){return vis.color(d);});
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
-        .attr("x", 25)
-        .attr("y", 15)
-        .style("fill", function(d){return d;})
-        .text(function(d,i){
-            return vis.color.domain()[i];
+        .attr("x", 20)
+        .attr("y", 10)
+        .style("fill", function(d){
+            //return d;
+            return "#000000";
         })
+        .text(function(d){
+            return d;
+        })
+        .style("font-size",8)
         .on("click", function(d,i) {
             var nodes = _.filter(vis.displayData, function(o) { return o.type==vis.color.domain()[i]; });
             vis.displayText(nodes);
@@ -197,21 +210,21 @@ FullText.prototype.initVis = function() {
     vis.textTimeline = d3.select("#text-timeline");
 
     // Tool Tip
-    //var node;
-    //vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-    //    node = vis.findNode(d.index);
-    //    var tipContent = "";
-    //    tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
-    //    tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
-    //    tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
-    //
-    //    return tipContent;
-    //});
-    //
-    //// Invoke tooltip
-    //vis.nodeItems.on('mouseover', vis.tip.show)
-    //    .on('mouseout', vis.tip.hide);
-    //vis.nodeItems.call(vis.tip);
+    var node;
+    vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        node = vis.findNode(d.id);
+        var tipContent = "";
+        tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
+        tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
+        tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
+
+        return tipContent;
+    });
+
+    // Invoke tooltip
+    vis.nodeItems.on('mouseover', vis.tip.show)
+        .on('mouseout', vis.tip.hide);
+    vis.nodeItems.call(vis.tip);
 
     // Brush
     //vis.brush = d3.svg.brush()
@@ -263,10 +276,14 @@ FullText.prototype.wrangleData = function() {
 
     // Build Nodes and links from new dataset
     vis.nodes =[];
+    vis.typeList = [];
     vis.displayData.forEach(function(d) {
         // Add nodes only if we have a link
         if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
             vis.nodes.push({name: d.id,id: d.id});
+            if(vis.typeList.indexOf(d.type) == -1){
+                vis.typeList.push(d.type);
+            }
         }
     });
     var src,tgt;
@@ -294,16 +311,16 @@ FullText.prototype.wrangleData = function() {
 FullText.prototype.updateVis = function() {
 
     var vis = this; // read about the this
-
+    var node;
     //console.log(vis.displaytype);
 
     // Update Color
-    if(vis.displaytype == "incidenttype"){
-        vis.color = d3.scale.category10();
-        vis.color.domain(d3.keys(this.displayData.type));
-    }else{
-        vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualties"]).range(["#de2d26","#494949", "#dfdfdf"]);
-    }
+    //if(vis.displaytype == "incidenttype"){
+    //    vis.color = d3.scale.category10();
+    //    vis.color.domain(d3.keys(this.displayData.type));
+    //}else{
+    //    vis.color = d3.scale.ordinal().domain(["Killed","Wounded","No Casualties"]).range([COMMON_COLORS.KILLED,COMMON_COLORS.WOUNDED, COMMON_COLORS.NO_CASUALITY]);
+    //}
     //console.log(vis.color.domain());
     //console.log(vis.color.range());
 
@@ -321,12 +338,13 @@ FullText.prototype.updateVis = function() {
     vis.linkItems.enter().append("line")
         .attr("class", "force-layout-link");
     vis.linkItems.style("stroke", function(d) {
+            node = vis.findNode(d.source.id);
             if(vis.displaytype == "incidenttype") {
-                return vis.color(vis.findNode(d.source.index).type);
+                return vis.color(node.type);
             }else{
-                if(vis.findNode(d.source.index).kia >0){
+                if(node.kia >0){
                     return vis.color("Killed");
-                }else if(vis.findNode(d.source.index).wia >0){
+                }else if(node.wia >0){
                     return vis.color("Wounded");
                 }else{
                     return vis.color("No Casualities");
@@ -347,12 +365,13 @@ FullText.prototype.updateVis = function() {
         .attr("r", 3);
 
     vis.nodeItems.style("fill", function(d) {
+            node = vis.findNode(d.id);
             if(vis.displaytype == "incidenttype") {
-                return vis.color(vis.findNode(d.index).type);
+                return vis.color(node.type);
             }else{
-                if(vis.findNode(d.index).kia >0){
+                if(node.kia >0){
                     return vis.color("Killed");
-                }else if(vis.findNode(d.index).wia >0){
+                }else if(node.wia >0){
                     return vis.color("Wounded");
                 }else{
                     return vis.color("No Casualities");
@@ -360,12 +379,13 @@ FullText.prototype.updateVis = function() {
             }
         })
         .style("stroke", function(d) {
+            node = vis.findNode(d.id);
             if(vis.displaytype == "incidenttype") {
-                return vis.color(vis.findNode(d.index).type);
+                return vis.color(node.type);
             }else{
-                if(vis.findNode(d.index).kia >0){
+                if(node.kia >0){
                     return vis.color("Killed");
-                }else if(vis.findNode(d.index).wia >0){
+                }else if(node.wia >0){
                     return vis.color("Wounded");
                 }else{
                     return vis.color("No Casualities");
@@ -390,7 +410,7 @@ FullText.prototype.updateVis = function() {
 
 
     // Legend
-    vis.legend = vis.legend.data(vis.color.range());
+    vis.legend = vis.legend.data(vis.typeList);
     vis.legend.exit().remove();
     vis.legend.enter()
         .append("g")
@@ -399,15 +419,15 @@ FullText.prototype.updateVis = function() {
     vis.legendbox = vis.legend.append("rect")
         .attr("width", 20)
         .attr("height", 20)
-        .style("fill", function(d){return d;});
+        .style("fill", function(d){return vis.color(d);});
     vis.legendlabels.remove();
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
         .attr("x", 25)
         .attr("y", 15)
         .style("fill", function(d){return d;})
-        .text(function(d,i){
-            return vis.color.domain()[i];
+        .text(function(d){
+            return d;
         })
         .on("click", function(d,i) {
             if(vis.displaytype == "incidenttype") {
