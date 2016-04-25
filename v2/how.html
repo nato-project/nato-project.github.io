@@ -20,33 +20,26 @@
 
     <div id="body-container" class="container">
         <div class="page-header">
-            <h4>Explore How the Incidents Occurred</h4>
+            <h4>How the Incidents Occurred? - Interpreting the Free Text Reports</h4>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="fact">
                     <p>
-                        Ukraine regions are not equally affected by IED incidents. Incidents were concentrated in three cities: Kiev, Kharkiv and Odessa. There were over 80 incidents in each. However, although there was a much higher number of incidents reported for these cities than for any other city (almost 100), less than 10 persons were killed in those 360 incidents.
-                    </p>
-                    <button type="button" class="btn btn-primary factbutton" onclick="showMapKiev()">Show Me Kiev</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="fact"><p>
-                    Most of the remaining IED incidents are spread in the Donetsk and the Luhansk regions, representing 136 and 92 incidents respectively. These two areas are also the most active regions for IED incidents at the end of 2015.
-                </p>
-                    <button type="button" class="btn btn-primary" onclick="showMapDonestk()">Show Me Donetsk</button>
-                </div>
+                        In this exploration we want to analyze the free text summary written for each incident. For the process of finding report similarity, we first used the TF-IDF and Cosine Similarity algorithms to find similarity between all the incident reports. Then for our analysis we consider two reports to be similar only if their threshold is 50% or higher.
 
-            </div>
-            <div class="col-md-4">
-                <div class="fact">
-                    <p>
-                        In the reported incidents, many different types of IEDs were mentioned. Some types are more dangerous than others.
+                        To gather important words across report clusters, we first find the three most important (using TF-IDF scores) words in each of these 267 reports. Then for each cluster of nodes we gather all the important words from each node and take the top three scored word. The font size of the words is determined by the frequency of occurrence in the cluster.
+
+
                     </p>
-                    <a href="what.html" class="btn btn-primary" >Continue to IED Types Exploration <i class="fa fa-play" aria-hidden="true"></i></a>
+                    <p>
+                        By clustering the incident reports in this method we can see that most similar incidents that were reported in metro stations, administration buildings were hoax or false reports which leaded to no causalities.
+
+                    </p>
+
                 </div>
             </div>
+
         </div>
         <div class="row-spacer"></div>
         <div class="row">

@@ -73,14 +73,17 @@ FullText.prototype.initVis = function() {
 
     // Create nodes and links
     vis.iedData.forEach(function(d) {
-        //vis.nodes.push({name: d.id,id: d.id});
-        // Add nodes only if we have a link
-        if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
-            vis.nodes.push({name: d.id,id: d.id});
-            if(vis.typeList.indexOf(d.type) == -1){
-                vis.typeList.push(d.type);
-            }
+        vis.nodes.push({name: d.id,id: d.id});
+        if(vis.typeList.indexOf(d.type) == -1){
+            vis.typeList.push(d.type);
         }
+        // Add nodes only if we have a link
+        //if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
+        //    vis.nodes.push({name: d.id,id: d.id});
+        //    if(vis.typeList.indexOf(d.type) == -1){
+        //        vis.typeList.push(d.type);
+        //    }
+        //}
     });
     var src,tgt;
     vis.textLinkData.forEach(function(d) {
@@ -103,7 +106,7 @@ FullText.prototype.initVis = function() {
             //return vis.linkDistance(d.cs_value);
             return 30;
         })
-        .gravity(.15)
+        .gravity(.35)
         .charge(-30)
 
         //.friction(.8)
@@ -140,7 +143,7 @@ FullText.prototype.initVis = function() {
         .data(vis.nodes)
         .enter().append("circle")
         .attr("class", "force-layout-node")
-        .attr("r", 3)
+        .attr("r", 2)
         .style("fill", function(d) { return vis.color(vis.findNode(d.id).type); })
         .style("stroke", function(d) { return vis.color(vis.findNode(d.id).type); })
         .on("click", function(d) {
@@ -353,13 +356,17 @@ FullText.prototype.wrangleData = function() {
         }
     });
     vis.displayData.forEach(function(d) {
-        // Add nodes only if we have a link
-        if((_.findIndex(vis.displayTextLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
-            vis.nodes.push({name: d.id,id: d.id});
-            if(vis.typeList.indexOf(d.type) == -1){
-                vis.typeList.push(d.type);
-            }
+        vis.nodes.push({name: d.id,id: d.id});
+        if(vis.typeList.indexOf(d.type) == -1){
+            vis.typeList.push(d.type);
         }
+        //// Add nodes only if we have a link
+        //if((_.findIndex(vis.displayTextLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
+        //    vis.nodes.push({name: d.id,id: d.id});
+        //    if(vis.typeList.indexOf(d.type) == -1){
+        //        vis.typeList.push(d.type);
+        //    }
+        //}
     });
     var src,tgt;
     vis.links = [];
