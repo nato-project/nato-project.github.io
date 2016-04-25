@@ -303,6 +303,37 @@ FullText.prototype.initVis = function() {
         vis.displayText(nodes);
     }
 
+    // Casualty Legend
+    vis.casualtyLegend = vis.svg.append("g")
+        .attr("transform", "translate(" + (vis.width - 70) + "," + (10) + ")")
+        .selectAll("g")
+        .data(["Killed","Wounded"])
+        .enter()
+        .append("g")
+        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
+        .style("cursor","pointer");
+
+    vis.casualtyLegend.append
+
+    vis.casualtyLegendIcon = vis.casualtyLegend.append("svg:image")
+        .attr("width",13)
+        .attr("height",13)
+        .attr('xlink:href',function(d,i){
+            if(i==0){
+                return "img/person-killed.svg";
+            }else{
+                return "img/person-wounded.svg";
+            }
+        });
+    vis.casualtyLegendLabels = vis.casualtyLegend.append("text")
+        .attr("class", "force-layout-casualtylegend-labels")
+        .attr("x", 15)
+        .attr("y", 10)
+        .style("fill", "#000000")
+        .text(function(d){
+            return d;
+        })
+        .style("font-size",8);
 
 
     vis.textTimeline = d3.select("#text-timeline");
