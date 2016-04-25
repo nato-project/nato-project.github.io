@@ -16,6 +16,18 @@
     padding-left: 10px;
 }
 
+.important-word{
+    font-weight: bold;
+    background-color: #f8fc44;
+    color: #dd2904;
+}
+#text-timeline-title{
+    font-weight: bold;
+    padding-left: 0px;
+    padding-top: 10px;
+
+}
+
 /*******************************************************************/
 /*  Timeline  */
 /*  Code referenced from: */

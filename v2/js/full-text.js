@@ -63,6 +63,7 @@ FullText.prototype.initVis = function() {
     vis.nodeTextFontSize.domain([1,600]).range([10,30]);
 
     vis.typeList = [];
+    vis.texttimelinetitle = d3.select("#text-timeline-title");
 
     var node;
     vis.findNode = function(id){
@@ -149,6 +150,7 @@ FullText.prototype.initVis = function() {
     vis.nodeClickTextList = [];
     vis.nodeClick = function(d){
         vis.nodeClickTextList.unshift(vis.findNode(d.id));
+        vis.texttimelinetitle.text("");
         vis.displayText(vis.nodeClickTextList);
     }
 
@@ -171,6 +173,7 @@ FullText.prototype.initVis = function() {
 
     vis.nodeCasualtyClick = function(d){
         vis.nodeClickTextList.unshift(vis.findNode(d.id));
+        vis.texttimelinetitle.text("");
         vis.displayText(vis.nodeClickTextList);
     }
 
@@ -193,14 +196,13 @@ FullText.prototype.initVis = function() {
 
         // Find all children for node word
         var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
-        console.log(relatedNodes);
-        //vis.nodeClickTextList.unshift(vis.findNode(d.id));
         var nodes = [];
         nodes.push(vis.findNode(d.id));
         relatedNodes.forEach(function(d){
             nodes.unshift(vis.findNode(d.t_id));
         });
-        vis.displayText(nodes);
+        vis.texttimelinetitle.text(d.words);
+        vis.displayText(nodes, d.words);
     }
 
 
@@ -284,22 +286,26 @@ FullText.prototype.initVis = function() {
         });
 
     vis.legendClick = function(d){
-        console.log(d);
+        //console.log(d);
         var allNodes = _.filter(vis.displayData, function(o) { return o.type==d; });
-        console.log(allNodes.length);
+        //console.log(allNodes.length);
         var nodes =[];
         allNodes.forEach(function(d){
             if(_.findIndex(vis.nodes,function(o){return d.id== o.id;}) > -1){
                 nodes.push(d);
             }
         });
-        console.log(nodes.length);
+        //console.log(nodes.length);
+        vis.texttimelinetitle.text(d);
         vis.displayText(nodes);
     }
 
 
 
     vis.textTimeline = d3.select("#text-timeline");
+    vis.textTimeline1 = d3.select("#text-timeline1");
+    vis.textTimeline2 = d3.select("#text-timeline2");
+    vis.textTimeline3 = d3.select("#text-timeline3");
 
     // Tool Tip
     //var node;
@@ -364,7 +370,6 @@ FullText.prototype.wrangleData = function() {
         //console.log(src + " / "+ tgt);
         if(src > -1 && tgt > -1) {
             vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
-            vis.displayTextLinkData.push({s_id: d.s_id,t_id: d.t_id,cs_value: d.cs_value});
         }
     });
 
@@ -448,6 +453,9 @@ FullText.prototype.updateVis = function() {
                     return vis.color("No Casualities");
                 }
             }
+        })
+        .on("click", function(d) {
+            vis.nodeClick(d);
         });
 
     // Update Casualty Icon
@@ -463,6 +471,9 @@ FullText.prototype.updateVis = function() {
             }else{
                 return "img/person-wounded.svg";
             }
+        })
+        .on("click", function(d) {
+            vis.nodeCasualtyClick(d);
         });
 
     // Update Text
@@ -478,7 +489,11 @@ FullText.prototype.updateVis = function() {
             return 1;
         })
         .style("stroke", "#000000")
-        .text(function(d) { return d.words; });
+        .text(function(d) { return d.words; })
+        .on("click", function(d) {
+            vis.nodeTextClick(d);
+        });
+
 
 
     // Legend
@@ -516,44 +531,90 @@ FullText.prototype.updateVis = function() {
 
 }
 
-FullText.prototype.displayText = function(nodes){
+FullText.prototype.displayText = function(nodes,words){
     var vis = this;
 
     console.log(nodes);
 
     vis.textTimeline.selectAll("div").remove();
+    vis.textTimeline1.selectAll("div").remove();
+    vis.textTimeline2.selectAll("div").remove();
+    vis.textTimeline3.selectAll("div").remove();
 
-    vis.textTimelineBlock = vis.textTimeline.selectAll("div")
-        .data(nodes)
-        .enter()
-        .append("div")
-        .attr("class","cd-timeline-block");
-
-    vis.textTimelineBlockImg = vis.textTimelineBlock.append("div")
-        .attr("class","cd-timeline-img cd-picture")
-        .append("img")
-        .attr("src",function(d){
-            if(d.kia >0){
-                return "img/person-killed.svg";
-            }else if(d.wia >0){
-                return "img/person-wounded.svg";
-            }else {
-                return "img/bomb.svg";
+    var nodes1 =[];
+    var nodes2 =[];
+    var nodes3 =[];
+    if(nodes.length > 5){
+        var extraItems = nodes.length-5;
+        for(var i=5;i<nodes.length;i++){
+            nodes1.push(nodes[i]);
+            if(i+1 < nodes.length) {
+                nodes2.push(nodes[i]);
+                i++;
             }
-        });
+            if(i+1 < nodes.length) {
+                nodes3.push(nodes[i]);
+                i++;
+            }
+        }
+        nodes = _.slice(nodes,0,5);
+    }
 
-    vis.textTimelineBlockContent = vis.textTimelineBlock.append("div").attr("class","cd-timeline-content");
-    vis.textTimelineBlockContent.append("h2").text(function(d){
-        return vis.dateFormat(d.date);
-    });
-    vis.textTimelineBlockContent.append("p").text(function(d){
-        return d.text;
-    });
-    vis.textTimelineBlockContent.append("span")
-        .attr("class","cd-date")
-        .text(function(d){
-            return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+    displayTextOnSection(vis.textTimeline,nodes,words);
+    if(nodes1.length >0){
+        displayTextOnSection(vis.textTimeline1,nodes1,words);
+    }
+    if(nodes2.length >0){
+        displayTextOnSection(vis.textTimeline2,nodes2,words);
+    }
+    if(nodes3.length >0){
+        displayTextOnSection(vis.textTimeline3,nodes3,words);
+    }
+
+
+    function displayTextOnSection(textTimeline,nodes,words){
+        var wordList = [];
+        if(words){
+            wordList = words.split(', ');
+        }
+        var textTimelineBlock = textTimeline.selectAll("div")
+            .data(nodes)
+            .enter()
+            .append("div")
+            .attr("class","cd-timeline-block");
+
+        var textTimelineBlockImg = textTimelineBlock.append("div")
+            .attr("class","cd-timeline-img cd-picture")
+            .append("img")
+            .attr("src",function(d){
+                if(d.kia >0){
+                    return "img/person-killed.svg";
+                }else if(d.wia >0){
+                    return "img/person-wounded.svg";
+                }else {
+                    return "img/bomb.svg";
+                }
+            });
+
+        var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
+        textTimelineBlockContent.append("h2").text(function(d){
+            return vis.dateFormat(d.date);
         });
+        textTimelineBlockContent.append("p").html(function(d){
+            var text = d.text;
+            wordList.forEach(function(d){
+                //text = text.replace(/d/gi, "<span class='important-word'>"+d+"</span>");
+                text = _.replace(text, new RegExp(d, "gi"), "<span class='important-word'>"+d+"</span>")
+            });
+
+            return text;
+        });
+        textTimelineBlockContent.append("span")
+            .attr("class","cd-date")
+            .text(function(d){
+                return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+            });
+    }
 
 }
 
