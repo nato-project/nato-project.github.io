@@ -184,9 +184,10 @@ Map.prototype.initVis = function(){
         });
 
     // Set circle color legend
-    vis.circleColorType = d3.scale.category10();
-    vis.circleColorType.domain(d3.keys(vis.displayData.type));
-    vis.circleColorEffect = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range(["#de2d26","#494949", "#dfdfdf"]);
+    vis.circleColorType = d3.scale.ordinal();
+    vis.circleColorType.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED"]);
+    vis.circleColorType.range([COMMON_COLORS["CACHE/FOUND"],COMMON_COLORS["CRIME"],COMMON_COLORS["CWIED"],COMMON_COLORS["HOAX/FALSE"],COMMON_COLORS["PROJECTED"],COMMON_COLORS["RCIED"],COMMON_COLORS["S-PBIED"],COMMON_COLORS["TIME DELAY"],COMMON_COLORS["UNKNOWN"],COMMON_COLORS["VBIED"],COMMON_COLORS["VOIED"]]);
+    vis.circleColorEffect = d3.scale.ordinal().domain(["Killed","Wounded","No Casualities"]).range([COMMON_COLORS.KILLED,COMMON_COLORS.WOUNDED,COMMON_COLORS.NO_CASUALITY]);
     vis.circleColor = vis.circleColorType;
 
     // Legend

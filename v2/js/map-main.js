@@ -13,7 +13,7 @@ var mapVis, timelineVis,countsVis;
 queue()
 	.defer(d3.json, "data/ukraine.json")
 	.defer(d3.csv, "data/ied_data.csv")
-	.defer(d3.csv, "data/region_stats.csv")
+	.defer(d3.csv, "data/region_stats_detail.csv")
 	.await(function(error, mapTopoJson, iedDataCsv, regionDataCsv) {
 
 		// Date parser to convert strings to date objects
@@ -33,6 +33,9 @@ queue()
 			d.area = +d.area;
 			d.population = +d.population;
 			d.pop_density = parseFloat(d.pop_density);
+			d.pop_russians = +d.pop_russians;
+			d.pop_ukranians = +d.pop_ukranians;
+			d.pct_russian_speakers = parseFloat(d.pct_russian_speakers);
 		});
 		regionData = regionDataCsv;
 		regionDataCsv.forEach(function(d) {
