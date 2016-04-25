@@ -1,7 +1,59 @@
 var units = "IED Incidents";
 var formatNumber = d3.format(",.0f"),    // zero decimal places
     format = function(d) { return formatNumber(d) + " " + units; },
-    color = d3.scale.category20(),
+
+    //funtion to return IED Type tooltip description
+    formatIEDTypesTip = function(d) {
+        if ( d.name == "UNKNOWN" )
+        {
+            return "Type: UNKONWN" +
+                "\nDesc: The explosive type could not be identified" +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "CACHE/FOUND" )
+        {
+            return "Type: CACHE/FOUND" +
+                "\nDesc: The explosive device has been found before the blast" +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "VOIDED" )
+        {
+            return "Type: VOIDED" +
+                "\nDesc: Exact definition missing" +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "PROJECTED" )
+        {
+            return "Type: PROJECTED" +
+                "\nDesc: Improvised grenades or mortars, used mostly from overhead passes." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "VBIED" )
+        {
+            return "Type: VBIED" +
+                "\nDesc: Vehicle borne IEDs (VBIEDs) are devices that use a vehicle as the package or container of the device." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "RCIED" )
+        {
+            return "Type: RCIED" +
+                "\nDesc: An RCIED is an IED which is Remotely Controlled and triggered by wireless communication." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "S-PBIED" )
+        {
+            return "Type: S-PBIED" +
+                "\nDesc: The Suicide Pedestrian-Borne IED." +
+                "\nTotal: " + format(d.value);
+        }
+        else
+        {
+            return "Type: " + d.name +
+                "\nTotal: " + format(d.value);
+        }
+
+    }
+
 
 
 SankeyVis = function(_parentElement, _iedData){
@@ -17,6 +69,8 @@ SankeyVis = function(_parentElement, _iedData){
     this.displayColumns = ["dateFmt", "city", "kia", "wia", "type"];
     this.sankeyChanged;
 
+    this.dateFormat = d3.time.format("%b %d %Y");
+
     this.initVis();
 
 }
@@ -29,8 +83,14 @@ SankeyVis.prototype.initVis = function() {
 
     vis.margin = {top: 10, right: 0, bottom: 10, left: 0};
 
-    vis.width = 550 - vis.margin.left - vis.margin.right,
-        vis.height = 700 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right,
+        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+
+    //Initialize color schema
+    vis.color = d3.scale.ordinal();
+    vis.color.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED","No Casualties", "Killed", "Wounded", "Incidents"]);
+    vis.color.range([COMMON_COLORS["CACHE/FOUND"],COMMON_COLORS["CRIME"],COMMON_COLORS["CWIED"],COMMON_COLORS["HOAX/FALSE"],COMMON_COLORS["PROJECTED"],COMMON_COLORS["RCIED"],COMMON_COLORS["S-PBIED"],COMMON_COLORS["TIME DELAY"],COMMON_COLORS["UNKNOWN"],COMMON_COLORS["VBIED"],COMMON_COLORS["VOIED"], COMMON_COLORS["NO_CASUALITY"],COMMON_COLORS["KILLED"],COMMON_COLORS["WOUNDED"],COMMON_COLORS["INCIDENT"]]);
+
 
     //Initialize global variables
     vis.tableFilter = new Object();
@@ -53,13 +113,14 @@ SankeyVis.prototype.initVis = function() {
 
     // Set the sankey diagram properties
     vis.sankey = d3.sankey()
-        .nodeWidth(36)
-        .nodePadding(40)
+        .nodeWidth(18)
+        .nodePadding(30)
         .size([vis.width, vis.height]);
 
     vis.path =  vis.sankey.link();
 
-    //IED detail table
+    //IED detail table - replaced
+/*
     vis.table = d3.select("#incidentTable").append("table")
         vis.thead = vis.table.append("thead"),
         vis.tbody = vis.table.append("tbody");
@@ -77,9 +138,9 @@ SankeyVis.prototype.initVis = function() {
                   case "city":
                       return "City";
                   case "wia":
-                      return "WIA";
+                      return "Wounded";
                   case "kia":
-                      return "KIA";
+                      return "Killed";
                   case "type":
                       return "Type";
               }
@@ -103,6 +164,12 @@ SankeyVis.prototype.initVis = function() {
         .append("td")
         // .attr("style", "font-family: 'Roboto', sans-serif") // sets the font style
         .html(function(d) {return d.value;});
+*/
+
+    vis.textTimeline = d3.select("#text-timeline");
+    vis.textTimeline1 = d3.select("#text-timeline1");
+    vis.textTimeline2 = d3.select("#text-timeline2");
+    vis.textTimeline3 = d3.select("#text-timeline3");
 
     // Wrangle and update
     vis.wrangleData();
@@ -167,7 +234,6 @@ SankeyVis.prototype.wrangleData = function() {
         });
     }
 
-
     vis.nodes = [];
     vis.edges = [];
     var destinationNodesArray = [];
@@ -175,6 +241,7 @@ SankeyVis.prototype.wrangleData = function() {
 
     if (vis.sankeySelection == "byType") {
 
+        units = "Casualties";
         //add main nodes
         for (var i = 0; i < vis.displayData.length; i++) {
             if (destinationNodesArray.indexOf(vis.displayData[i].type) < 0
@@ -187,17 +254,17 @@ SankeyVis.prototype.wrangleData = function() {
             }
         }
         //add destination nodes
-        destinationNodesArray[destinationNodesArray.length] = 'WIA';
-        destinationNodesArray[destinationNodesArray.length] = 'KIA';
+        destinationNodesArray[destinationNodesArray.length] = 'Wounded';
+        destinationNodesArray[destinationNodesArray.length] = 'Killed';
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "WIA";
+        newNode.name = "Wounded";
         vis.nodes.push(newNode);
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "KIA";
+        newNode.name = "Killed";
         vis.nodes.push(newNode);
 
         var newEdge;
@@ -208,7 +275,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('KIA')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Killed')) {
                         existingEdge = j;
                     }
                 }
@@ -220,7 +287,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('KIA');
+                    newEdge.target = destinationNodesArray.indexOf('Killed');
                     newEdge.value = vis.displayData[i].kia;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'KIA';
@@ -233,7 +300,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('WIA')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Wounded')) {
                         existingEdge = j;
                     }
                 }
@@ -245,7 +312,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('WIA');
+                    newEdge.target = destinationNodesArray.indexOf('Wounded');
                     newEdge.value = vis.displayData[i].wia;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'WIA';
@@ -257,6 +324,9 @@ SankeyVis.prototype.wrangleData = function() {
         ;
     }
     if (vis.sankeySelection == "byTypeAndOutcome"){
+
+        units = "Incidents";
+
         //add main nodes
         for (var i = 0; i < vis.displayData.length; i++) {
             if (destinationNodesArray.indexOf(vis.displayData[i].type) < 0) {
@@ -268,24 +338,24 @@ SankeyVis.prototype.wrangleData = function() {
             }
         }
         //add destination nodes
-        destinationNodesArray[destinationNodesArray.length] = 'Fatalities';
-        destinationNodesArray[destinationNodesArray.length] = 'Injuries';
-        destinationNodesArray[destinationNodesArray.length] = 'Unknown';
+        destinationNodesArray[destinationNodesArray.length] = 'Killed';
+        destinationNodesArray[destinationNodesArray.length] = 'Wounded';
+        destinationNodesArray[destinationNodesArray.length] = 'No Casualties';
         destinationNodesArray[destinationNodesArray.length] = 'Incidents';
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "Fatalities";
+        newNode.name = "Killed";
         vis.nodes.push(newNode);
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "Injuries";
+        newNode.name = "Wounded";
         vis.nodes.push(newNode);
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "Unknown";
+        newNode.name = "No Casualties";
         vis.nodes.push(newNode);
 
 
@@ -305,7 +375,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('Fatalities')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Killed')) {
                         existingEdge = j;
                     }
                 }
@@ -317,7 +387,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('Fatalities');
+                    newEdge.target = destinationNodesArray.indexOf('Killed');
                     newEdge.value = 1;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'Fatalities';
@@ -331,7 +401,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('Injuries')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Wounded')) {
                         existingEdge = j;
                     }
                 }
@@ -343,7 +413,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('Injuries');
+                    newEdge.target = destinationNodesArray.indexOf('Wounded');
                     newEdge.value = 1;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'Injuries';
@@ -357,7 +427,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('Unknown')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('No Casualties')) {
                         existingEdge = j;
                     }
                 }
@@ -369,7 +439,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('Unknown');
+                    newEdge.target = destinationNodesArray.indexOf('No Casualties');
                     newEdge.value = 1;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'Unknown';
@@ -381,7 +451,7 @@ SankeyVis.prototype.wrangleData = function() {
         };
 
         newEdge = new Object();
-        newEdge.source = destinationNodesArray.indexOf("Fatalities");
+        newEdge.source = destinationNodesArray.indexOf("Killed");
         newEdge.target = destinationNodesArray.indexOf("Incidents");
         newEdge.value = fatalities;
         newEdge.type = "N/A";
@@ -389,7 +459,7 @@ SankeyVis.prototype.wrangleData = function() {
         vis.edges.push(newEdge);
 
         newEdge = new Object();
-        newEdge.source = destinationNodesArray.indexOf("Injuries");
+        newEdge.source = destinationNodesArray.indexOf("Wounded");
         newEdge.target = destinationNodesArray.indexOf("Incidents");
         newEdge.value = injuries;
         newEdge.type = "N/A";
@@ -397,7 +467,7 @@ SankeyVis.prototype.wrangleData = function() {
         vis.edges.push(newEdge);
 
         newEdge = new Object();
-        newEdge.source = destinationNodesArray.indexOf("Unknown");
+        newEdge.source = destinationNodesArray.indexOf("No Casualties");
         newEdge.target = destinationNodesArray.indexOf("Incidents");
         newEdge.value = unknown;
         newEdge.type = "N/A";
@@ -441,7 +511,7 @@ SankeyVis.prototype.updateVis = function() {
                 return Math.max(1, d.dy);
             })
             .sort(function (a, b) {
-                return b.dy - a.dy;
+               return b.dy - a.dy;
             })
             .on("mouseover", function (d) {
 
@@ -456,7 +526,6 @@ SankeyVis.prototype.updateVis = function() {
                  || ( s.wia > 0 & d.outcome == "WIA"))
                  });
                  */
-                console.log("Say What?");
                 vis.sankeyChanged = 0;
                 vis.wrangleData();
             });
@@ -470,6 +539,7 @@ SankeyVis.prototype.updateVis = function() {
             });
 
         // add in the nodes
+
         node = vis.svg.append("g").selectAll(".node")
             .data(vis.nodes);
 
@@ -495,14 +565,15 @@ SankeyVis.prototype.updateVis = function() {
             })
             .attr("width", vis.sankey.nodeWidth())
             .style("fill", function (d) {
-                return d.color = color(d.name.replace(/ .*/, ""));
+                return d.color = vis.color(d.name.replace(/ .*/, ""));
             })
             .style("stroke", function (d) {
                 return d3.rgb(d.color).darker(2);
             })
             .append("title")
             .text(function (d) {
-                return d.name + "\n" + format(d.value);
+                //return d.name + "\n" + format(d.value);
+                return formatIEDTypesTip(d);
             });
 
         // add in the title for the nodes
@@ -541,6 +612,9 @@ SankeyVis.prototype.updateVis = function() {
             .exit()
             .remove();
     }
+
+    //Old tabular way of displaying events - discontinued now.
+    /*
     //update table
     // create a row for each object in the data
     var rows = vis.tbody.selectAll("tr")
@@ -577,6 +651,98 @@ SankeyVis.prototype.updateVis = function() {
     rows
         .exit()
         .remove();
+    */
+    vis.displayText(vis.iedDetailDisplayData);
+
+}
+
+
+SankeyVis.prototype.displayText = function(nodes,words){
+    var vis = this;
+
+    console.log(nodes);
+    console.log(words);
+
+    console.log("This");
+
+    vis.textTimeline.selectAll("div").remove();
+    vis.textTimeline1.selectAll("div").remove();
+    vis.textTimeline2.selectAll("div").remove();
+    vis.textTimeline3.selectAll("div").remove();
+
+    var nodes1 =[];
+    var nodes2 =[];
+    var nodes3 =[];
+    if(nodes.length > 5){
+        var extraItems = nodes.length-5;
+        for(var i=5;i<nodes.length;i++){
+            nodes1.push(nodes[i]);
+            if(i+1 < nodes.length) {
+                nodes2.push(nodes[i]);
+                i++;
+            }
+            if(i+1 < nodes.length) {
+                nodes3.push(nodes[i]);
+                i++;
+            }
+        }
+        nodes = _.slice(nodes,0,5);
+    }
+
+    displayTextOnSection(vis.textTimeline,nodes,words);
+    if(nodes1.length >0){
+        displayTextOnSection(vis.textTimeline1,nodes1,words);
+    }
+    if(nodes2.length >0){
+        displayTextOnSection(vis.textTimeline2,nodes2,words);
+    }
+    if(nodes3.length >0){
+        displayTextOnSection(vis.textTimeline3,nodes3,words);
+    }
+
+
+    function displayTextOnSection(textTimeline,nodes,words){
+        var wordList = [];
+        if(words){
+            wordList = words.split(', ');
+        }
+        var textTimelineBlock = textTimeline.selectAll("div")
+            .data(nodes)
+            .enter()
+            .append("div")
+            .attr("class","cd-timeline-block");
+
+        var textTimelineBlockImg = textTimelineBlock.append("div")
+            .attr("class","cd-timeline-img cd-picture")
+            .append("img")
+            .attr("src",function(d){
+                if(d.kia >0){
+                    return "img/person-killed.svg";
+                }else if(d.wia >0){
+                    return "img/person-wounded.svg";
+                }else {
+                    return "img/bomb.svg";
+                }
+            });
+
+        var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
+        textTimelineBlockContent.append("h2").text(function(d){
+            return vis.dateFormat(d.date);
+        });
+        textTimelineBlockContent.append("p").html(function(d){
+            var text = d.text;
+            wordList.forEach(function(d){
+                text = _.replace(text, new RegExp(d, "gi"), "<span class='important-word'>"+d+"</span>")
+            });
+
+            return text;
+        });
+        textTimelineBlockContent.append("span")
+            .attr("class","cd-date")
+            .text(function(d){
+                return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+            });
+    }
 
 }
 

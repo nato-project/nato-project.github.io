@@ -51,7 +51,7 @@ function brushed() {
     countsVis.wrangleData();
 }
 
-
+/*
 function iedTypeSelect() {
 
     var selectBox = document.getElementById("iedTypeSelect");
@@ -64,4 +64,17 @@ function iedTypeSelect() {
         sankeyVis.wrangleData();
     }
 }
+*/
 
+
+$("input:radio[name=reporttype]").click(function(){
+
+    // Update text vis
+    if (sankeyVis.sankeySelection != $("input:radio[name=reporttype]:checked").val()) {
+        sankeyVis.sankeySelection = $("input:radio[name=reporttype]:checked").val();
+        sankeyVis.sankeyChanged = 1;
+        sankeyVis.tableFilter.type = "N/A";
+        sankeyVis.tableFilter.outcome = "N/A";
+        sankeyVis.wrangleData();
+    }
+});
