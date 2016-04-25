@@ -141,6 +141,32 @@ h1,h2,h3,h4{
 
 }
 
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #FFD500;
+}
+
+.footer-row{
+    padding-top: 20px;
+    font-size: 8pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+}
+
 /* Timeline */
 .timeline-axis text {
     font: 10px sans-serif;

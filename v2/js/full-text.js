@@ -196,17 +196,18 @@ FullText.prototype.initVis = function() {
         });
 
     vis.nodeTextClick = function(d){
-
+        console.dir(d);
         // Find all children for node word
         var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
         var nodes = [];
         nodes.push(vis.findNode(d.id));
-        relatedNodes.forEach(function(d){
-            nodes.unshift(vis.findNode(d.t_id));
+        relatedNodes.forEach(function(o){
+            nodes.unshift(vis.findNode(o.t_id));
         });
         vis.texttimelinetitle.text(d.words);
         vis.displayText(nodes, d.words);
     }
+
 
 
     // 5) Force TICK
@@ -267,11 +268,15 @@ FullText.prototype.initVis = function() {
         .data(vis.typeList)
         .enter()
         .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
+        .style("cursor","pointer");
     vis.legendbox = vis.legend.append("rect")
         .attr("width", 15)
         .attr("height", 15)
-        .style("fill", function(d){return vis.color(d);});
+        .style("fill", function(d){return vis.color(d);})
+        .on("click", function(d) {
+            vis.legendClick(d);
+        });
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
         .attr("x", 20)
@@ -313,7 +318,7 @@ FullText.prototype.initVis = function() {
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
         .style("cursor","pointer");
 
-    vis.casualtyLegend.append
+    //vis.casualtyLegendRect = vis.casualtyLegend.append("rect")
 
     vis.casualtyLegendIcon = vis.casualtyLegend.append("svg:image")
         .attr("width",13)
@@ -324,6 +329,9 @@ FullText.prototype.initVis = function() {
             }else{
                 return "img/person-wounded.svg";
             }
+        })
+        .on("click", function(d) {
+            vis.casualtyLegendClick(d);
         });
     vis.casualtyLegendLabels = vis.casualtyLegend.append("text")
         .attr("class", "force-layout-casualtylegend-labels")
@@ -333,7 +341,31 @@ FullText.prototype.initVis = function() {
         .text(function(d){
             return d;
         })
-        .style("font-size",8);
+        .style("font-size",8)
+        .on("click", function(d) {
+            vis.casualtyLegendClick(d);
+        });
+
+    vis.casualtyLegendClick = function(d){
+        //console.log(d);
+        var allNodes = [];
+        if(d=="Killed"){
+            allNodes = _.filter(vis.displayData, function(o) { return o.kia > 0; });
+        }else{
+            allNodes = _.filter(vis.displayData, function(o) { return o.wia > 0; });
+        }
+
+        //console.log(allNodes.length);
+        var nodes =[];
+        allNodes.forEach(function(d){
+            if(_.findIndex(vis.nodes,function(o){return d.id== o.id;}) > -1){
+                nodes.push(d);
+            }
+        });
+        //console.log(nodes.length);
+        vis.texttimelinetitle.text(d);
+        vis.displayText(nodes);
+    }
 
 
     vis.textTimeline = d3.select("#text-timeline");
@@ -360,6 +392,9 @@ FullText.prototype.initVis = function() {
 
     // Wrangle and update
     //vis.wrangleData();
+
+    // Simulate a node word click
+    setTimeout(function() { vis.nodeTextClick({id:24,words:"station, metro, central"}); }, 5000);
 
 }
 
