@@ -65,6 +65,7 @@ Timeline.prototype.initVis = function(){
 	// Prepare Data for Timeline
 	vis.killed_wounded = [];
 	vis.data.forEach(function (d, i) {
+		d.cummilative = i+1;
 		var index =0;
 		for(var i=0;i< d.kia;i++) {
 			vis.killed_wounded.push({date: d.date,kia:1,wia:0,index:index++});
@@ -73,6 +74,10 @@ Timeline.prototype.initVis = function(){
 			vis.killed_wounded.push({date: d.date,kia:0,wia:1,index:index++});
 		}
 	});
+
+	//var line = d3.svg.line()
+	//	.x(function(d) { return vis.x(d.date); })
+	//	.y(function(d) { return vis.y(d.cummilative); });
 
 	// Create svg elements
 	vis.barGroup = vis.svg.append("g");
@@ -114,6 +119,14 @@ Timeline.prototype.initVis = function(){
 
 		});
 
+	// Legend
+	//vis.svg.append("circle")
+	//	.attr("class", "timeline-circle")
+	//	.attr("cx",vis.width/2)
+	//	.attr("cy",-5)
+	//	.attr("r", 2)
+	//	.style("fill",COMMON_COLORS.KILLED);
+
 	// Add year titles
 	vis.svg.append("text")
 		.attr("style","font-size:10;")
@@ -129,17 +142,19 @@ Timeline.prototype.initVis = function(){
 	// Initialize brush component
 	vis.brush = d3.svg.brush()
 		.x(vis.x)
+		.extent([new Date(2014, 0, 1),new Date(2015, 11, 31)])
 		.on("brush", brushed);
 
 	// Append brush component
 	vis.gBrush = vis.svg.append("g")
 		.attr("class", "x brush")
-		.call(vis.brush)
-		.selectAll("rect")
+		.call(vis.brush);
+
+	vis.gBrush.selectAll("rect")
 		.attr("y", -6)
 		.attr("height", vis.height + 7);
 
-	//vis.gBrush.selectAll('.resize').append('path').attr('d', resizePath);
+	vis.gBrush.selectAll('.resize').append('path').attr('d', resizePath);
 
 	// Taken from crossfilter (http://square.github.com/crossfilter/)
 	function resizePath(d) {
