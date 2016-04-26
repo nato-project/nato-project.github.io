@@ -247,6 +247,9 @@ Map.prototype.updateVis = function() {
 
     // Update scale
     var maxValue = d3.max(regionData, function(d) {return d[vis.dataType];});
+    // Special case for population
+    if (vis.dataType == "population" || vis.dataType == "pop_russians" || vis.dataType == "pop_ukranians")
+        maxValue = d3.max(regionData, function(d) {return d.population;});
     vis.typeScale.domain([0, maxValue]);
 
     // Region colors
