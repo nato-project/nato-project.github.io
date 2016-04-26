@@ -394,7 +394,7 @@ FullText.prototype.initVis = function() {
     //vis.wrangleData();
 
     // Simulate a node word click
-    setTimeout(function() { vis.nodeTextClick({id:24,words:"station, metro, central"}); }, 5000);
+    setTimeout(function() { vis.nodeTextClick({id:24,words:"station, metro, central"}); }, 3000);
 
 }
 
