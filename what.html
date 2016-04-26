@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NATO - Ukraine IED Incidents</title>
+
+    <!-- Load CSS libraries -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/how.css">
+    <link rel="stylesheet" href="css/sankeyStyle.css">
+</head>
+
+<body>
+<!-- Header Navigation -->
+<div id="header"></div>
+
+<div id="body-container" class="container">
+    <div class="page-header">
+        <h4>What type of explosives were used?</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="fact">
+                <p>
+                    An IED is a "homemade" device that is designed to cause death or injury by using explosives alone or in combination with toxic chemicals, biological toxins, or radiological material. IEDs can be produced in varying sizes, functioning methods, containers, and delivery methods. They can also be clasified in various predefined types in order to aid analysis. Unfortunately, it is often the case that there is not enough information to assign and IED to a specific type.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="fact"><p>
+                While 88% of incidents resulted in no casualties, partly because they were hoaxes and false alarms and partly because they were found on time, there is still a significant number of injuries and fatalities. The most dangerous types of IEDs have been identified to be the Remote Controlled devices (RCIEDs), leaving behind 6 dead and 18 wounded, and the Vehicle-borne explosive devices(VBIEDs), leaving behind 12 dead and 12 wounded.
+            </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="fact">
+                <p>
+                    Find out more about how these incidents occured by going to the next page.
+                </p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <a href="how.html" class="btn btn-primary" >Continue to Incident Analysis <i class="fa fa-play" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-spacer"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div id="timelineVis" class="img-responsive"></div>
+        </div>
+        <div class="col-md-4">
+            <div id="countsVis" class="img-responsive"></div>
+        </div>
+    </div>
+    <div class="row-spacer"></div>
+    <div class="sankey-vis-container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <label><strong>View:</strong></label>
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="reporttype" value="byType" checked>Casualties by Incident Type</label>
+                    <label class="radio-inline"><input type="radio" name="reporttype" value="byTypeAndOutcome">Incidents by Type and Outcome</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="text-timeline-title">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div id="sankeyVis"></div>
+            </div>
+         <div class="col-md-4">
+             <section id="text-timeline" class="cd-container">
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <section id="text-timeline1" class="cd-container">
+                </section>
+            </div>
+            <div class="col-md-4">
+                <section id="text-timeline2" class="cd-container">
+                </section>
+            </div>
+         <div class="col-md-4">
+                <section id="text-timeline3" class="cd-container">
+                </section>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="footer"></div>
+
+<!-- Load JS libraries -->
+<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/other/queue.min.js"></script>
+<script type="text/javascript" src="lib/d3/d3.min.js"></script>
+<script type="text/javascript" src="lib/other/sankey.js"></script>
+<script type="text/javascript" src="lib/d3/d3.tip.js"></script>
+<script type="text/javascript" src="lib/other/lodash.min.js"></script>
+
+
+<!-- Load Project libraries -->
+<script type="text/javascript" src="js/common.js"></script>
+
+<!-- Load Page libraries -->
+<script type="text/javascript" src="js/timeline.js"></script>
+<script type="text/javascript" src="js/counts.js"></script>
+<script type="text/javascript" src="js/sankeyVis.js"></script>
+<script type="text/javascript" src="js/what-main.js"></script>
+</body>
+</html>
