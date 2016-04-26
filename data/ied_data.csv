@@ -1,0 +1,651 @@
+id,date,type,kia,wia,city,region,region_id,text,lat,lng
+1,12/09/2015,CACHE/FOUND,0,0,Kramatorsk,DONETSK,dn,IEDs were found and disposed by Combat Engineers TBC if they were just landmines,48.738967,37.58435
+2,12/09/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,An IED was blown up in front of a ROSHEN shop Shopping Center ,49.9935,36.230383
+3,12/08/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,A device was detonated against a restaurant (LKafa) Boulevard Lesi Ukrainian,50.0529506,30.7667133
+4,12/07/2015,HOAX/FALSE,0,0,Ivano-Frankivsk,IVANO-FRANKIVSK,if,Call reporting IED - First Responders action - no explosive Central Metro/bus station,48.922633,24.711117
+5,12/02/2015,CACHE/FOUND,0,0,Krasnoarmiis'k,DONETSK,dn,An IED was found and disposed by EOD ,48.282193,37.1847804
+6,12/02/2015,CACHE/FOUND,0,0,Avdeevka,DONETSK,dn,A cache with 3 IEDs with TNT was found and cleared Inside an abandoned house,48.136596,37.7491335
+7,12/02/2015,UNKNOWN,0,0,Uzhgorod,ZAKARPATS'KA,uz,An IED was detonated against a store in Franko Street ,48.6208,22.287883
+8,11/30/2015,CACHE/FOUND,0,0,Mariupol ,DONETSK,dn,"Several landmines, 800 gr of TNT and electric detonators were found ",47.097133,37.543367
+9,11/28/2015,UNKNOWN,0,0,Avdotyino,DONETSK,dn,A device was blown up damaging a power substation ,47.92334,37.857918
+10,11/27/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,"A cache was discovered: weapons, 1 Kg TNT & electric detonators Near a pump station",48.737247,39.2311974
+11,11/26/2015,UNKNOWN,0,0,Simferopol,CRIMEA,crimea,IED attack against a power substation ,44.952117,34.102417
+12,11/26/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Lukyanovska Metro station,50.0529506,30.7667133
+13,11/26/2015,CACHE/FOUND,0,0,Klisiivka,DONETSK,dn,"Near the railway, 500 gr of plastic explosive were found ",48.015883,37.80285
+14,11/25/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,3 detonators & 600 gr TNT ,48.737247,39.2311974
+15,11/24/2015,CACHE/FOUND,0,0,Bovrove,LUHANSK ,lg,A Command-Wired IED was found near a road close to a gas pipeline 800 gr TNT & electric detonators,48.574041,39.307815
+16,11/22/2015,UNKNOWN,0,0,Kherson,KHERSON,ks,Four electrical towers were blown up Electrical power to Crimea was disrrupted,46.635417,32.616867
+17,11/21/2015,CACHE/FOUND,0,0,Kryvyi Rih,DNIPROPETROVSK,dp,"An IED was found in front of the City Council 800 gr TNT& detonating cord, but without any fuze or switch",47.910483,33.391783
+18,11/20/2015,UNKNOWN,0,0,Kherson,KHERSON,ks,Two electrical towers were blown up Electrical power to Crimea was disrrupted,46.635417,32.616867
+19,11/19/2015,CACHE/FOUND,0,0,Druzkivci,DONETSK,dn,"Ammunition, explosives and detonators were found ",48.015883,37.80285
+20,11/18/2015,CACHE/FOUND,0,0,Mariupol ,DONETSK,dn,"2,5 Kg of plastic explosive were found ",47.097133,37.543367
+21,11/18/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Teatralna & Kreshatyk Metro stations,50.0529506,30.7667133
+22,11/17/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Threat against all MCDONALDS restaurants,50.0529506,30.7667133
+23,11/16/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,5 Kg of TNT were found along with weapons and ammunition ,48.737247,39.2311974
+24,11/16/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Central Metro station,50.0529506,30.7667133
+25,11/16/2015,CACHE/FOUND,0,0,Zakarpatye,DONETSK,dn,"After the search of a van, 2 detonators & 400 gr of TNT were found ",48.015883,37.80285
+26,11/15/2015,HOAX/FALSE,0,0,Chernihiv,CHERNIHIV,cn,Call reporting IED - First Responders action - no explosive It was a suitcase in front of a polling station,51.4982,31.28935
+27,11/13/2015,UNKNOWN,0,0,Zhytomyr,ZHYTOMYR,zt,An IED was detonated between Atlantic & Lviv Streets ,50.25465,28.658667
+28,11/13/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Railway Central station,50.0529506,30.7667133
+29,11/13/2015,UNKNOWN,0,0,Uzhgorod,ZAKARPATS'KA,uz,An IED was detonated ,48.6208,22.287883
+30,11/13/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,"Detonators, TNT and plastic explosive were seized ",48.737247,39.2311974
+31,11/12/2015,UNKNOWN,2,0,Marinka,DONETSK,dn,A civilian car was affected by the detonation on an IED ,47.9422861,37.5040301
+32,11/12/2015,CACHE/FOUND,0,0,Mistky,LUHANSK ,lg,"Weapons, grenades and ammunition found along with 1 Kg TNT ",49.3425248,38.5035221
+33,11/10/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,A cache with TNT and rockets was found ,48.737247,39.2311974
+34,11/10/2015,CACHE/FOUND,0,0,Volnovakha,DONETSK,dn,Several 120 mm artillery rounds were found protected by an IED Composed of TNT & artillery fuzes,47.5951141,37.4831419
+35,11/09/2015,PROJECTED,1,0,Kiev,KIEV,kiev,A man was killed after the detonation of an improvised hand grenade ,50.0529506,30.7667133
+36,11/07/2015,CACHE/FOUND,0,0,Donetsk,DONETSK,dn,Two caches with explosives were discovered ,48.015883,37.80285
+37,11/06/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosives were found inside a garbage container ,46.482526,30.7233095
+38,11/04/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK ,lg,2 Kg of TNT were seized after a search for weapons and ammo ,48.737247,39.2311974
+39,11/03/2015,CACHE/FOUND,0,0,Pobeda,LUHANSK,lg,Explosives were found hidden in the roof of a house ,49.0469389,39.1117866
+40,11/01/2015,UNKNOWN,0,2,Volnovakha,DONETSK,dn,An IED was used against a night club ,47.5951141,37.4831419
+41,10/31/2015,UNKNOWN,0,0,Svatovo,LUHANSK,lg, Ammunition depot was blown up after an IED detonation It causes the detonation of about 3500 tons of ammunition,49.4154809,38.1568889
+42,10/29/2015,CACHE/FOUND,0,0,Mariupol ,DONETSK,dn,A DNR militant was detained with 100 gr of TNT ,47.097133,37.543367
+43,10/28/2015,CACHE/FOUND,0,0,Marinka,DONETSK,dn,"Rockets, grenades and explosives were found ",47.9422861,37.5040301
+44,10/27/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"A cache with explosives was discovered near a monastery Pokrovsky monastery, University Street",49.9935,36.230383
+45,10/26/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,9 Kg of TNT and several detonators were seized ,48.5986674,37.9980367
+46,10/24/2015,CACHE/FOUND,0,0,Slavne,DONETSK,dn,Detonators and TNT were found ,48.217321,38.3194357
+47,10/22/2015,CACHE/FOUND,0,0,Novokramatorsk,DONETSK,dn,Grenades and 400 gr of TNT were found ,48.015883,37.80285
+48,10/22/2015,CACHE/FOUND,0,0,Zaceive,DONETSK,dn,More than 20 Kg of TNT were seized after a search ,48.015883,37.80285
+49,10/22/2015,UNKNOWN,0,1,Zolote,LUHANSK,lg,The detonation of an IED caused injuries to one soldier ,48.6928568,38.5146349
+50,10/21/2015,CACHE/FOUND,0,0,Verkhnio Toretske,DONETSK,dn,"Weapons, 1.1 Kg TNT and landmines were found ",48.015883,37.80285
+51,10/21/2015,UNKNOWN,0,1,Mikolayiv,MIKOLAYIV,mk,Detonation of a device inside an apartment ,46.975033,31.994583
+52,10/20/2015,HOAX/FALSE,0,0,Mariupol ,DONETSK,dn,Call reporting IED - First Responders action - no explosive Khmelnytsky Boulevard,47.097133,37.543367
+53,10/20/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK,lg,"Weapons, ammunition & explosives were discovered in a search ",48.737247,39.2311974
+54,10/19/2015,CACHE/FOUND,0,0,Kryvyi Rih,DNIPROPETROVSK,dp,"Explosives were found during a search for weapons 20 Kg TNT, 7 m detonating cord & 7 electric detonators",47.910483,33.391783
+55,10/19/2015,CACHE/FOUND,0,0,Mezhova,DONETSK,dn,Black powder and explosives were seized during a vehicle search ,49.0161213,38.3751404
+56,10/18/2015,CACHE/FOUND,0,0,Sergueevka,DONETSK,dn,2 Kg of TNT were found along with weapons ,48.6723762,37.3716475
+57,10/17/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,An IED was detonated in a parking area ,50.0529506,30.7667133
+58,10/17/2015,UNKNOWN,0,0,Kherson,KHERSON,ks,A device was blown up against a caf_ ,46.635417,32.616867
+59,10/16/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,Detonators and munitions were found during a search ,48.5986674,37.9980367
+60,10/16/2015,CACHE/FOUND,0,0,Kurakhovo,DONETSK,dn,"Weapons, explosives and detonators were discovered ",47.9865822,37.2906965
+61,10/15/2015,CACHE/FOUND,0,0,Maryinsky,DONETSK,dn,Explosives found ,48.015883,37.80285
+62,10/13/2015,CACHE/FOUND,0,0,Marinka,DONETSK,dn,"Weapons, gunpowder and explosives were found æNot clear if explosives were munition or explosives in fact",47.9422861,37.5040301
+63,10/13/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,A man was detained with explosives 11 Kg of plastic explosive along with 5 electric detonators,48.464717,35.046183
+64,10/12/2015,UNKNOWN,1,0,Kryvyi Rih,DNIPROPETROVSK,dp,A suspected IED emplacer was killed by his own IED In front of a school,47.910483,33.391783
+65,10/07/2015,UNKNOWN,0,0,Lviv,LVIV,lviv,Detonation of a device against Poland Consulate It was emplaced inside a garbage can,49.839683,24.029717
+66,10/07/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,"An IED was blown up against in the railroad Station ""kupiansk-Uzlovy""",49.9935,36.230383
+67,10/07/2015,CACHE/FOUND,0,0,Aslanove,DONETSK,dn,Some weapons were found along with explosives TNT and plastic explosive,47.2435632,37.579323
+68,10/07/2015,UNKNOWN,0,0,Bilhorod Dnistrovsky,ODESSA,od,A device was blown up against an enlistment office 200 gr TNT equivalent,46.1854516,30.3414908
+69,10/07/2015,CACHE/FOUND,0,0,Bila Tserkva,KIEV,kiev,Arms dealers were detained: explosives found ,49.7967977,30.1310853
+70,10/03/2015,CACHE/FOUND,0,0,Popasna,LUHANSK,lg,Explosives and weapons were found ,48.6282422,38.3727154
+71,10/05/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive City center,49.9935,36.230383
+72,10/03/2015,CACHE/FOUND,0,0,Dzerzhinsk,DONETSK,dn,A man was detained when trying to emplace an IED Against a check point in the road,48.3972873,37.855245
+73,10/02/2015,VOIED,1,0,Stanytsia Luhanska,LUHANSK ,lg,One soldier was killed after the detonation of an IED ,48.6798458,39.4672507
+74,10/01/2015,CACHE/FOUND,0,0,Vinnytsia,VINNYTSIA,vn,"One arms dealer was detained in possession of explosives TNT blocks (4,6 Kg)",49.233083,28.468217
+75,10/01/2015,CACHE/FOUND,0,0,Kurakhovo,DONETSK,dn,Explosives and detonators were seized ,47.9865822,37.2906965
+76,9/30/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Explosives and detonators were seized ,48.464717,35.046183
+77,9/28/2015,UNKNOWN,0,1,Kiev,KIEV,kiev,"A device was blown up in a railway station In ""Southern Vzryvpaket"" station. Suspect was detained hours later.",50.0529506,30.7667133
+78,9/28/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device detonated in central railway station Not confirmed,49.9935,36.230383
+79,9/27/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"IED attack against the building of UKR Security Service (SBU/???) 5-7  Kg TNT equivalent. It was claimed by ""???????? ????????""",46.482526,30.7233095
+80,9/26/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Central railway station,46.482526,30.7233095
+81,9/25/2015,CACHE/FOUND,0,0,Severodonetsk,LUHANSK,lg,Several IEDs were found protecting a cache withy missiles ,48.9481767,38.4878773
+82,9/24/2015,UNKNOWN,1,3,Torez,DONETSK,dn,An IED blown up during a military tank competition It was hidden inside a combat vehicles battery compartment,48.0201627,38.6545258
+83,9/23/2015,VOIED,0,0,Sopyne,DONETSK,dn,Several IEDs were found under Ukrainian soldiers corpses ,47.0915367,37.754335
+84,9/22/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,3 suspects were detained when r-trying to blow a bridge up Explosives and detonators were seized,48.464717,35.046183
+85,9/21/2015,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,"Explosives found after detention of 4 suspects One complete IED, other explosives and weapons",46.975033,31.994583
+86,9/20/2015,CACHE/FOUND,0,0,Donetsk,DONETSK,dn,"Explosives were found during vehicle search in a check point Detonating cord, detonators and military ordnance as main charge",48.015883,37.80285
+87,9/17/2015,CACHE/FOUND,0,0,Debaltseve,LUHANSK,lg,"A cache with weapons, ammunition and TNT was discovered ",48.3340595,38.4062034
+88,9/15/2015,CACHE/FOUND,0,0,Polovynkyne,LUHANSK,lg,A large cache of weapons and explosives was discovered ,49.2252765,38.919731
+89,9/14/2015,VOIED,0,2,Berezove,DONETSK,dn,Two women wounded after triggering an IED ,47.770304,37.5822163
+90,9/14/2015,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,"4 KG of TNT and other ammunition were found in a warehouse They were packed in white bags marked as ""Novorossiya Aid Foundation""",47.097133,37.543367
+91,09/11/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was detonated in a residential area ,46.482526,30.7233095
+92,09/10/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,"A man was discovered when trying to plant an IED near a check point Reported as RC switch (mobile phone), 400 gr TNT block as main charge",46.482526,30.7233095
+93,09/09/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK,lg,Explosives and weapons were found ,48.737247,39.2311974
+94,09/09/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,An IED was found in front of a National Guard Unit Headquarters 400 gr TNT equivalent,46.482526,30.7233095
+95,09/07/2015,CACHE/FOUND,0,0,Vodyane,ZAPORIZHIA,zp,Explosives were found in a cache ,47.479275,34.5045859
+96,09/07/2015,CACHE/FOUND,0,0,Dzerzhinsk,DONETSK,dn,A cache with weapons and explosives was discovered ,48.3972873,37.855245
+97,09/07/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,An IED was found and disposed by emergency services (SSU) ,46.482526,30.7233095
+98,09/07/2015,CACHE/FOUND,0,0,Luhansk,LUHANSK,lg,A cache was discovered near Artemivsk-Lysychansk road ,48.574041,39.307815
+99,09/04/2015,PROJECTED,0,0,Rivne,RIVNE,rv,A homemade grenade was blown up in the street ,50.6199,26.251617
+100,09/04/2015,CACHE/FOUND,0,0,Plovynkyne,LUHANSK,lg,Another cache was discovered after investigation ,48.574041,39.307815
+101,09/03/2015,UNKNOWN,0,2,Dzerzhinsk,DONETSK,dn,A device detonated affecting two persons ,48.3972873,37.855245
+102,09/03/2015,CACHE/FOUND,0,0,Volodarsky,DONETSK,dn,A cache was discovered and TNT was found inside ,48.015883,37.80285
+103,09/03/2015,PROJECTED,0,0,Zaporizhia,ZAPORIZHIA,zp,A homemade hand grenade was thrown against a business office ,47.8388,35.139567
+104,09/02/2015,UNKNOWN,1,0,Ognevka,POLTAVA,pl,A device was blown up causing a fire with the result of a dead man ,49.575923,34.521275
+105,8/31/2015,UNKNOWN,1,0,Kiev,KIEV,kiev,A soldier of national Guard was killed after a device detonated Possible hand grenade (TBC),50.0529506,30.7667133
+106,8/31/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Near ""Arsenalnaya"" metro station",50.0529506,30.7667133
+107,8/30/2015,CACHE/FOUND,0,0,Polovynkyne,LUHANSK,lg,A cache was found in an abandoned factory 33 Kg of TNT,49.2252765,38.919731
+108,8/30/2015,CACHE/FOUND,0,0,Bakhmutivka,LUHANSK,lg,A cache with explosives and weapons was found  ,48.8671466,39.0414588
+109,8/29/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,A suspect was detained when trying to sell explosives 20 Kg of TNT,48.464717,35.046183
+110,8/28/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,600 gr of TNT were found in a cache along with weapons & ammo ,48.464717,35.046183
+111,8/28/2015,CACHE/FOUND,0,0,Vesele,DONETSK,dn,"A cache wit weapons and  explosives was found 18x200 gr TNT, 4x400 gr TNT & 24 detonators",47.4852086,37.3640615
+112,8/27/2015,CACHE/FOUND,0,0,Volodarsky,DONETSK,dn,A suspect was detained. Weapons and TNT were seized ,48.015883,37.80285
+113,8/27/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,"IED attack against an office of ""Sberbank"" Victory Avenue",50.0529506,30.7667133
+114,8/24/2015,UNKNOWN,0,0,Rovenky,LUHANSK ,lg,"IED attack against gas pipeline ""Moscow-Stavropol"" ",48.0823858,39.3699771
+115,8/23/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,An IED laboratory was discovered after detention of suspects A complete IED & some components were found,46.482526,30.7233095
+116,8/22/2015,CACHE/FOUND,0,0,NULL,ZAPORIZHIA,zp,An IED laboratory was dismantled They were manufacturing TATP & improvised detonators,47.8388,35.139567
+117,8/22/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,IEDs & explosives were found after detention of 2 suspects ,49.9935,36.230383
+118,8/22/2015,CACHE/FOUND,0,0,Starobil's'k,LUHANSK ,lg,Flash powder & munitions were found in a suspects home ,49.2736853,38.9255482
+119,8/22/2015,CACHE/FOUND,0,0,Novgorod,DONETSK,dn,"Explosives were seized during a search 4 Kg TNT, plastic explosive and munitions",47.5421316,36.9195077
+120,8/22/2015,UNKNOWN,0,0,Mikolayiv,MIKOLAYIV,mk,Two devices were detonated against a volunteers office Youth Center,46.975033,31.994583
+121,8/21/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,"One suspect was detained in possesion of flash powder In ""Mezhevaya"" train station",48.464717,35.046183
+122,8/20/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro station in Independence Square,50.0529506,30.7667133
+123,8/18/2015,CWIED,0,0,Kondrashevska,LUHANSK ,lg,A train transporting coal was derailed due to detonation of a device Second IED failed: TM-62M mine & 4x400 gr TNT as main charge,48.574041,39.307815
+124,8/18/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,IED components and schemes found during a detention of suspects ,50.0529506,30.7667133
+125,8/17/2015,CACHE/FOUND,0,0,Lviv,LVIV,lviv,Homemade grenade was found in the roof of a kindergarten Novoznerenska St,49.839683,24.029717
+126,8/17/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,A guy was detained with fuzes and detonators inside a backpack Vokzalnaya metro station,50.0529506,30.7667133
+127,8/17/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"An urdenbelly IED was found under a car Krasnov St., 100 gr TNT.",49.9935,36.230383
+128,8/14/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,Suspects were detained while laying an IED against the railway 2.5 Kg TNT,49.9935,36.230383
+129,8/15/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Some explosives were found during the seize of an arsenal ,50.0529506,30.7667133
+130,8/13/2015,UNKNOWN,1,0,Stepove,DNIPROPETROVSK,dp,A car was affected by the detonation of an IED The driver died,48.6376596,34.9074422
+131,8/13/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,A homemade grenade was found in the roof of a kiosk ,49.9935,36.230383
+132,8/13/2015,CACHE/FOUND,0,0,Dzerzhinsk,DONETSK,dn,A modified hand grenade was found inside a suspects bag ,48.3972873,37.855245
+133,8/13/2015,CACHE/FOUND,0,0,Kobelyaki,POLTAVA,pl,Fuzes and detonators found along with weapons and equipment ,49.1517927,34.1953871
+134,08/12/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Cache with explosives was found near a railway station Novomoskov station,48.464717,35.046183
+135,08/06/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"An IED was detonated against bar ""BIKINI"" ",46.482526,30.7233095
+136,08/05/2015,CACHE/FOUND,0,0,Ivano-Frankivsk,IVANO-FRANKIVSK,if,Some guys were detained when trying to sell radioactive material Reported as Uranium 238 by SBU,48.922633,24.711117
+137,08/04/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,"After a shooting, some explosives were found during detentions Detonators, detonating cord and weapons",50.0529506,30.7667133
+138,08/03/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Sumy Street,49.9935,36.230383
+139,08/02/2015,PROJECTED,0,0,Odessa,ODESSA,od,"An IED was thrown against the NGO ""Self-Defences of Odessa"" 200 gr TNT-equivalent. Kanatnaya Street. From a motorcycle.",46.482526,30.7233095
+140,08/02/2015,UNKNOWN,0,0,Popasna,LUHANSK ,lg,A portion of railway was blown up Sentyanivka-Shipilova Stretch (6th attack in the same site),48.6282422,38.3727154
+141,7/29/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Rymarska Street,49.9935,36.230383
+142,7/28/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive General Prosecutors Office of Ukraine,50.0529506,30.7667133
+143,7/28/2015,CACHE/FOUND,0,0,Kamenka-Dnieper,ZAPORIZHIA,zp,A suspect was detained in possesion of explosives and weapons 500 gr TNT and black powder,47.8388,35.139567
+144,7/28/2015,CACHE/FOUND,0,0,Severodonetsk,LUHANSK,lg,A cache was found by members of DONBASS Batallion Some explosives were found along with weapons,48.9481767,38.4878773
+145,7/27/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,An Ukrainian soldier was detained with some explosives Plastic explosive & fuzes. Forest metro station.,50.0529506,30.7667133
+146,7/27/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Dorohozhychi Metro Station ,50.0529506,30.7667133
+147,7/23/2015,CACHE/FOUND,0,0,Chernihiv,CHERNIHIV,cn,Explosives were seized after the detention of 2 criminal groups 5 TNT blocks (200 gr each),51.4982,31.28935
+148,7/23/2015,HOAX/FALSE,0,0,Zhytomyr,ZHYTOMYR,zt,Call reporting IED - First Responders action - no explosive Regional philharmonic hall . HOAX caller was detained,50.25465,28.658667
+149,7/22/2015,CACHE/FOUND,0,0,Stanytsia Luhanska,LUHANSK ,lg,"Explosives seized after a search done by border patrols 10 TNT blocks, along with rocket launchers and hand grenades",48.6798458,39.4672507
+150,7/22/2015,VOIED,0,0,Krasnoarmiis'k,DONETSK,dn,An IED was found close to a gas station  Pressure plate,48.282193,37.1847804
+151,7/20/2015,UNKNOWN,0,0,Berdyansk,ZAPORIZHIA,zp,The trunk of a car owned by a bussinesmen was blown up Reasons of explosion are not clear (It could be an accident instead an IED),46.7737707,36.8034779
+152,7/20/2015,UNKNOWN,0,1,Odessa,ODESSA,od,"A device blew up at the door of Caf_ ""Liberty"" Richelieu Street (04:00 AM)",46.482526,30.7233095
+153,7/19/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A car was blown up Akademika Pavlova Street,49.9935,36.230383
+154,7/19/2015,CACHE/FOUND,0,0,Shchastya,LUHANSK,lg,"A device was found under a house and disposed 2 TM-62M landmines as main charge, TNT block as booster and detonators",48.737247,39.2311974
+155,7/19/2015,CACHE/FOUND,0,0,Krasnoarmiis'k,DONETSK,dn,"A suspect was detained after a search in his house 8 TNT blocks, plastic explosive and 15 electric detonators, plus weapons",48.282193,37.1847804
+156,7/16/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive 2 sites: Hotel ""Khrarkov"" & Migration Service office (Rymarska Street)",49.9935,36.230383
+157,7/15/2015,CACHE/FOUND,0,0,Donetsk,DONETSK,dn,"Explosives were seized after the detention of a suspect of attacks About 50 Kg of explosives and detonators, along with weapons",48.015883,37.80285
+158,7/15/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive 5 governmental facilities,49.9935,36.230383
+159,7/15/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"A suspect was detained when trying to lay an IED near a train station ""Kharkiv-Pasazhyrskiy"" station. 2,5 Kg TNT",49.9935,36.230383
+160,7/14/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,An IED manufacturer was detained Involved in some IED attacks in Odessa. Components of IEDs were seized,46.482526,30.7233095
+161,7/14/2015,UNKNOWN,0,1,Lviv,LVIV,lviv,IED attack against a secondary door of an Office of District Police Yuri Lipa Street. Todays second IED attack against Police Stations in Lviv,49.839683,24.029717
+162,7/14/2015,UNKNOWN,0,1,Lviv,LVIV,lviv,A device blew up in the entrance to an Office of District Police Plugova Street,49.839683,24.029717
+163,7/14/2015,UNKNOWN,0,1,Donetsk,DONETSK,dn,The car of the secretary of DNR Head was attacked with an IED Kuibyshev  district (Potential Underbelly under passenger seat),48.015883,37.80285
+164,7/14/2015,CACHE/FOUND,0,0,Pavlohrad,DNIPROPETROVSK,dp,"Explosives were seized from a car search in a Police check point 4 blocks of TNT, 1200 gr of plastic explosive, 3 detonators, and weapons",48.5294478,35.9032574
+165,07/09/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive 4 government sites all around the city,49.9935,36.230383
+166,07/09/2015,TIME DELAY,0,0,Mariupol,DONETSK,dn,"IED was disposed in a bus stop near central market 200 gr TNT, mechanical time delay switch, batteries, and metal pieces",47.097133,37.543367
+167,07/08/2015,CACHE/FOUND,0,0,Popasna,LUHANSK,lg,A guy was detained when trying to lie a device in a bakery plant He confessed a group threated him and his family in order to do it,48.6282422,38.3727154
+168,07/07/2015,UNKNOWN,1,0,Brovary,KIEV,kiev,"There was a detonation in a kiosk close to a bus stop Bus stop ""Shevchenko Park"". A gas cilinder blew up (TBC if IED or accident)",50.511083,30.7909
+169,07/07/2015,UNKNOWN,0,0,Vasilyevka,DONETSK,dn,A bridge over Kalmius river affected by the detonation of a device ,48.3354458,37.9897718
+170,07/07/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,2 Kg of TNT were found along with hand grenades and ammunition Near a water station in Svyatoshinsky district ,50.0529506,30.7667133
+171,07/06/2015,CACHE/FOUND,0,0,Zhytomyr,ZHYTOMYR,zt,"Two servicemen were detained in a minibus with explosives Road Zhytomyr- Chernivtsi . 3 Kg of flash powder, TNT",50.25465,28.658667
+172,07/06/2015,CACHE/FOUND,0,0,Lisichansk,LUHANSK,lg,"A cache with explosives was found in a destroyed plant 10 Kg TNT plus electric detonators, landmines, hand grenadesƒ",48.9066145,38.4433605
+173,07/05/2015,UNKNOWN,0,0,Odessa,ODESSA,od,An IED close to a billboard was disposed by Police Between Cosmonauts St and General Petrov St. Reported as RCIED (TBC),46.482526,30.7233095
+174,07/05/2015,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,Detention of a group planning to blown a bridge up Explosives seized. They planned to attack Ingul & Varvarovskogo bridges.,46.975033,31.994583
+175,07/04/2015,CACHE/FOUND,0,0,Novohrad-Volynskyi,ZHYTOMYR,zt,A cache protected by IEDs was found Some IEDs were found along with hand grenades and ammunition,50.5860203,27.6363775
+176,07/04/2015,UNKNOWN,0,0,Sumy,SUMY,sm,IED was detonated against a political party local office Office of political party ‚???????????é (Fatherland).,50.9077,34.7981
+177,07/03/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Rymarska Street,49.9935,36.230383
+178,07/02/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"A device was blown up against a restaurant ""?????????"" (Angelov) Caf_ (400-650 gr TNT equivalent). ",46.482526,30.7233095
+179,07/02/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,About 4 Kg of explosive were found in a weapons cache Darnitsky district,50.0529506,30.7667133
+180,07/01/2015,CACHE/FOUND,0,0,Komsomolsk,POLTAVA,pl,"During the detention of suspects, explosives were seized 400 grams of TNT along with weapons",49.0156679,33.6450451
+181,07/01/2015,UNKNOWN,0,0,Darivka,LUHANSK ,lg,IED attack damaged railroad and a locomotive ,47.9828115,39.4237153
+182,07/01/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,"A device was blown up close to a university hostel Near ""Oleksiivska"" Metro Station. Two more explosions reported during night",49.9935,36.230383
+183,07/01/2015,HOAX/FALSE,0,0,Mikolayiv,MIKOLAYIV,mk,Call reporting IED - First Responders action - no explosive Against a gas pipeline. Caller was identified and detained.,46.975033,31.994583
+184,6/30/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Rymarska Street,49.9935,36.230383
+185,6/29/2015,CACHE/FOUND,0,0,Milovskyi,LUHANSK,lg,"Explosives and components for IEDs were seized Along with weapons, during the detention of a suspect group",48.56464,39.268665
+186,6/27/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,"Explosives and weapons were found inside a private house About one hundred TNT blocks, three kilos of plastic explosive, detonators",48.5986674,37.9980367
+187,6/26/2015,UNKNOWN,0,0,Orikhove,LUHANSK ,lg,A portion of railway was blown up ,48.0378333,39.1698941
+188,6/26/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,"Call reporting IED - First Responders action - no explosive Legal College, owned by Peoples Deputy Sergey Kivalov,  in Biskvitny Lane ",46.482526,30.7233095
+189,6/26/2015,CACHE/FOUND,0,0,Kukshym,CHERNIHIV,cn,Some explosives were found after the detention of suspects ,51.4982,31.28935
+190,6/25/2015,UNKNOWN,0,1,Shyroka,LUHANSK ,lg,A device detonated when trying to open an abandoned bag Possible VOIED,48.547477,39.3014059
+191,6/25/2015,CACHE/FOUND,0,0,Borovske,LUHANSK,lg,"A roadside IED was found Electric detonator, TNT block & VOG-25 grenade as main cahrge",48.574041,39.307815
+192,6/25/2015,UNKNOWN,0,1,Lviv,LVIV,lviv,A patrol car was blown up in front of its Police Station Chuprinky Street. VAZ-2109 car of Frankivskiy district Police Department ,49.839683,24.029717
+193,6/24/2015,CACHE/FOUND,0,0,Chasiv Yar,DONETSK,dn,Explosives were found during a search after some detentions 25 + 12 Kg of plastic explosive found in the house of a suspectÇs parents,48.5884808,37.8354218
+194,6/24/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Central railway station,49.9935,36.230383
+195,6/23/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Against District Court,49.9935,36.230383
+196,6/22/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,"IEDs were detonated against offices of ""Sberbank of Russia"" Akhmatova Street & Kurenivka Street",50.0529506,30.7667133
+197,6/20/2015,UNKNOWN,0,0,Troyitske,LUHANSK,lg,Road bridge between Popasna and Troyitske was blown up ,48.574041,39.307815
+198,6/17/2015,CACHE/FOUND,0,0,Illicha,DONETSK,dn,"2 suspected IEDs were found laid under railway TM-62M landmines as main charge. No evidence of switch, possible HOAX",48.4963388,37.6619159
+199,6/17/2015,UNKNOWN,0,1,Novotoshkivske,LUHANSK,lg,A civilian was injured by a device activated through tripwire It is not clear if it was a landmine or an IED,48.7270139,38.6330587
+200,6/16/2015,UNKNOWN,0,0,Sumy,SUMY,sm,IED was detonated against Sdovoba party local office ,50.9077,34.7981
+201,6/16/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Suspicious IED - First Responders action - no explosive Liberty Square,49.9935,36.230383
+202,6/16/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Explosives were seized durig the detntion of suspects TNT,50.0529506,30.7667133
+203,6/16/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Against ""Derzhprom"" & ""Universytet "" metro station in Svobody Square",49.9935,36.230383
+204,6/15/2015,UNKNOWN,0,0,Kherson,KHERSON,ks,IED used against residence of Regional State governor ,46.635417,32.616867
+205,6/13/2015,UNKNOWN,1,0,Troyitske,LUHANSK,lg,A soldier was killed due to the detonation of an IED ,48.574041,39.307815
+206,06/12/2015,UNKNOWN,0,0,Popasna,LUHANSK,lg,IED attack against a railway bridge 6 more IEDs were found. Artillery shells açused as main charge.,48.6282422,38.3727154
+207,06/12/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was blown up In the crossing of Admiralsky Avenue and Krasnova Street,46.482526,30.7233095
+208,06/12/2015,UNKNOWN,0,0,Svitlodars'k,DONETSK,dn,IED attack against a railway bridge ,48.4346796,38.220428
+209,06/12/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was blown up against a billboard with patriotic message (200 gr TNT equ) Between Velika Arnautska St & Staroportofranskivska St,46.482526,30.7233095
+210,06/11/2015,CACHE/FOUND,0,0,NULL,ZAPORIZHIA,zp,2 suspects were detained while transporting explosive and weapons 370 gr of plastic explosive,47.8388,35.139567
+211,06/11/2015,UNKNOWN,0,0,Yasynuvata,DONETSK,dn,"A device was blown up against railway Between ""Yasinovataya"" & ""Skotovataya"" stations",48.1221425,37.8765944
+212,06/10/2015,CACHE/FOUND,0,0,Chasiv Yar,DONETSK,dn,12 Kg of plastic explosive were seized after a detention of suspects ,48.5884808,37.8354218
+213,06/09/2015,CACHE/FOUND,0,0,Gavrilovka,DNIPROPETROVSK,dp,"Explosive and weapons were seized inside a car during a road control Some quantities of TNT and plastic explosive, along with rockets",48.0807398,36.5231649
+214,06/09/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Against ""Derzhprom"" & ""Universytet "" metro station",49.9935,36.230383
+215,06/08/2015,CACHE/FOUND,0,0,Sumy,SUMY,sm,"A man was detained while trying to use an IED against a gas pipeline Urengoy_Pomary_Uzhgorod pipeline, near ""Ukrtransgaz""operation center ",50.9077,34.7981
+216,06/07/2015,UNKNOWN,1,5,Mariupol,DONETSK,dn,A homemade sea mine detonated against a patrol boat The boat was leaving the Korabelno bay. It was reported as WBIED,47.097133,37.543367
+217,06/04/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Suspicious IED - First Responders action - no explosive In the Rada (City Council) in Khrestchatyk Street,50.0529506,30.7667133
+218,06/04/2015,UNKNOWN,0,0,Dachne,ODESSA,od,A fridge train was affected by the detonation of a device 2 devices detonated in both sides of railway (total 10 Kg TNT equivalent),46.5818345,30.5459549
+219,06/04/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,Suspect arrested trying to use an IED against a railway bridge TM-62 mine main charge + cellphone switch. Kupyansk-Svyatogorsk way.,49.9935,36.230383
+220,06/04/2015,CACHE/FOUND,0,0,Kapitanove,LUHANSK ,lg,IED was found. Mortar grenade with plastic explosive as main charge. Search after an attack with 2 MON-50 mines against a civilian car,48.8294653,38.7765061
+221,06/03/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"Suspect arrested trying to use an IED against a military  fuel depot TM-62 mine + SPM charge, cellphone as switch, electric detonator",49.9935,36.230383
+222,06/02/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Against ""Derzhprom"" & ""Universytet "" metro station in Svobody Square",49.9935,36.230383
+223,06/02/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Suspicious IED - First Responders action - no explosive Lenins Avenue,49.9935,36.230383
+224,06/01/2015,UNKNOWN,0,0,Shoirohino,DONETSK,dn,A device was command detonated in a residential area ,48.015883,37.80285
+225,5/31/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"Three elements of a criminal group were arrested, explosives seized 8 Kg of TNT/plastic explosive and 240 electric detonators. ",49.9935,36.230383
+226,5/31/2015,UNKNOWN,2,0,Stanytsia Luhanska,LUHANSK ,lg,Two civilians died after an IED detonation ,48.6798458,39.4672507
+227,5/30/2015,UNKNOWN,1,0,Vynohradne,DONETSK,dn,A fiherman died after the detonation of a device in the seaport Officials related the device with the one against a patrol boat (07 Jun 2015),47.0944736,37.6806517
+228,5/29/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Suspicious IED - First Responders action - no explosive Schevchenko Boulevard,50.0529506,30.7667133
+229,5/29/2015,CACHE/FOUND,0,0,Stanytsia Luhanska,LUHANSK,lg,"A device was discovered by Security Forces 120 mm mortar projectile as a main charge, attached to a RC switch",48.6798458,39.4672507
+230,5/29/2015,HOAX/FALSE,0,0,Mikolayiv,MIKOLAYIV,mk,Call reporting IED - First Responders action - no explosive Against a trolleybus,46.975033,31.994583
+231,5/28/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,IED attack against a ROSHEN store Minskaya Street in Obolon district,50.0529506,30.7667133
+232,5/28/2015,UNKNOWN,1,1,Kiev,KIEV,kiev,An IED was detonated in a residential area Dniprovskyi district,50.0529506,30.7667133
+233,5/27/2015,VOIED,1,1,Stanytsia Luhanska,LUHANSK ,lg,Soldiers were affected by the detonation of an improvised device ,48.6798458,39.4672507
+234,5/27/2015,CACHE/FOUND,0,0,Pavlohrad,DNIPROPETROVSK,dp,Two detainees when trying to lay an IED Bridge over Vovcha river,48.5294478,35.9032574
+235,5/25/2015,UNKNOWN,1,0,Severodonetsk,LUHANSK,lg,One person was killed due to the detonation of a device ,48.9481767,38.4878773
+236,5/23/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Suspicious IED - First Responders action - no explosive Inside a car parked in front of Regional State Administration,49.9935,36.230383
+237,5/23/2015,UNKNOWN,7,0,Mikhaylovka,LUHANSK,lg,"An IED was used in an ambush against a separatist leader Alexey Mozgovoy, GHOST BN Commander. In highway Lugansk-Alchevsk",48.574041,39.307815
+238,5/23/2015,HOAX/FALSE,0,0,Kherson,KHERSON,ks,Call reporting IED - First Responders action - no explosive Against a night club in Ilyicha Street,46.635417,32.616867
+239,5/21/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,æTwo men were detained with explosives and weapons One block of TNT along with plastic explosive and an electric detonator,50.0529506,30.7667133
+240,5/20/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Against the National Palace of Arts,50.0529506,30.7667133
+241,5/20/2015,CACHE/FOUND,0,0,Asinovatstogo,DONETSK,dn,"Explosives were found during the detention of a suspect 5 Kg of TNT, detonating cord & detonators",48.015883,37.80285
+242,5/19/2015,CACHE/FOUND,0,0,Zaporizhia,ZAPORIZHIA,zp,"A man was detained accused of selling explosives 17,5 Kg of TNT were seized",47.8388,35.139567
+243,5/18/2015,UNKNOWN,0,0,Gorsk,LUHANSK ,lg,A device was detonated against railroad Between Sentanovka and Shipilovo train stations,48.574041,39.307815
+244,5/16/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"An IED was blown up against a politicianÍs house MP Andrey Ilyenko, Svodoba party. Against a window of the house",46.482526,30.7233095
+245,5/15/2015,UNKNOWN,0,1,Avdeevka,DONETSK,dn,An woman was injured by the detonation of an emplaced IED ,48.136596,37.7491335
+246,5/15/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Metro station ""Akademika Barabashova""",49.9935,36.230383
+247,5/15/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Peresado?nyh metro station,50.0529506,30.7667133
+248,5/15/2015,CACHE/FOUND,0,0,Lisichansk,LUHANSK ,lg,Explosives and weapons were found Close to a thermal power station,48.9066145,38.4433605
+249,5/14/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was blown up in front of Odessa College of Railway Transport Inside communications box Alekseevskaya Square. 400 gr TNT equivalent,46.482526,30.7233095
+250,5/13/2015,UNKNOWN,1,0,Gornyak,DONETSK,dn,A man died after an IED was blown up inside his car Under the driverÇs seat,48.0535517,37.3703445
+251,5/13/2015,UNKNOWN,0,0,Odessa,ODESSA,od,Railroad was affected by the detonation of a device In a suburb of the city. 3 Kg TNT equivalent,46.482526,30.7233095
+252,5/13/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Almost 8 Kg of explosive seized during a detention ,50.0529506,30.7667133
+253,05/12/2015,UNKNOWN,0,0,Slobodka,ODESSA,od,A railway bridge was affected by the detonation of a device Maloskova Street,47.8840341,29.3465596
+254,05/12/2015,CACHE/FOUND,0,0,Hadjibei,ODESSA,od,An IED was found in a pipeline platform Solontsevaty Lane,46.482526,30.7233095
+255,05/11/2015,UNKNOWN,1,0,Energodar,ZAPORIZHIA,zp,A man died after the detonation of a device Artyom Street,47.5015067,34.6341859
+256,05/10/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Kiev international airport (Zhulyany),50.0529506,30.7667133
+257,05/10/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,"Call reporting IED - First Responders action - no explosive In Kulikovo Field (Pole Square), against a Trade UnionsÍ House ",46.482526,30.7233095
+258,05/09/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,A civilian was detained while trying to blow a fuel tank up ,49.9935,36.230383
+259,05/08/2015,CACHE/FOUND,0,0,Krasnoarmiis'k,DONETSK,dn,Explosives seized during a car check 19 blocks of TNT (7.6 Kg),48.282193,37.1847804
+260,05/08/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Explosives were found during a vehicle control 400 gr of explosive,50.0529506,30.7667133
+261,05/06/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Against the Kiev District Court,46.482526,30.7233095
+262,05/06/2015,CACHE/FOUND,0,0,Stanytsia Luhanska,LUHANSK ,lg,A device composed by two ATGM and a hand grenade was found ,48.6798458,39.4672507
+263,05/05/2015,CACHE/FOUND,0,0,Svyatohirs'k,DONETSK,dn,"Some IEDs were found during a search with Explosive Detection Dogs In Lysa Hora memorial complex, before a ceremony to start",49.0440881,37.578484
+264,05/05/2015,HOAX/FALSE,0,0,Kryvyi Rih,DNIPROPETROVSK,dp,Call reporting IED - First Responders action - no explosive Against a military dormitory. One drunk sergeant was detained as suspect,47.910483,33.391783
+265,05/05/2015,CACHE/FOUND,0,0,Antonivka,DNIPROPETROVSK,dp,"Explosives were found in a van during a road control Suspect was detained with some weapons, a 400 gr TNT block and a fuze",48.2897033,35.0216816
+266,05/03/2015,HOAX/FALSE,0,0,Zaporizhia,ZAPORIZHIA,zp,Call reporting IED - First Responders action - no explosive Against a nuclear plant power station,47.8388,35.139567
+267,05/02/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,A guy was detained while trying to blow a fortification up 1.2 Kg of TNT plus detonators were seized,49.9935,36.230383
+268,05/02/2015,HOAX/FALSE,0,0,Nikolaev,MIKOLAYIV,mk,Call reporting IED - First Responders action - no explosive Against Shirokolanovsky gas-supplying station,46.975033,31.994583
+269,05/02/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Vokzalnaya"" metro station",50.0529506,30.7667133
+270,05/01/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,3 guys were detained and some explosives and fuzes were seized Suspects of 7 IED attacks,49.9935,36.230383
+271,4/29/2015,CACHE/FOUND,0,0,Kostiv,KHARKIV,kh,"Explosives were found inside a cache 18 Kg of plastic explosive, fuzes, rockets, grenades and  weapons found",49.866944,35.6402648
+272,4/29/2015,UNKNOWN,0,0,Bictoba,IVANO-FRANKIVSK,if,IED was blown up against the roof of a restaurant ,48.922633,24.711117
+273,4/29/2015,UNKNOWN,0,0,Olenivka,DONETSK,dn,"IED attack against railway Km 1168, 170 m of railroad were damaged",47.8278622,37.6528188
+274,4/28/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Against several bridges in Kharkiv and Poltova. Suspect was detained,49.9935,36.230383
+275,4/28/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Explosives seized during a search operation 3 Kg of plastic explosive and TNT were seized along with another weapons,50.0529506,30.7667133
+276,4/28/2015,UNKNOWN,0,0,Ilichevsk,ODESSA,od,"IED attack against railroad During the movement from ""Kseniyevo"" station to ""Akardzha"" station",46.335257,30.670083
+277,4/28/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Against ""Levada"" train station",49.9935,36.230383
+278,4/28/2015,HOAX/FALSE,0,0,Lviv,LVIV,lviv,"Call reporting IED - First Responders action - no explosive Against ÂKing Cross Leopolis"" shopping  center",49.839683,24.029717
+279,4/28/2015,CACHE/FOUND,0,0,Sokolivka,KIEV,kiev,A car was searched and some explosive s were seized Two improvised hand grenades along with another weapons and ammo,49.9085394,30.2074678
+280,4/27/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Against a school,46.482526,30.7233095
+281,4/25/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Pochtovaya Ploshchad"" and ""Kontraktovaya Ploshchad"" stations",50.0529506,30.7667133
+282,4/25/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Culture Centre of Kharkiv electromechanical plan,49.9935,36.230383
+283,4/25/2015,UNKNOWN,0,2,Popasna,LUHANSK,lg,"IED against 2 shunting locomotives During a movement from ""Sentyanivka"" station to""Shipylove"" station",48.6282422,38.3727154
+284,4/25/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Against ""Plant"" Club",49.9935,36.230383
+285,4/24/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,A women was detained when transporting explosives 4 TNT blocks and some detonators,50.0529506,30.7667133
+286,4/24/2015,UNKNOWN,0,0,Prev,IVANO-FRANKIVSK,if,IED detonation against a food store ,48.922633,24.711117
+287,4/23/2015,UNKNOWN,0,1,Kramatorsk,DONETSK,dn,A flat was blown up Arkhangelkaya Street,48.738967,37.58435
+288,4/23/2015,UNKNOWN,0,0,Yelenovka,DONETSK,dn,IED detonation against locomotive freight trains in railway Volnovakha station,48.015883,37.80285
+289,4/23/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosives were seized during a detention & search of a house Suspets of the attacks against Admiralskaya Center in DEC 14 and MAR 15,46.482526,30.7233095
+290,4/22/2015,UNKNOWN,0,0,Milove,LUHANSK,lg,A car was blown up The owner was an officer of the Ukrainian Security Service,49.3756258,40.1418221
+291,4/22/2015,HOAX/FALSE,0,0,Zaporizhia,ZAPORIZHIA,zp,Call reporting IED - First Responders action - no explosive Against a shopping center,47.8388,35.139567
+292,4/22/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Against Cultural Center of Power Engineers,46.482526,30.7233095
+293,4/22/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Prosvity office in Rymarskaya Street & parking in Danilevskoge Street,49.9935,36.230383
+294,4/22/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosives seized after a detention 3 suspects of attacks against railways were arrested ,46.482526,30.7233095
+295,4/21/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Darnitsa"" metro station",50.0529506,30.7667133
+296,4/21/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A car was blown up due to an IED ,49.9935,36.230383
+297,4/21/2015,CACHE/FOUND,0,0,Lisichansk,LUHANSK,lg,"Explosives found under bridge to Severodonetsk 49,6 Kg of TNT, 24 Kg of ammonite, electric detonators",48.9066145,38.4433605
+298,4/20/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Metro stations ""Arsenalyana"" & ""Nezalezhnosty""",50.0529506,30.7667133
+299,4/19/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Metro station ""Khreschatik""",50.0529506,30.7667133
+300,4/16/2015,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Suspects detained while preparing IED attacks against railway Some explosives were seized,48.464717,35.046183
+301,4/16/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Metro station ""Ploshcha LVA Tolstogo""",50.0529506,30.7667133
+302,4/16/2015,HOAX/FALSE,0,0,Krasnoarmiis'k,DONETSK,dn,"Suspicious IED found, after investigation there was no explosive In Boulevard Sidorov. F-1 inert training hand grenade used as main charge.",48.282193,37.1847804
+303,4/15/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Teatralnaya"" metro station",50.0529506,30.7667133
+304,4/15/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Vokzalnaya"" train Station",50.0529506,30.7667133
+305,4/15/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Metro station ""Akademika Barabashova""",49.9935,36.230383
+306,4/14/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Peresado?nyh metro station,50.0529506,30.7667133
+307,4/13/2015,CACHE/FOUND,0,0,Lisichansk,LUHANSK ,lg,Explosives and weapons were found Close to a thermal power station,48.9066145,38.4433605
+308,4/13/2015,UNKNOWN,0,0,Sumy,SUMY,sm,One car was blown up causing fire damages over 2 cars more In Zalivnaya Street. One of the cars was owned by editor of TopGorod.com ,50.9077,34.7981
+309,04/12/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive One  shopping centres in Obolonsky district & metro station ñArsenalnayaî ,50.0529506,30.7667133
+310,04/11/2015,HOAX/FALSE,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Call reporting IED - First Responders action - no explosive Vesty radio station editorial office,48.464717,35.046183
+311,04/11/2015,UNKNOWN,0,0,Olenivka,DONETSK,dn,IED was blown up against railway Railroad between Yuzhno Donbasskaya and Yelenovka,47.8278622,37.6528188
+312,04/10/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Offices of gas companies (JSC Ukrtransgaz & Naftogaz),50.0529506,30.7667133
+313,04/09/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosives seized after the detention of 40 suspects ,46.482526,30.7233095
+314,04/09/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Underground station in Lev Tolstoy square,50.0529506,30.7667133
+315,04/09/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Suspicious package inside a vehicle - no explosive found VW Passat parked in Rymarska Street,49.9935,36.230383
+316,04/09/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,"A car was blown up Kurchatova Street, another car was burn due as a result of  the explosion",50.0529506,30.7667133
+317,04/09/2015,CACHE/FOUND,0,0,Rubizhne,LUHANSK ,lg,"Some explosive were found by SBU during a search TNT blocks, fuzes, hand grenades and rocket launchers",49.0161213,38.3751404
+318,04/08/2015,UNKNOWN,0,1,Milove,LUHANSK ,lg,A car was blown up due to an explosion in its trunk Car owned by a guard of the Border Service,49.3756258,40.1418221
+319,04/08/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,"IED components, instructions, precursors & explosives were seized After several detentions and searches against a group",46.482526,30.7233095
+320,04/07/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,IED components and explosives seized during detention & search Suspect of IED attacks in Kharkiv,49.9935,36.230383
+321,04/07/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,IED attack against a pole with the national flag in Pravdy Avenue The pole has been removed due to damages,49.9935,36.230383
+322,04/06/2015,UNKNOWN,0,0,Zmiiv,KHARKIV,kh,A railway was blown up Railroad between Zhikhor and Zmiev,49.6944064,36.3595476
+323,04/06/2015,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Targeting three underground stations and two schools,50.0529506,30.7667133
+324,04/06/2015,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Against station South,49.9935,36.230383
+325,04/06/2015,UNKNOWN,0,0,Luhansk,LUHANSK ,lg,IED was detonated against railway Km 55 of railroad Shchotove - Shterivka,48.574041,39.307815
+326,04/06/2015,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,A man was detained when carrying explosives and ammo in a bag 5 plastic explosive packages were found plus hand grenades and fuzes,46.975033,31.994583
+327,04/04/2015,UNKNOWN,0,0,Borovaya,KHARKIV,kh,A ïPrivatbankÍ ATM was blown up and robbed ,49.3907788,37.619796
+328,04/03/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A car was blown up by a device Three vehicles more were affected by the fire caused by the detonation,49.9935,36.230383
+329,04/02/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Two IEDs were found & disosed in an office of ïSberbank of RussiaÍ  Pobeda Avenue & Lesya Ukrainka Broadway,50.0529506,30.7667133
+330,04/02/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,An IED detonated against offices of ïSberbank of RussiaÍ  Borshchagovskaya Street,50.0529506,30.7667133
+331,04/01/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,"3 suspects of IED attacks were detained: IED components found Precursors, HME, 600 gr TNT, timers, detonators, electronics & components",46.482526,30.7233095
+332,3/31/2015,CACHE/FOUND,0,0,Novomoskovsk,DNIPROPETROVSK,dp,An IED was found under a road viaduct during a search Road between Novomoskovsk and Dnipropetrovsk. About 2.5 kg HME/TNT,48.6329614,35.2241571
+333,3/31/2015,CACHE/FOUND,0,0,Novomoskovsk,DNIPROPETROVSK,dp,Police found and disposed an IED laid at railway 400 gr TNT with fuse between Samarovka and Novomoskovsk ,48.6329614,35.2241571
+334,3/31/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,An IED was detonated under a train at Osnova station ,49.9935,36.230383
+335,3/29/2015,UNKNOWN,0,0,Osnova,KHARKIV,kh,An IED was detonated against a railway fuel tank ,49.940486,36.232753
+336,3/28/2015,UNKNOWN,0,0,Odessa,ODESSA,od,IED attack against a volunteers centre Staportofrankivska Street with Olhivska Street,46.482526,30.7233095
+337,3/26/2015,UNKNOWN,0,0,Krasnoarmiis'k,DONETSK,dp,An IED was blown up against a train transporting coal Railroad on the border of Pokrovsky and Mezhevsky Region,48.282193,37.1847804
+338,3/26/2015,UNKNOWN,0,0,Zaporizhia,ZAPORIZHIA,zp,IED attack near a building of the regional state administration  Planners/executors were detained on April 6th 2015,47.8388,35.139567
+339,3/25/2015,UNKNOWN,0,0,Milove,LUHANSK ,lg,An IED placed under a military truck truck detonated An Air Defense mobile radar station was damaged,49.3756258,40.1418221
+340,3/23/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,SBU discovered an IED during a detention & search operation Some weapons were discovered along with the device,46.482526,30.7233095
+341,3/23/2015,UNKNOWN,0,0,Demarino,DNIPROPETROVSK,dp,Railroad infrastructure was damaged by the explosion of a device Railway between  Demarino and Prosyana,48.464717,35.046183
+342,3/22/2015,UNKNOWN,0,0,Odessa,ODESSA,od,IED was detonated against  a residential house  In Geranevaya Street,46.482526,30.7233095
+343,3/22/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"IED attack against Padaigma 12 office, that supports injured soldiers This attack could be connected with another one happened on Jan 5th",46.482526,30.7233095
+344,3/20/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device was blown up against railroad ,49.9935,36.230383
+345,3/20/2015,UNKNOWN,2,0,Horlivka,DONETSK,dn,"Electricians were killed by the detonation of a device while repairing Although reported as ""a mine"" it looks like an IED (see previous event)",48.3071,38.029633
+346,3/20/2015,UNKNOWN,2,0,Kramatorsk,DONETSK,dn,"Electricians were killed by the detonation of a device while repairing Although reported as ""a mine"" it looks like an IED (see next event)",48.738967,37.58435
+347,3/19/2015,UNKNOWN,0,0,Stanytsia Luhanska,LUHANSK ,lg,A road bridge was blown up Road connecting the city with Luhansk. Partially destroyed on Jan 21st ,48.6798458,39.4672507
+348,3/18/2015,CACHE/FOUND,0,0,Izium,KHARKIV,kh,4 IEDs  using mobile phones as switches were discovered The target were different points of the railroad,49.2121445,37.2665006
+349,3/18/2015,UNKNOWN,0,0,Zholobok,LUHANSK ,lg,"A train carrying coal was derailed due to the detonation of a device æClose to Check Point #29, UKR forces look behind the explosion",48.7127957,38.698622
+350,3/17/2015,UNKNOWN,0,0,Orikhove,LUHANSK ,lg,A railway bridge was blown up ,48.0378333,39.1698941
+351,3/17/2015,UNKNOWN,0,0,Donetsk,DONETSK,dn,IED was blown up against railway ,48.015883,37.80285
+352,3/16/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,3.5 Kg of TNT were found during the search of a house ,46.482526,30.7233095
+353,3/16/2015,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Call reporting IED - First Responders action - no explosive Lviv airport,49.839683,24.029717
+354,3/15/2015,CACHE/FOUND,0,0,Chasiv Yar,DONETSK,dn,Explosive and detonators were found in a cache 6 Kg of  TNT and some detonators,48.5884808,37.8354218
+355,3/13/2015,CACHE/FOUND,0,0,Kostiantynivka,DONETSK,dn,"During a control in a check point, explosive was found ",48.5239429,37.7075811
+356,3/13/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,IED (3Kg TNT equivalent) found during detention of 2 suspects Accused of the attack to Admiralteisky business centre on March 12th,46.482526,30.7233095
+357,3/13/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,"Police discovered explosives ready to be used against a dam 4,8 Kg TNT & detonators",48.5986674,37.9980367
+358,03/12/2015,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,Plastic explosive was found during the search of a taxi ,47.097133,37.543367
+359,03/12/2015,CACHE/FOUND,0,0,Lisichansk,LUHANSK ,lg,"An IED was found and disposed by emergency services (SSU) IED using a fire extinguisher as container, mil explosive & safety switch",48.9066145,38.4433605
+360,03/12/2015,CACHE/FOUND,0,0,NULL,ZAPORIZHIA,zp,Explosives seized during taxi search in a check-point A women was wearing a 5 litre bottle with plastic explosive + RC device,47.8388,35.139567
+361,03/12/2015,VBIED,4,1,Krasny Partizan,DONETSK,dn,A car bomb was blown up ,48.015883,37.80285
+362,03/12/2015,UNKNOWN,0,0,Odessa,ODESSA,od,IED detonated against an office of Samopomich party It happened in Admiralteisky bussines center,46.482526,30.7233095
+363,03/10/2015,UNKNOWN,0,0,Gorsk,LUHANSK ,lg,"A railway bridge used for carrying coal was blown up Km. 51 Rodakovo-Krasny L, between Sentanovka & Shipilovo station",48.574041,39.307815
+364,03/10/2015,UNKNOWN,0,0,Chugev,KHARKIV,kh,An IED blew up against railroad Lisichansk-Kharkov railway,49.8363158,36.6813122
+365,03/10/2015,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,A suitcase containing an IED was found by a civilian ,47.097133,37.543367
+366,03/09/2015,UNKNOWN,0,0,Orikhove,LUHANSK ,lg,A railway bridge was blown up ,48.0378333,39.1698941
+367,03/07/2015,CACHE/FOUND,0,0,NULL,ZAPORIZHIA,zp,"Explosives seized during car search in a check-point 2 Kg plastic expl + 1,2 Kq TNT. Road between Zaporizhia & Mariupol",47.8388,35.139567
+368,03/07/2015,UNKNOWN,0,1,Alchevsk,LUHANSK ,lg,Several roadside IEDs against a Brigade Commanders convoy Chief of Prizrak Brigade. Attack claimed by Tini Partisan Detachment,48.4713393,38.8134407
+369,03/07/2015,UNKNOWN,0,2,Kharkiv,KHARKIV,kh,A minibus blew up Poznanskaya Street,49.9935,36.230383
+370,03/07/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A car was blown up near a government building Kharkiv State Administration for Culture in Gvardeytsev Shironintsev Street,49.9935,36.230383
+371,03/06/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,A courier was detained when transporting an IED in a car 3 Kg of plastic explosive. Planned target was located in Kherson.,46.482526,30.7233095
+372,03/06/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,A package containing an IED was found & disposed by Police EOD About 1 Kg TNT in front of a shopping center,46.482526,30.7233095
+373,03/06/2015,UNKNOWN,0,2,Kharkiv,KHARKIV,kh,A device against the car of a Volunteer Battalion Commander Against Andrey Yangolenko. Another magnetically-attached IED failed,49.9935,36.230383
+374,03/05/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was blown up near a Right Sector office Koblevskaya Street,46.482526,30.7233095
+375,03/02/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,"Two volunteer Battalion servicemen detained carrying explosives Driving a car:16,8 Kg pf TNT + 36 detonators along with weaponry",49.9935,36.230383
+376,2/23/2015,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,"A bag with explosive devices was found in the car of 2 suspects One was killed, other escaped. 3 Policemen injured. (Cutting charges)",47.097133,37.543367
+377,2/23/2015,UNKNOWN,1,0,Kryvyi Rih,DNIPROPETROVSK,dp,An IED detonated in the 4th floor of a building ,47.910483,33.391783
+378,2/22/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,An IED (200 gr TNT equivalent in plastic bag) was found and disposed In front of a cafeteria in Zhukovskoho Street,46.482526,30.7233095
+379,2/22/2015,RCIED,3,11,Kharkiv,KHARKIV,kh,An IED was blown up against a pro-Maidan march near Sports Palace Marshal Zhukova Street (about 200 gr TNT plus steel bearings),49.9935,36.230383
+380,2/17/2015,UNKNOWN,0,0,Odessa,ODESSA,od,Two IEDs were detonated against an office of an Euromaidan leader Yevgeny Rezvushkins office in Bolshaya Arnautskaya Street,46.482526,30.7233095
+381,2/15/2015,UNKNOWN,0,0,Zelenyi Kolodez,KHARKIV,kh,An IED was detonated against a power substation The station provided power to railways,49.845287,36.461887
+382,2/14/2015,UNKNOWN,0,0,Donetsk,DONETSK,dn,A device was blown up 100 m away from DPR leader residence Against Aleksandr Zaharchenko before a press conference,48.015883,37.80285
+383,2/13/2015,CACHE/FOUND,0,0,Stanytsia Luhanska,LUHANSK ,lg,An IED was seized during the detention of a  suspect of an IED attack  It was a honey can filled with explosive. The previous attack was on Jan 16th,48.6798458,39.4672507
+384,2/13/2015,CACHE/FOUND,0,0,Severodonetsk,LUHANSK,lg,"During search operation, some IEDs and homemade explosive found 15 IEDs, and a 50 l barrel filled with homemade explosive",48.9481767,38.4878773
+385,02/10/2015,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Railway station in Ruslan Bashirli Street,46.482526,30.7233095
+386,02/10/2015,UNKNOWN,0,0,Odessa,ODESSA,od,"An IED was laid and detonated at the door of a hostel ""More Hostel Odessa"", sited at 3rd floor of the building in Koroblevska Street",46.482526,30.7233095
+387,02/10/2015,UNKNOWN,1,0,Debaltseve,DONETSK,dn,A Battalion Commander died as a result of a roadside IED attack Lviv regional police commander Dmytro Zaharia,48.3340595,38.4062034
+388,02/08/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device was detonated against the office of a notary company Minor damages. Otakar Yarosh Street,49.9935,36.230383
+389,02/07/2015,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,A man was detained when transporting an IED ,49.9935,36.230383
+390,02/08/2015,CACHE/FOUND,0,0,Zaporizhia,ZAPORIZHIA,zp,A man was detained when laying an IED against rairoad tracks 400 gr TNT were seized during the search of his house,47.8388,35.139567
+391,02/06/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,A man was detained while trying to sell explosives 2 Kg of TNT,50.0529506,30.7667133
+392,02/06/2015,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,Plastic explosive was found during search in a suspects house 30 gr of hexogen-based explosive. Detained related to 31Dec14 event,46.975033,31.994583
+393,02/06/2015,CACHE/FOUND,0,0,Peresyp,ODESSA,od,"An explosive device was discovered near the rail tracks 7 blocks of TNT (2.8 Kg), detonator, and RC switch were found",46.5019257,30.6867125
+394,02/06/2015,UNKNOWN,0,0,Odessa,ODESSA,od,An IED detonated under a gas pipe near a Priviatbank office Marshala Zhukova Street. Severe damages in the building.,46.482526,30.7233095
+395,02/06/2015,CACHE/FOUND,0,0,Odessa,ODESSA,od,"An IED was discovered and disposed near a Priviatbank office Dnepropetrovska Doroga Street. Metal can, battery & circuit board",46.482526,30.7233095
+396,02/05/2015,CACHE/FOUND,0,0,Bykivnia,KIEV,kiev,Some IEDs and weapons were seized ,50.4501,30.5234
+397,02/05/2015,PROJECTED,1,0,Ivano-Frankivsk,IVANO-FRANKIVSK,if,A homemade grenade was thrown against a man ,48.922633,24.711117
+398,02/04/2015,UNKNOWN,0,2,Dnipropetrovsk,DNIPROPETROVSK,dp,An IED laid by 2 man near a vehicle detonated in a car park The device was hidden inside an old car tyre,48.464717,35.046183
+399,02/03/2015,HOAX/FALSE,0,0,Kryvyi Rih,DNIPROPETROVSK,dp,Suspected IED - First Responders action - no explosive 3 schools near Karachuny railway station. Suspect was detained,47.910483,33.391783
+400,1/30/2015,CACHE/FOUND,0,0,Kiev,KIEV,kiev,An IED was discovered in the archive room of an official building Mayors office inside Kiev State City Administration,50.0529506,30.7667133
+401,1/25/2015,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device was blown up Near Kharkiv-Balashovsky railway station,49.9935,36.230383
+402,1/23/2015,CACHE/FOUND,0,0,Smila,CHERKASY,ck,An IED was found along with 600 gr of TNT under a walking bridge ,49.227717,31.852233
+403,1/20/2015,UNKNOWN,0,0,Kuznetsovka,ZAPORIZHIA,zp,A railway bridge was blown up A train transporting military equipment was derailed ,47.3626355,36.9902897
+404,1/19/2015,UNKNOWN,0,0,Donetsk,DONETSK,dn,"A road bridge was blown up Putilovsky bridge, in the way to Volnovakha",48.015883,37.80285
+405,1/19/2015,UNKNOWN,0,14,Kharkiv,KHARKIV,kh,A device was detonated against the district court After a trial on a case against a Svodoba party member,49.9935,36.230383
+406,1/18/2015,PROJECTED,0,5,Kiev,KIEV,kiev,Homemade grenade was thrown by a man against police patrol Prazhskaya Street. Man called Police station asking for help,50.0529506,30.7667133
+407,1/17/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,A device was detonated in Arkhitektora Nikolayeva Street The nearest building first floor and about 10 cars were affected by,50.0529506,30.7667133
+408,1/17/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,Some explosives were seized in a check point 2 Kg TNT and some fuses,48.5986674,37.9980367
+409,1/17/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was detonated against a volunteer centre and a bank office Troitskaya Street with Nechypurenka Street,46.482526,30.7233095
+410,1/16/2015,RCIED,1,3,Stanytsia Luhanska,LUHANSK ,lg,A device was detonated against a check-point IED was allocated inside a jar of honey given as a present,48.6798458,39.4672507
+411,1/16/2015,UNKNOWN,0,0,Kiev,KIEV,kiev,Detonation of a device Arkhitektora Nikolayeva Street.,50.0529506,30.7667133
+412,1/16/2015,UNKNOWN,0,0,Odessa,ODESSA,od,Detonation of a device close to a Diamantbank office Troitskaya Street,46.482526,30.7233095
+413,1/16/2015,UNKNOWN,0,0,Rozkishne,LUHANSK ,lg,A road bridge over railway was damaged by a controlled detonation ,48.4902808,39.2712224
+414,1/13/2015,RCIED,0,2,Stanytsia Luhanska,LUHANSK ,lg,A device was detonated at the pass of a military vehicle ,48.6798458,39.4672507
+415,01/12/2015,CACHE/FOUND,0,0,Artemivsk,DONETSK,dn,SBU seized some weaponry along with an IED and several detonators ,48.5986674,37.9980367
+416,01/11/2015,TIME DELAY,0,0,Nikopol,DNIPROPETROVSK,dp,"One device explode & two more were disposed in New Post office Two-litre bottle with unknown substance, wires and a timer",47.56746,34.394815
+417,01/05/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was detonated against a volunteer centre Gimnazicheskaya Street with Bolshaya Arnautskaya Street,46.482526,30.7233095
+418,01/04/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was detonated against Euro-Maydan coordination office ,46.482526,30.7233095
+419,01/04/2015,HOAX/FALSE,0,0,Kherson,KHERSON,ks,Call reporting IED - First Responders action - no explosive River port,46.635417,32.616867
+420,01/03/2015,UNKNOWN,0,0,Odessa,ODESSA,od,A device was detonated in a tank car inside a railway station Peresyp station,46.482526,30.7233095
+421,01/01/2015,UNKNOWN,0,1,Kirillovka,ZAPORIZHIA,zp,A drunk man was injured due to a device he was carrying Inside a store,46.369247,35.3416317
+422,12/31/2014,UNKNOWN,0,0,Mikolayiv,MIKOLAYIV,mk,An IED was detonated in front of a flat door Azure Street. A suspect was detained.,46.975033,31.994583
+423,12/30/2014,HOAX/FALSE,0,0,Simferopol,CRIMEA,crimea,Suspected IED - First Responders action - no explosive Simferopol airport,44.952117,34.102417
+424,12/30/2014,CACHE/FOUND,0,0,Zolotonosh,CHERNIVTSI,cv,"IED components, explosive precursors and manuals were seized In the flat of a man accused of throwing grenades",48.2920787,25.9358367
+425,12/29/2014,UNKNOWN,0,2,Starobil's'k,LUHANSK,lg,"A device detonated during an antiterrorism operation Near the city park, hidden inside a garbage bin",49.2736853,38.9255482
+426,12/29/2014,PROJECTED,0,0,Zhytomyr,ZHYTOMYR,zt,A device was detonated in the yard affecting 2 vehicles Central Department of the Ministry of Revenue and Duties,50.25465,28.658667
+427,12/29/2014,UNKNOWN,0,0,Kiev,KIEV,kiev,A device was detonated near a gas station Troeshchina district,50.0529506,30.7667133
+428,12/27/2014,UNKNOWN,1,0,Odessa,ODESSA,od,A man died due to the detonation of a device he was carrying Sedegskaya Street,46.482526,30.7233095
+429,12/27/2014,S-PBIED,1,0,Kherson,KHERSON,ks,A man blown himself and a second IED was disposed Inside currency exchange offices after asking for money,46.635417,32.616867
+430,12/26/2014,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Some explosive fuzes were found near a water pump station Some other munition was found too during the search,48.464717,35.046183
+431,12/25/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Inside electrical train Odessa-Balta,46.482526,30.7233095
+432,12/25/2014,UNKNOWN,1,1,Luhansk,LUHANSK,lg,A military vehicle was affected by a roadside device ,48.574041,39.307815
+433,12/25/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device was detonated Close to a store Azhur in Rymarskaya Street,49.9935,36.230383
+434,12/25/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Malinovsky District Court,46.482526,30.7233095
+435,12/24/2014,CACHE/FOUND,0,0,Novomoskovsk,DNIPROPETROVSK,dp,"Some (24) IEDs, explosive & detonators found after detention Three detainees ",48.6329614,35.2241571
+436,12/24/2014,UNKNOWN,1,2,Kiev,KIEV,kiev,Detonation of a device inside a hostel Sapernoye Pole Street.,50.0529506,30.7667133
+437,12/23/2014,UNKNOWN,0,0,Odessa,ODESSA,od,A device detonated in railway after the pass of a freight train Zastava-1 station,46.482526,30.7233095
+438,12/23/2014,UNKNOWN,0,0,Mariupol,DONETSK,dn,A railway bridge across the river Kalchik was blown up Km 1260,47.097133,37.543367
+439,12/23/2014,UNKNOWN,0,6,Luhansk,LUHANSK ,lg,A device was detonated against a check -point ,48.574041,39.307815
+440,12/23/2014,UNKNOWN,0,0,Odessa,ODESSA,od,"A bag with device was laid under a car and caused a detonation Zhukovskogo Street, near office of the Council for Public Safety",46.482526,30.7233095
+441,12/23/2014,CACHE/FOUND,0,0,Lisichansk,LUHANSK ,lg,Some quantities of TNT were seized inside a vehicle More ammunition was found inside the garage,48.9066145,38.4433605
+442,12/22/2014,UNKNOWN,0,0,Krasne ,KIEV,kiev,A car was destroyed by the detonation of a device It is not clear if the device was emplaced or transported in a car,50.5374985,31.7177277
+443,12/19/2014,CACHE/FOUND,0,0,Kiev,KIEV,kiev,Detention of a woman wearing a bag with RCIED (3 Kg TNT equivalent) Device included an anti-tamper switch and fragmentation,50.0529506,30.7667133
+444,12/17/2014,PROJECTED,0,0,Apostolovo,DNIPROPETROVSK,dp,A homemade grenade thrown against Apostolovo City Council ,47.660528,33.7205403
+445,12/10/2014,UNKNOWN,0,0,Odessa,ODESSA,od,An 2 Kg TNT equivalent IED contained inside a bag blown up A woman was seen laying the bag,46.482526,30.7233095
+446,12/09/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Canadian embassy,50.0529506,30.7667133
+447,12/09/2014,UNKNOWN,0,0,Odessa,ODESSA,od,"A device was detonated against a volunteer centre in Admiralsky St 1 Kg TNT equivalent against ""Dalias Hundred Severin"" facilities",46.482526,30.7233095
+448,12/09/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,IED detonated against a memorial to Ukrainian insurgent Army ,49.9935,36.230383
+449,12/06/2014,UNKNOWN,0,0,Pisky,DONETSK,dn,"A ralway bridge was damaged by a detonation Krasnoarmiysk-Hrodivka, 6 beam spans & network were damaged",48.0643351,37.6741329
+450,12/05/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Zmievskaya heating power station,49.9935,36.230383
+451,12/02/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Central railway station,50.0529506,30.7667133
+452,12/02/2014,UNKNOWN,0,0,Odessa,ODESSA,od,"A device was detonated against a patriotic souvenir shop ""Patriot"" shop",46.482526,30.7233095
+453,12/02/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,A device was detonated close to the gate of a military base Proskura Street,49.9935,36.230383
+454,12/02/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,"Call reporting IED - First Responders action - no explosive South Region military prosecutorÍs office,  Pirogovskaya Street",46.482526,30.7233095
+455,11/28/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Kyivgorstroy building, 2 supermarkets, one shopping centre",50.0529506,30.7667133
+456,11/27/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive School, ""Klovskaya"" metro station, Post office, CAN Embassy",50.0529506,30.7667133
+457,11/26/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Yuzny railway station, ATB supermarket",49.9935,36.230383
+458,11/25/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive State Regional Administration building,49.9935,36.230383
+459,11/24/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,Device detonated beside a military facility Outer fence was damaged in Victory Street,49.9935,36.230383
+460,11/24/2014,HOAX/FALSE,0,0,Lutsk,VOLYN,volyn,Call reporting IED - First Responders action - no explosive City Council,50.747233,25.325383
+461,11/21/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,Device detonated in a railway station Osnova railway station,49.9935,36.230383
+462,11/21/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Call reporting IED - First Responders action - no explosive City Council,49.839683,24.029717
+463,11/20/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,Device detonated near Military Hospital Beside an electric substation transformer in Trinkler Street ,49.9935,36.230383
+464,11/20/2014,HOAX/FALSE,0,0,Ternopol,TERNOPOL,te,Call reporting IED - First Responders action - no explosive Central Office Ukrainian Service,49.553517,25.594767
+465,11/18/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive UZD railway station, Regional Energy Corporation building",49.9935,36.230383
+466,11/17/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Ave Plaza shopping mall,49.9935,36.230383
+467,11/17/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Darnitsa metro station, Teatralnaya metro station",50.0529506,30.7667133
+468,11/17/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Ukrainian-Polish Bussines Center,50.0529506,30.7667133
+469,11/16/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Krasnoarmeyskaya railway station,49.9935,36.230383
+470,11/14/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Zolotye Vorota metro station,50.0529506,30.7667133
+471,11/12/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Darnitsa metro station, railway ticketing, entertainment center",50.0529506,30.7667133
+472,11/12/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,"Call reporting IED - First Responders action - no explosive Rovno railway station, Ivano-Frankovsk railway station",49.839683,24.029717
+473,11/12/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Zavod Imeny Malysheva metro station,49.9935,36.230383
+474,11/11/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Central Elections Commission, McDonalds & residential area",50.0529506,30.7667133
+475,11/10/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive One man was detained after his call reporting several IEDs,50.0529506,30.7667133
+476,11/09/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Central train station,50.0529506,30.7667133
+477,11/09/2014,UNKNOWN,0,0,Novopokrovka,KHARKIV,kh,"Detonation damaged a cargo truck in a railway station Eskhar station, in the way from Osnova station to Kupiansk",49.8367472,36.5510987
+478,11/09/2014,TIME DELAY,0,11,Kharkiv,KHARKIV,kh,"Attack against a pub A package was laid inside ""Stina"" pub before detonating",49.9935,36.230383
+479,11/05/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ""Maidan Nezalezhnosty"" and ""Kreshchatik"" metro stations",50.0529506,30.7667133
+480,11/04/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Call reporting IED - First Responders action - no explosive State Fiscal Service Central Department,49.839683,24.029717
+481,11/03/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Teatralnaya station & 2 Regional Administration buildings,50.0529506,30.7667133
+482,11/02/2014,RCIED,2,2,Mariupol,DONETSK,dn,A car detonated during check in a road control Explosion when driver was opening the trunk (RCIED reported),47.097133,37.543367
+483,10/27/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Regional administration building,49.9935,36.230383
+484,10/25/2014,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,IED seized during a search in the house of a suspect ,47.097133,37.543367
+485,10/24/2014,CACHE/FOUND,0,0,Odessa,ODESSA,od,IEDs seized during the detention of 11 suspects of terrorism ,46.482526,30.7233095
+486,10/23/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Call reporting IED - First Responders action - no explosive Administration building & supermarket,49.839683,24.029717
+487,10/22/2014,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosives seized during a train wagon search A man was detained,46.482526,30.7233095
+488,10/22/2014,CACHE/FOUND,0,0,Mariupol,DONETSK,dn,IED seized in a detention ,47.097133,37.543367
+489,10/19/2014,HOAX/FALSE,0,0,Chernivtsi,CHERNIVTSI,cv,Call reporting IED - First Responders action - no explosive Central train station,48.2920787,25.9358367
+490,10/17/2014,UNKNOWN,0,0,Kolomak,KHARKIV,kh,Detonation against railroad Basis - Poltava railway,49.8408677,35.3145783
+491,10/17/2014,PROJECTED,0,1,Kiev,KIEV,kiev,Homemade grenade against a member of PeopleÇs Front Party ,50.0529506,30.7667133
+492,10/16/2014,UNKNOWN,0,0,Mariupol,DONETSK,dn,IED detonation damaged a military transport vehicle ,47.097133,37.543367
+493,10/14/2014,UNKNOWN,2,6,Tr'okhizbenka,LUHANSK ,lg,"IED detonation affecting a platoon Reported as ""Daisy Chain""",48.756914,38.9618232
+494,10/13/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Call reporting IED - First Responders action - no explosive Metro station ñMalyshev Factoryî, (2014Çs 12th false IED report)",49.9935,36.230383
+495,10/13/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Metro stations ñVokzalnayaî & ""Universitet""",50.0529506,30.7667133
+496,10/08/2014,UNKNOWN,0,0,Sentyanivka,LUHANSK,lg,Railway was damaged by a detonation Sentyanivka station from Luhansk to Kiev,48.668043,38.7499
+497,9/29/2014,UNKNOWN,0,0,Odessa,ODESSA,od,Railway was damaged by a detonation Odessa-Peresip station,46.482526,30.7233095
+498,9/26/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,IED detonations in 2 buildings Lawyer office & PrivatBank office in supermarket Brusnichka,49.9935,36.230383
+499,9/26/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro Stations ñUniversitetî and ñSyretzî,50.0529506,30.7667133
+500,9/22/2014,HOAX/FALSE,0,0,Rivne,RIVNE,rv,Call reporting IED - First Responders action - no explosive Regional State Administration building,50.6199,26.251617
+501,9/22/2014,HOAX/FALSE,0,0,Ternopol,TERNOPOL,te,Call reporting IED - First Responders action - no explosive Regional State Administration building,49.553517,25.594767
+502,9/22/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro station ñUniversitetî & Central Post Office,50.0529506,30.7667133
+503,9/21/2014,CACHE/FOUND,0,0,Yunokommunarovsk,LUHANSK,lg,15 Kg TNT seized in a road control ,48.574041,39.307815
+504,9/20/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,"Call reporting IED - First Responders action - no explosive Ukrinform News, Ukrayina hotel & Khreshchatyk street",49.839683,24.029717
+505,9/20/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Call reporting IED - First Responders action - no explosive Lviv airport,49.839683,24.029717
+506,9/20/2014,HOAX/FALSE,0,0,Chernihiv,CHERNIHIV,cn,Call reporting IED - First Responders action - no explosive Military enlistement office & Police station.,51.4982,31.28935
+507,9/19/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive ñChannel 5î, Central Election Commission& State Administration",50.0529506,30.7667133
+508,9/19/2014,CACHE/FOUND,0,0,Kherson,KHERSON,ks,A man was detained while transporting explosives in a car There is a group behind. Explosives (TNT) & detonators found,46.635417,32.616867
+509,9/17/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,"Call reporting IED - First Responders action - no explosive National Guard facility, Stryiskyi Park & Lviv Railway Station",49.839683,24.029717
+510,9/16/2014,HOAX/FALSE,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,Call reporting IED - First Responders action - no explosive Regional State Administration,48.464717,35.046183
+511,9/15/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,Calls reporting IED - First Responders action - no explosive Central metro station,49.839683,24.029717
+512,9/13/2014,CACHE/FOUND,0,0,Odessa,ODESSA,od,"Explosives, precursors and detonators seized during detention A group was detained",46.482526,30.7233095
+513,9/13/2014,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,3 detainees when trying to blow a railway bridge up Plastic explosive & detonators were seized,46.975033,31.994583
+514,9/13/2014,UNKNOWN,0,0,Mariupol,DONETSK,dn,Road bridge was blown up Pavlopolsky bridge,47.097133,37.543367
+515,09/12/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Calls reporting IED - First Responders action - no explosive Metro station ñLev Tolstoy Squareî & ñChannel 5î building,50.0529506,30.7667133
+516,09/11/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Calls reporting IED - First Responders action - no explosive Metro station ñLev Tolstoy Squareî, Central Election Commission",50.0529506,30.7667133
+517,09/10/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Calls reporting IED - First Responders action - no explosive TsVK building,50.0529506,30.7667133
+518,09/10/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Calls reporting IED - First Responders action - no explosive metro stations Darnitsya and Nivki,50.0529506,30.7667133
+519,09/08/2014,UNKNOWN,0,0,Odessa,ODESSA,od,Device was found attached to a billboard TIME DELAY switch?,46.482526,30.7233095
+520,09/07/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,"IED attack against railways, damaging steel power supports Osnova station: 2 IEDs detonated & 2 other were disposed",49.9935,36.230383
+521,09/07/2014,UNKNOWN,0,0,Slovyansk ,DONETSK ,dn,Detonation inside a jewelry ,48.8532,37.6053
+522,09/05/2014,HOAX/FALSE,0,0,Vladimir-Volynsk,VOLYN,volyn,"Calls reporting IED - First Responders action - no explosive Custom posts ""Yagodin"" & ""Ustiluk""",50.8481952,24.3256569
+523,09/05/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Calls reporting IED - First Responders action - no explosive Metro stations ñVokzalnayaî,50.0529506,30.7667133
+524,09/03/2014,UNKNOWN,0,0,Zanky,KHARKIV,kh,"IED attack against railways, damaging steel power supports ",49.6385036,36.4828263
+525,09/02/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Levoberezhnaya metro station,50.0529506,30.7667133
+526,09/01/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro station ñVokzalnayaî,50.0529506,30.7667133
+527,09/01/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Odessa University,46.482526,30.7233095
+528,8/30/2014,HOAX/FALSE,0,0,Yalta,CRIMEA,crimea,"Call reporting IED - First Responders action - no explosive ""Yalta Intourist"" hotel, before a conference",44.495205,34.166301
+529,8/28/2014,UNKNOWN,0,0,Donetsk,DONETSK,dn,Railway was damaged by a detonation ,48.015883,37.80285
+530,8/28/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Teatralna metro station ,50.0529506,30.7667133
+531,8/27/2014,UNKNOWN,0,0,Shostka,SUMY,sm,IED detonation against Police station ,51.8757044,33.4966152
+532,8/23/2014,UNKNOWN,0,0,Zanky,KHARKIV,kh,IED attack against railroad ,49.6385036,36.4828263
+533,8/22/2014,CACHE/FOUND,0,0,Odessa,ODESSA,od,Explosive device seized during house registry Detainee was planning an attack against a Lutheran church,46.482526,30.7233095
+534,8/22/2014,CACHE/FOUND,0,0,Kiev,KIEV,kiev,IEDs seized in an apartment search. 5 guys were detained. They prepared attacks against railway.,50.0529506,30.7667133
+535,8/17/2014,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,Explosives were seized. 6 guy group arrested. Suspects of explosion (August 3) in Kharkiv Tank Repair Plant,49.9935,36.230383
+536,8/15/2014,UNKNOWN,0,0,Melitopol,ZAPORIZHIA,zp,IED attack against a bank office Kolomoisky PrivatBank office,46.8550216,35.3586996
+537,8/14/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Call reporting IED - First Responders action - no explosive Metro stations ñVokzalnaî, ""Poshtova Ploshcha""",50.0529506,30.7667133
+538,8/13/2014,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,"A civilian transporting an IED was detained near military base 200 gr TNT block, safety fuze and detonator",46.975033,31.994583
+539,08/12/2014,CACHE/FOUND,0,0,Druzhkovka,DONETSK,dn,Civilian car loading explosives and weapons was seized 29 Kg of TNT,48.6161912,37.5272187
+540,08/09/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro station ñArsenalnayaî ,50.0529506,30.7667133
+541,08/08/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Channel ñ112 Ukraineî building,50.0529506,30.7667133
+542,08/08/2014,UNKNOWN,0,0,Severodonetsk,LUHANSK ,lg,Device was detonated against a Russian bank office ,48.9481767,38.4878773
+543,08/08/2014,CACHE/FOUND,0,0,Amvrosiivka,DONETSK,dn,An RCIED was found along with landmines and missiles Discovered by border guards,47.8018062,38.4885354
+544,08/08/2014,PROJECTED,0,2,Kiev,KIEV,kiev,Homemade grenade was thrown against people Ukrainian House director was the aimed target,50.0529506,30.7667133
+545,08/07/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,Call reporting IED - First Responders action - no explosive Metro station Petrovka,50.0529506,30.7667133
+546,08/07/2014,CACHE/FOUND,0,0,Krasnogorivka,DONETSK,dn,Homemade grenades were seized ,48.0093421,37.5091505
+547,08/06/2014,UNKNOWN,1,0,Yevsuh,LUHANSK,lg,Detonation against a railway bridge across the river. Pedestrian part partially damaged. One attacker was dead.,49.2095215,39.3007185
+548,08/06/2014,UNKNOWN,0,0,Horlivka,DONETSK,dn,Pedestrian bridge was blown up Bridge between both districts of the village,48.3071,38.029633
+549,08/04/2014,HOAX/FALSE,0,0,Kryvyi Rih,DNIPROPETROVSK,dp,Calls reporting IED - First Responders action - no explosive Two railway stations,47.910483,33.391783
+550,08/04/2014,UNKNOWN,0,8,Donetsk,DONETSK,dn,Explosive device detonated against a DNR militia patrol ,48.015883,37.80285
+551,08/03/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,Sabotage in a Tank Repair Plant IED was reported,49.9935,36.230383
+552,08/03/2014,CACHE/FOUND,1,0,Donetsk,DONETSK,dn,"A van loaded with explosives was stopped in a check-point Reported as an attempt of ""suicide attack"" by UKR military",48.015883,37.80285
+553,08/01/2014,UNKNOWN,1,4,Donetsk,DONETSK,dn,Explosive device was blown up inside a bus ,48.015883,37.80285
+554,7/30/2014,UNKNOWN,0,0,Grushevaha,KHARKIV,kh,Partial detonation of an IED slightly damaged a bridge Failed attempt of blowing bridge up over Seversky Donets River,49.695178,35.547316
+555,7/26/2014,HOAX/FALSE,0,0,Lviv,LVIV,lviv,"Calls reporting IED - First Responders action - no explosive Central train station, 7 hotels, 1 restaurant and 1 hostel ",49.839683,24.029717
+556,7/29/2014,VOIED,1,8,Berestove,DONETSK,dn,A device blew up killing 1 woman & injuring 8 children ,48.7614287,38.2501567
+557,7/25/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Calls reporting IED - First Responders action - no explosive 6 alarms in Golosievskyi, Podolsky and Pechersky districts",50.0529506,30.7667133
+558,7/24/2014,UNKNOWN,0,0,Horlivka,DONETSK ,dn,Bridge was blown up Bridge near the Cotton Factory between Kalinin and Nikitovsky,48.3071,38.029633
+559,7/24/2014,UNKNOWN,0,0,Slovyansk ,DONETSK ,dn,6 IEDs discovered in schools ,48.8532,37.6053
+560,7/23/2014,UNKNOWN,0,0,Horlivka,DONETSK ,dn,2 bridges & 2 railways points were blown up ,48.3071,38.029633
+561,7/23/2014,UNKNOWN,0,0,Lisichansk,LUHANSK ,lg,Gas tanks were blown up Gas station ñParallelî,48.9066145,38.4433605
+562,7/23/2014,UNKNOWN,0,0,Mikhaylovka,LUHANSK ,lg,Bridge was blown up Bridge between main city & Perevalska,48.574041,39.307815
+563,7/23/2014,UNKNOWN,0,0,Zaporizhia,ZAPORIZHIA,zp,Detonation against a hospital Tyumen cardiology center. 2 detainees,47.8388,35.139567
+564,7/21/2014,VBIED,5,7,Kamyanka,DONETSK,dn,"A minibus was blown up against a check-point Incident is reported as ""suicide attack"" by Ukrainian officials",48.2457693,38.4858004
+565,7/21/2014,UNKNOWN,0,0,Severodonetsk,LUHANSK ,lg,Bridge over Borova river was damaged by demolition Road T-13-03 between Rubizhne & Severodonetsk,48.9481767,38.4878773
+566,7/20/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,"Calls reporting IED - First Responders action - no explosive Saltov market, Central hospital & emergency services",49.9935,36.230383
+567,7/16/2014,UNKNOWN,0,0,Horlivka,DONETSK,dn,Railway damaged by explosions Track Novobahmutovka - Gorlovka,48.3071,38.029633
+568,7/20/2014,HOAX/FALSE,0,0,Kiev,KIEV,kiev,"Calls reporting IED - First Responders action - no explosive Hotels ""Khreschatyk "", ""Bratislava"" & ""Express"" plus a hospital",50.0529506,30.7667133
+569,7/13/2014,UNKNOWN,0,0,Odessa,ODESSA,od,IED attacks in Pryvatbank office (Krasnoslabodskaya Street) ,46.482526,30.7233095
+570,7/13/2014,UNKNOWN,0,0,Odessa,ODESSA,od,IED attacks in Pryvatbank office (Sergey Yadov Street) ,46.482526,30.7233095
+571,7/13/2014,UNKNOWN,0,0,Zuhres,DONETSK,dn,Bridge was blown up by separatist defending it Tractor was missidentified as a tank advancing during night,48.0215476,38.261386
+572,07/12/2014,UNKNOWN,0,0,Slovyansk ,DONETSK ,dn,Several IEDs laid in buildings were disposed by EOD ,48.8532,37.6053
+573,07/11/2014,UNKNOWN,0,0,Titarovka,LUHANSK ,lg,Bridge over the Idar River was blown up Road P-07 Chuguev-Melovoe (via Starobelsk),49.2350429,38.87657
+574,07/11/2014,UNKNOWN,0,0,Krasna Hora,DONETSK,dn,Road bridge was blown up Road T-05-13 Bridge close to Mokraya Plotva River,48.6652924,38.018609
+575,07/10/2014,UNKNOWN,0,0,Horlivka,DONETSK,dn,Road bridge over railway was blown up Road T-05-16 between Horlivka and Dzerzhinsk,48.3071,38.029633
+576,07/10/2014,UNKNOWN,0,0,Seversk,DONETSK,dn,Bridge damaged by explosion  ,48.873935,38.1047909
+577,07/09/2014,UNKNOWN,0,0,Svitlodars'k,DONETSK,dn,Railroad bridge was blown up ,48.4346796,38.220428
+578,07/08/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Public Tax Administration building,46.482526,30.7233095
+579,07/08/2014,CACHE/FOUND,0,0,Gulyaipole,ZAPORIZHIA,zp,"Explosives (TNT) and detonators seized in a van with 5 guys. About 100 Kg. explosive material (TNT blocks, mines, charges)",47.8388,35.139567
+580,07/07/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Psychoneurological Clinic building in Shtabnoy Lane,46.482526,30.7233095
+581,07/07/2014,UNKNOWN,0,0,Zuhres,DONETSK,dn,Zujevske reservoir dam & two bridges affected by demolitions Bridges over Krynka river,48.0215476,38.261386
+582,07/07/2014,UNKNOWN,0,0,Shchastya ,LUHANSK ,lg,Railroad bridge was blown up Near Horodnia station over Tepla river,48.737247,39.2311974
+583,07/07/2014,UNKNOWN,0,0,Yasynuvata,DONETSK,dn,Railway and electricity contact poles damaged by explosions At least 4 detonations in a 5 meter radius. Looks TNT effect.,48.1221425,37.8765944
+584,07/07/2014,UNKNOWN,0,0,Amvrosiivka,DONETSK,dn,Detonation against overpass damaged left mid-span support Road T-05-09 Bolshaya Novoselka-Amvrosievka (Km 80.5),47.8018062,38.4885354
+585,07/07/2014,UNKNOWN,0,0,Novobakhmutivka,DONETSK,dn,Railroad bridge over H-20 road was partially blown up  ,48.2466229,37.7866591
+586,07/07/2014,UNKNOWN,0,0,Zakotnoye,DONETSK,dn,"Bridge over Seversky Donets river was blown up Road T-05-13 from Artemovsk to Gorlovka, Km. 12,488",48.8954987,37.977102
+587,07/07/2014,UNKNOWN,0,0,Seleznevka,DONETSK,dn,"Bridge over Kazenyi Torets river was damaged by detonation Highway M-03 (Kiev-Kharkov-Dolzhansky), Km. 675,378",48.015883,37.80285
+588,07/06/2014,UNKNOWN,0,0,Donbass,DONETSK ,dn,Motorway bridge was blown up Motorway from Amvrosiivka,46.937072,37.3779517
+589,07/06/2014,CACHE/FOUND,0,0,Slovyansk ,DONETSK ,dn,"Homemade grenades, landmines & explosives seized   ",48.8532,37.6053
+590,07/05/2014,VBIED,0,0,Kramatorsk,DONETSK ,dn,Suspicious VBIED was destroyed through controlled detonation Main Battle Tank was used due to the lack of EOD means,48.738967,37.58435
+591,07/05/2014,UNKNOWN,0,0,Gorodishche ,LUHANSK ,lg,Bridge over Bila river was damaged by an explosion ,49.0529647,39.6481604
+592,07/04/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,"Call reporting IED - First Responders action - no explosive Administrative Court building & ""Channel 5"" facilities",46.482526,30.7233095
+593,07/04/2014,UNKNOWN,0,1,Odessa ,ODESSA ,od,"5 Kg TNT-equivalent IED against Military Enlistment office  Crater 4 m. diameter, 3 m. depth. Several damages to floors.",46.482526,30.7233095
+594,07/04/2014,UNKNOWN,0,1,Odessa,ODESSA,od,Explosion close to Suvorovsky military commissariat office ,46.482526,30.7233095
+595,07/04/2014,UNKNOWN,0,0,Luhansk ,LUHANSK,lg,Bridge over Siversky Donets was blown up  ,48.574041,39.307815
+596,07/04/2014,UNKNOWN,0,0,Tr'okhizbenka,LUHANSK,lg,"Bridge over Seversky Donets river destroyed by an explosion. Road T-03-15, conecting Luhansk-Lisichansk",48.756914,38.9618232
+597,07/03/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Economic Court building,46.482526,30.7233095
+598,07/03/2014,UNKNOWN,2,1,Kryva Luka,DONETSK,dn,Roadside bomb detonation A family was affected by the explosion when driving their car,48.8733821,37.9012637
+599,07/03/2014,PROJECTED,0,0,Mikolayiv,MIKOLAYIV,mk,IED was detonated against Militia Staff building ,46.975033,31.994583
+600,07/02/2014,UNKNOWN,0,0,Kharkiv,KHARKIV,kh,Bridge across the Koznyi-Toretz River was blown up Highway Kharkov-Rostov,49.9935,36.230383
+601,07/02/2014,HOAX/FALSE,0,0,Odessa,ODESSA,od,Call reporting IED - First Responders action - no explosive Fountatin in Zabolotny Steree,46.482526,30.7233095
+602,07/01/2014,CWIED,0,0,Svyatohirs'k,DONETSK,dn,Four explosions in 2 different points of railroad ,49.0440881,37.578484
+603,07/01/2014,UNKNOWN,0,0,Slovyansk,DONETSK,dn,IEDs against cables supporting a TV tower  Tower was destroyed in Karachun mountain,48.8532,37.6053
+604,6/30/2014,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,Explosives (1.5 Kg TNT) & detonators seized. 5 guy group arrested. 2-guys detention when trying to attack railway. 3 more later.,49.9935,36.230383
+605,6/29/2014,UNKNOWN,0,0,Chugev,KHARKIV,kh,Railroad bridge was damaged by an explosion ,49.8363158,36.6813122
+606,6/29/2014,UNKNOWN,0,0,Kolodyazne,KHARKIV,kh,Railway was damaged by a detonation Train ADLER-KIEV was affected,50.0046566,37.686626
+607,6/27/2014,UNKNOWN,0,0,Donbass,DONETSK,dn,Railway bridge was damaged by 2 explosions Near Horodna station,46.937072,37.3779517
+608,6/26/2014,CACHE/FOUND,0,0,Kulbakino,MIKOLAYIV,mk,Man detained wearing 2 IEDs He was preparing an attack to Kulbakino airfield,46.912938,32.083039
+609,6/25/2014,UNKNOWN,0,0,NULL,ZAPORIZHIA,zp,Railroad bridge damaged by explosion Zheleznodorozhny Bridge. 20Kg TNT-equivalent IED,47.8388,35.139567
+610,6/24/2014,UNKNOWN,0,0,Novokarlivka,ZAPORIZHIA,zp,Railroad bridge over Dnieper river damaged by explosion ,47.5096091,36.0489102
+611,6/24/2014,UNKNOWN,0,0,Luhansk,LUHANSK,lg,2 detonations on railroad Kondarshevskaya strecht & Krasnozerovka Ogorodny strecht,48.574041,39.307815
+612,6/23/2014,CRIME,0,0,Donbass,DONETSK,dn,96 Kg of Ammonite & electric detonators stolen from a mine Ammonite = 20% TNT/80% Ammonium Nitrate,46.937072,37.3779517
+613,6/23/2014,UNKNOWN,0,0,Semenivka,DONETSK,dn,"Several detonations against a water pump station Most probably accurate mortar firing, according to effects!!!",48.179925,37.6306384
+614,6/22/2014,UNKNOWN,0,0,Kuteinykove,DONETSK,dn,Railroad damaged by explosion Ilovajick-Martsevo railroad,47.8097898,38.288734
+615,6/22/2014,UNKNOWN,0,0,Ilovaish,DONETSK,dn,"14 cargo vans derailed. Ilovaish-Mospino stretch, in the way to Kuteinikovo.",48.55,38.194
+616,6/20/2014,CACHE/FOUND,0,0,Rubezhansky,LUHANSK,lg,"2 detainees transporting explosives in a truck 22 TNT blocks, detonators & explosives connection schemes",48.574041,39.307815
+617,6/18/2014,UNKNOWN,0,0,Amvrosiivka,DONETSK,dn,"Bridge damaged by an explosion Km. 58, road T0517 Yenakiyevo-Shakhtersk-Amvrosiivka",47.8018062,38.4885354
+618,6/19/2014,CACHE/FOUND,0,0,Kulbakino,MIKOLAYIV,mk,IED found during detention of a suspect 2nd detainee from a group planning attacks against airfield,46.912938,32.083039
+619,6/19/2014,UNKNOWN,0,0,Donetsk,DONETSK,dn,IED detonation near an exchange office Explosion after a call reporting a potential underbelly VOIED,48.015883,37.80285
+620,6/17/2014,UNKNOWN,0,0,Poltava,POLTAVA,pl,IED explosion under concrete basis of gas pipeline Urengey-Pomary-Uzghorod pipeline,49.588267,34.551417
+621,6/16/2014,CACHE/FOUND,0,0,Odessa,ODESSA,od,2 detainees transporting an IED near Russian Consulate Destruction radius of the bomb was estimated at 15 meters,46.482526,30.7233095
+622,6/15/2014,UNKNOWN,0,0,Stanytsia Luhanska,LUHANSK,lg,Pedestrian bridge over road to Luhansk was destroyed ,48.6798458,39.4672507
+623,6/13/2014,UNKNOWN,0,0,Kiev,KIEV,kiev,"IED partially laid close to Presidential HQ 5 hand grenades + electr fuzes, guy escaped before activating",50.0529506,30.7667133
+624,06/12/2014,VBIED,3,4,Donetsk,DONETSK,dn,Explosion of a car parked beside DNR leader vehicle Near an administration building. Followed by shooting.,48.015883,37.80285
+625,06/10/2014,UNKNOWN,0,0,Galitsynovk,DONETSK,dn,"Bridge was blown up Highway km 3,773",48.015883,37.80285
+626,06/08/2014,CRIME,0,0,Torez,DONETSK,dn,720 Kg Ammonite & 360 electric detonators stolen from mine Ammonite = 20% TNT/80% Ammonium Nitrate,48.0201627,38.6545258
+627,06/07/2014,VOIED,0,1,Kiev,KIEV,kiev,Explosion of a car near UKR parliament Car driver was injured. Possible Underbelly IED/limpet mine,50.0529506,30.7667133
+628,5/31/2014,RCIED,0,0,Raisins,KHARKIV,kh,IED was disposed close to Raisins - Slavic road RC device + TNT + artillery shell (UXO),49.9935,36.230383
+629,5/28/2014,UNKNOWN,0,0,Starobeshevo,DONETSK,dn,Railway was affected by an explosion ,47.7529456,38.0250736
+630,5/27/2014,UNKNOWN,0,0,Kurakhovo,DONETSK,dn,"Railroad damaged by explosion Near Donetsk, between Krasnohorlivka and Kurakhovo",47.9865822,37.2906965
+631,5/23/2014,CACHE/FOUND,0,0,Dnipropetrovsk,DNIPROPETROVSK,dp,"Some guys were detained in possesion of explosives TNT, Ammonite, and grammonite, along with homemade hand grenades",48.464717,35.046183
+632,5/23/2014,UNKNOWN,0,0,Shterovk,LUHANSK,lg,Railroad affected by explosion Km. 57 ,48.574041,39.307815
+633,5/22/2014,UNKNOWN,0,0,Lisichansk,LUHANSK,lg,Railroad bridge destroyed by explosion ,48.9066145,38.4433605
+634,5/18/2014,CACHE/FOUND,0,0,Kiev,KIEV,kiev,2 Kg of plastic explosive and detonators were seized Found during registry & detention of a criminal group,50.0529506,30.7667133
+635,5/15/2014,RCIED,0,0,Nebilyv,IVANO-FRANKIVSK,if,3 explosions in HP gas pipeline Urengoy_Pomary_Uzhgorod Remnants of a RCIED were found at scene,48.922633,24.711117
+636,5/14/2014,TIME DELAY,0,0,Odessa,ODESSA,od,Pipe bomb detonated against a Pryvatbank office ,46.482526,30.7233095
+637,05/09/2014,UNKNOWN,0,0,Kiev,KIEV,kiev,Small detonation in a rucksack borne by a man Inside Arsenalna metro station. Suspect was detained,50.0529506,30.7667133
+638,05/08/2014,CACHE/FOUND,0,0,Mikolayiv,MIKOLAYIV,mk,IED seized during detention Detention of a suspect during registry of his home,46.975033,31.994583
+639,05/03/2014,PROJECTED,0,0,Odessa,ODESSA,od,Homemade hand grenades were thrown during clashes Reported by Police officials,46.482526,30.7233095
+640,4/29/2014,VOIED,1,1,Donetsk,DONETSK,dn,During a regular patrolling in an UKR Base perimetral defenses 04:00L,48.015883,37.80285
+641,4/27/2014,CACHE/FOUND,0,0,Kharkiv,KHARKIV,kh,Homemade hand grenades were seized 13 activist detained - explosive & incendiary devices,49.9935,36.230383
+642,4/26/2014,UNKNOWN,0,0,Kramatorsk,DONETSK,dn,4 consecutive detonations inside an airfield Helicopter & surveillance airplane destroyed by attackers,48.738967,37.58435
+643,4/25/2014,PROJECTED,0,7,Ovidiopol road,ODESSA,od,Attack over pro-UKR check-point from a car passing around It is not totally confirmed as improvised device yet,46.450862,30.6551171
+644,04/12/2014,HOAX/FALSE,0,0,Kharkiv,KHARKIV,kh,Call reporting IED - First Responders action - no explosive Kharkov Palace hotel,49.9935,36.230383
+645,04/06/2014,VOIED,0,0,Luhansk,LUHANSK,lg,"IEDs were laid in an occupied government building Building was occupied, IEDs used as defensive weapon",48.574041,39.307815
+646,3/25/2014,UNKNOWN,0,0,Myrnyi,CRIMEA,crimea,Explosive device laid close to UKR ship in Donuzlav lake Trawler ñCherkassyî suffered damages in main wheel,45.3081724,33.0351476
+647,3/18/2014,PROJECTED,0,0,Odessa,ODESSA,od,Two homemade hand grenades were thrown against  Deputys office ,46.482526,30.7233095
+648,03/03/2014,CACHE/FOUND,0,0,Bakhchisaray,CRIMEA,crimea,400 Kg TNT transported in a truck were confiscated Two suspects detained in a road control at Crimean border,44.746091,33.8615644
+649,1/25/2014,UNKNOWN,0,0,Cherkassy,CHERKASY,ck,Explosion close to Regional Administration building External damages to building,49.444433,32.059767
+650,02/06/2014,VOIED,0,1,Kiev,KIEV,kiev,Explosion in Trade Union House Bomb package was given to the victim as a present,50.0529506,30.7667133

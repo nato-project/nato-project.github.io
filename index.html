@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ukraine IED Incidents</title>
+
+    <!-- Load CSS libraries -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <div id="header"></div>
+
+    <div id="body-container" class="container">
+
+
+        <div class="row bgimagerow">
+            <div class="col-md-12 bgimage">
+
+                <div class="bgimage-inside">
+
+                    <div class="bgimage-text">
+                        <p class="line1">Since the collapse of the Kremlin-supported government in February 2014, Ukraine has been affected by political and economic turmoil.</p>
+
+                        <p class="line2">What followed the turmoil was the emergence of an energized public who would do anything to get their freedom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row-spacer"></div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <div class="text-left">
+                            <p>
+                                We will analyse the various incidents that occurred between January 2014 to December 2015.
+                                Our exploration of over 600 Improvised Explosive Devices (IED) incidents in Ukraine over the past 2 years for the purpose of highlighting and better understanding the temporal, geographical and political patterns in the data.
+                                The following shows the summary of the incidents that happened.
+                                <br>
+                                <br>
+                            </p>
+                        </div>
+                        <div id="countsVis" class="img-responsive"></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <div class="text-left">
+                            <p>
+                                The following shows all incidents from January 2014 to December 2015.
+                            </p>
+                        </div>
+                        <div id="timelineVis" class="img-responsive"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row-spacer"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="map.html">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><h3 class="panel-title">Explore the Data</h3></div>
+                        <div class="panel-body" style="background: url('img/where.png') no-repeat !important;height: 250px">
+
+                        </div>
+                    </div>
+                </a>
+                <a href="map.html">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><h3 class="panel-title">Explore the Data</h3></div>
+                        <div class="panel-body" style="background: url('img/where2.png') no-repeat !important;height: 250px">
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3 class="panel-title">Summary</h3></div>
+                    <div class="panel-body">
+                        <b>Background to the conflict</b>
+                        <p>
+                            In February 2014, the Kremlin-supported government of Ukraine collapsed. The demise of the regime was brought about by bitter protests over a decision by the government to reject closer relations with the European Union.
+                            What followed the turmoil was the emergence of a pro-Western, pro-reform government and an energized public generally anxious to lessen Moscows's influence and committed to addressing the need for serious reforms.
+                        </p>
+                        <p> Ukraine's problems are not solely political and economical. Russia responded to the chnage over government in 2014 by seizing Ukraine's Crimea region and annexing it.</p>
+
+                        <b>Improvised Explosive Devices (IED)</b>
+                        <p></p>
+                        <p>
+                            An IED can be almost anything with any type of material and initiator. It is a "homemade" device that is designed to cause death or injury by using explosives alone or in combination with toxic chemicals, biological toxins, or radiological material. IEDs can be produced in varying sizes, functioning methods, containers, and delivery methods. IEDs can utilize commercial or military explosives, homemade explosives, or military ordnance and ordnance components.
+                            They are unique in nature because the IED builder has had to improvise with the materials at hand. Designed to defeat a specific target or type of target, they generally become more difficult to detect and protect against as they become more sophisticated.
+
+                        </p>
+                        <p>
+                            IEDs can be hidden anywhere: on animals, planted in roads or strapped to a person. They can be detonated via cell phones or trip wires, among other methods. They can be deployed everywhere: in a combat environment or in the middle of a busy city. The adaptability of IEDs to almost any situation makes them difficult to detect.
+                        </p>
+                        <p>
+                            IEDs, or Improvised Explosives Devices, are one of the main causes of causalities among troops and exact a heavy toll on local populations.
+
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-3">
+                <a href="what.html">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><h3 class="panel-title">Explore the Data</h3></div>
+                        <div class="panel-body" style="background: url('img/what.png') no-repeat !important;height: 250px;">
+
+                        </div>
+                    </div>
+                </a>
+                <a href="how.html">
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><h3 class="panel-title">Explore the Data</h3></div>
+                        <div class="panel-body" style="background: url('img/how.png') no-repeat !important;height: 250px;">
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="footer"></div>
+
+    <!-- Load JS libraries -->
+    <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/other/queue.min.js"></script>
+    <script type="text/javascript" src="lib/d3/d3.min.js"></script>
+    <script type="text/javascript" src="lib/other/lodash.min.js"></script>
+
+    <!-- Load Project libraries -->
+    <script type="text/javascript" src="js/common.js"></script>
+
+    <!-- Load Page libraries -->
+    <script type="text/javascript" src="js/timeline-index.js"></script>
+    <script type="text/javascript" src="js/counts.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

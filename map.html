@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NATO - Ukraine IED Incidents</title>
+
+    <!-- Load CSS libraries -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <div id="header"></div>
+
+    <div id="body-container" class="container">
+        <div class="page-header">
+            <h4>Where did the Incidents Occur?</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="fact">
+                    <p>
+                        Ukraine regions are not equally affected by IED incidents. Incidents were concentrated in three cities: Kiev, Kharkiv and Odessa. There were over 80 incidents in each. However, although there was a much higher number of incidents reported for these cities than for any other city (almost 100), less than 10 persons were killed in those 360 incidents.
+                    </p>
+
+                    <button type="button" class="btn btn-primary factbutton" onclick="showMapKiev()">Show Me Kiev</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="fact"><p>
+                    Most of the remaining IED incidents are spread in the Donetsk and the Luhansk regions, representing 136 and 92 incidents respectively. These two areas are also the most active regions for IED incidents at the end of 2015.
+                </p>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary" onclick="showMapDonestk()">Show Me Donetsk</button>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="fact">
+                    <p>
+                        In the reported incidents, many different types of IEDs were mentioned. Some types are more dangerous than others.
+                    </p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="what.html" class="btn btn-primary" >Continue to IED Types Exploration <i class="fa fa-play" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row-spacer"></div>
+        <div class="row">
+            <div class="col-md-8">
+                <div id="timelineVis" class="img-responsive"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="countsVis" class="img-responsive"></div>
+            </div>
+        </div>
+        <div class="row-spacer"></div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label><strong>Region color</strong>&nbsp;
+                        <select class="form-control" id="regionColorSelect" onchange="regionColorSelect()">
+                            <option value="pct_russian_speakers">% Russian Spearkers</option>
+                            <option value="population">Population</option>
+                            <option value="pop_density">Population Density</option>
+                            <option value="pop_russians">Ukrainian Population</option>
+                            <option value="pop_ukranians">Russian Population</option>
+                            <option value="IEDevents">IED Incidents</option>
+                            <option value="KIA">Persons Killed</option>
+                            <option value="WIA">Persons Wounded</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label><strong>Circle color</strong>&nbsp;
+                        <select class="form-control" id="circleColorSelect" onchange="circleColorSelect()">
+                            <option value="type">IED Type</option>
+                            <option value="effect">Effect</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+        <div class="row">
+            <div id="mapVis" class="col-md-5" style="padding: 0px"></div>
+            <div id="heatMatrixVis" class="col-md-7" style="padding: 0px"></div>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+
+    <!-- Load JS libraries -->
+    <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/other/queue.min.js"></script>
+    <script type="text/javascript" src="lib/other/topojson.js"></script>
+    <script type="text/javascript" src="lib/d3/d3.min.js"></script>
+    <script type="text/javascript" src="lib/d3/d3.tip.js"></script>
+    <script type="text/javascript" src="lib/other/colorbrewer.js"></script>
+
+    <!-- Load Project libraries -->
+    <script type="text/javascript" src="js/common.js"></script>
+
+    <!-- Load Page libraries -->
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/timeline.js"></script>
+    <script type="text/javascript" src="js/counts.js"></script>
+    <script type="text/javascript" src="js/map-main.js"></script>
+    <script type="text/javascript" src="js/heatMatrix.js"></script>
+</body>
+</html>
