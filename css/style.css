@@ -191,9 +191,13 @@ body {
 /* Brush */
 .brush .extent {
     stroke: #8c8c8c;
-    fill: #737373;
+    fill: #5e8ee9;
     fill-opacity: .1;
     shape-rendering: crispEdges;
+}
+.resize path {
+    fill: #eee;
+    stroke: #666;
 }
 
 .row-spacer{

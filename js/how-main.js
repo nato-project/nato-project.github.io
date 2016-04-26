@@ -48,7 +48,7 @@ function createVis() {
     // Instantiate visualization objects here
     //wordCloudVis = new WordCloud("mapVis", iedData, mapData, regionData);
     fullTextVis = new FullText("fullTextVis",iedData,iedTextLinks,topwords);
-    timelineVis = new Timeline("timelineVis", iedData,760);
+    timelineVis = new Timeline("timelineVis", iedData);
     countsVis = new Counts("countsVis", iedData,900,300);
 }
 

@@ -12,12 +12,12 @@ TimelineIndex = function(_parentElement, _data,_width,_height){
     if(_width){
         this.width = _width;
     }else{
-        this.width = 900;
+        this.width = 523;
     }
     if(_height){
         this.height = _height
     }else{
-        this.height = 200;
+        this.height = 190;
     }
 
 
@@ -27,7 +27,7 @@ TimelineIndex = function(_parentElement, _data,_width,_height){
 TimelineIndex.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 10, right: 10, bottom: 20, left: 10};
+    vis.margin = {top: 10, right: 50, bottom: 20, left: 50};
 
     vis.width = vis.width - vis.margin.left - vis.margin.right,
         vis.height = vis.height - vis.margin.top - vis.margin.bottom;
@@ -35,11 +35,12 @@ TimelineIndex.prototype.initVis = function(){
     //.attr("width", vis.width + vis.margin.left + vis.margin.right)
     //    .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
     // SVG drawing area
-    vis.svg = d3.select("#" + vis.parentElement).append("svg")
+    vis.svgmain = d3.select("#" + vis.parentElement).append("svg")
         .attr("x",0)
         .attr("y",0)
-        .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
-        .append("g")
+        .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom));
+
+    vis.svg = vis.svgmain.append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     // Scales and axes
@@ -63,6 +64,9 @@ TimelineIndex.prototype.initVis = function(){
         .style("text-anchor", "start")
         .attr("x", 6)
         .attr("y", 6);
+    vis.svg.select("timeline-axis")
+        .selectAll("text")
+        .attr("style","font-size:25;");
 
     // Prepare Data for Timeline
     vis.killed_wounded = [];
@@ -115,16 +119,52 @@ TimelineIndex.prototype.initVis = function(){
             }
         });
 
+    // Legend
+    vis.svgmain.append("svg:image")
+        .attr("x",100)
+        .attr("y",2)
+        .attr("width",24)
+        .attr("height",24)
+        .attr('xlink:href',"img/person-killed.svg");
+    vis.svgmain.append("text")
+        .attr("style","font-size:15;")
+        .attr("x",125)
+        .attr("y",20)
+        .text("Killed");
+    vis.svgmain.append("svg:image")
+        .attr("x",170)
+        .attr("y",2)
+        .attr("width",24)
+        .attr("height",24)
+        .attr('xlink:href',"img/person-wounded.svg");
+    vis.svgmain.append("text")
+        .attr("style","font-size:15;")
+        .attr("x",195)
+        .attr("y",20)
+        .text("Wounded");
+    vis.svgmain.append("rect")
+        .attr("x",280)
+        .attr("y", 5)
+        .attr("height", 15 )
+        .attr("width", 2)
+        .attr("fill",COMMON_COLORS.INCIDENT);
+    vis.svgmain.append("text")
+        .attr("style","font-size:15;")
+        .attr("x",290)
+        .attr("y",20)
+        .text("Incident");
+
+
     // Add year titles
-    vis.svg.append("text")
-        .attr("style","font-size:20;")
-        .attr("x",0)
-        .attr("y",15)
+    vis.svgmain.append("text")
+        .attr("style","font-size:15;")
+        .attr("x",2)
+        .attr("y",vis.height+23)
         .text("2014");
-    vis.svg.append("text")
-        .attr("style","font-size:20;")
-        .attr("x",vis.width-40)
-        .attr("y",15)
+    vis.svgmain.append("text")
+        .attr("style","font-size:15;")
+        .attr("x",vis.width+40)
+        .attr("y",vis.height+25)
         .text("2015");
 
 

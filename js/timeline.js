@@ -12,7 +12,7 @@ Timeline = function(_parentElement, _data,_width){
 	if(_width){
 		this.width = _width;
 	}else{
-		this.width = 900;
+		this.width = 750;
 	}
 
 
@@ -27,17 +27,18 @@ Timeline = function(_parentElement, _data,_width){
 Timeline.prototype.initVis = function(){
 	var vis = this; // read about the this
 
-	vis.margin = {top: 10, right: 10, bottom: 20, left: 10};
+	vis.margin = {top: 10, right: 30, bottom: 20, left: 30};
 
 	vis.width = vis.width - vis.margin.left - vis.margin.right,
 	vis.height = 90 - vis.margin.top - vis.margin.bottom;
 
 	// SVG drawing area
-	vis.svg = d3.select("#" + vis.parentElement).append("svg")
+	vis.svgmain = d3.select("#" + vis.parentElement).append("svg")
 		.attr("x",0)
 		.attr("y",0)
-		.attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
-	    .append("g")
+		.attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom));
+
+	vis.svg = vis.svgmain.append("g")
 	    .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
 	// Scales and axes
@@ -80,10 +81,10 @@ Timeline.prototype.initVis = function(){
 	//	.y(function(d) { return vis.y(d.cummilative); });
 
 	// Create svg elements
-	vis.barGroup = vis.svg.append("g");
+	vis.incidentGroup = vis.svg.append("g");
 	vis.circleGroup = vis.svg.append("g");
 
-	vis.bar = vis.barGroup.selectAll("g")
+	vis.incident = vis.incidentGroup.selectAll("g")
 		.data(vis.data)
 		.enter()
 		.append("g")
@@ -96,11 +97,17 @@ Timeline.prototype.initVis = function(){
 		.attr("transform", function(d, i) { return "translate(" + (vis.x(d.date)) + ",0)"; });
 
 	// Incidents
-	vis.bar.append("rect")
+	vis.incident.append("rect")
 		.attr("y", function(d) { return 0; })
 		.attr("height", function(d) { return 60; })
 		.attr("width", 1)
 		.attr("fill",COMMON_COLORS.INCIDENT);
+	//vis.incident.append("circle")
+	//	.attr("class", "timeline-circle")
+	//	.attr("cx",1)
+	//	.attr("cy",30)
+	//	.attr("r", 2)
+	//	.style("fill",COMMON_COLORS.INCIDENT);
 
 	// Killed or Wounded
 	vis.circle.append("circle")
@@ -120,29 +127,57 @@ Timeline.prototype.initVis = function(){
 		});
 
 	// Legend
-	//vis.svg.append("circle")
-	//	.attr("class", "timeline-circle")
-	//	.attr("cx",vis.width/2)
-	//	.attr("cy",-5)
-	//	.attr("r", 2)
-	//	.style("fill",COMMON_COLORS.KILLED);
+	vis.svgmain.append("circle")
+		.attr("class", "timeline-circle")
+		.attr("cx",50)
+		.attr("cy",5)
+		.attr("r", 2)
+		.style("fill",COMMON_COLORS.KILLED);
+	vis.svgmain.append("text")
+		.attr("style","font-size:8;")
+		.attr("x",55)
+		.attr("y",7)
+		.text("Killed");
+	vis.svgmain.append("circle")
+		.attr("class", "timeline-circle")
+		.attr("cx",90)
+		.attr("cy",5)
+		.attr("r", 2)
+		.style("fill",COMMON_COLORS.WOUNDED);
+	vis.svgmain.append("text")
+		.attr("style","font-size:8;")
+		.attr("x",95)
+		.attr("y",7)
+		.text("Wounded");
+	vis.svgmain.append("rect")
+		.attr("x",140)
+		.attr("y", 0)
+		.attr("height", 7 )
+		.attr("width", 1)
+		.attr("fill",COMMON_COLORS.INCIDENT);
+	vis.svgmain.append("text")
+		.attr("style","font-size:8;")
+		.attr("x",145)
+		.attr("y",7)
+		.text("Incident");
+
 
 	// Add year titles
-	vis.svg.append("text")
+	vis.svgmain.append("text")
 		.attr("style","font-size:10;")
-		.attr("x",0)
-		.attr("y",0)
+		.attr("x",2)
+		.attr("y",vis.height+23)
 		.text("2014");
-	vis.svg.append("text")
+	vis.svgmain.append("text")
 		.attr("style","font-size:10;")
-		.attr("x",vis.width-20)
-		.attr("y",0)
+		.attr("x",vis.width+35)
+		.attr("y",vis.height+23)
 		.text("2015");
 
 	// Initialize brush component
 	vis.brush = d3.svg.brush()
 		.x(vis.x)
-		.extent([new Date(2014, 0, 1),new Date(2015, 11, 31)])
+		.extent([new Date(2014, 0, 15),new Date(2015, 11, 15)])
 		.on("brush", brushed);
 
 	// Append brush component
@@ -151,8 +186,8 @@ Timeline.prototype.initVis = function(){
 		.call(vis.brush);
 
 	vis.gBrush.selectAll("rect")
-		.attr("y", -6)
-		.attr("height", vis.height + 7);
+		.attr("y", 0)
+		.attr("height", vis.height);
 
 	vis.gBrush.selectAll('.resize').append('path').attr('d', resizePath);
 
