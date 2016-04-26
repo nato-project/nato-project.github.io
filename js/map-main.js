@@ -189,10 +189,10 @@ function getMonthIndex(date) {
 function showMapKiev() {
 
 	// Set new brush domain
-	var newFilter = [];
-	timelineVis.brush.clear();
-	timelineVis.brush(d3.select(".brush"));
-	timelineVis.brush.event(d3.select(".brush"))
+	var newFilter = [new Date(2014,0,1), new Date(2015,11,30)];
+	timelineVis.brush.extent(newFilter);
+	timelineVis.brush(d3.select(".brush").transition());
+	timelineVis.brush.event(d3.select(".brush").transition().delay(1000))
 	mapVis.filter = newFilter;
 
 	// Count Vis
@@ -224,7 +224,7 @@ function showMapKiev() {
 function showMapDonestk() {
 
 	// Set new brush domain
-	var newFilter = [new Date(2015,9,1), new Date(2015,12,31)];
+	var newFilter = [new Date(2015,8,1), new Date(2015,11,30)];
 	timelineVis.brush.extent(newFilter);
 	timelineVis.brush(d3.select(".brush").transition());
 	timelineVis.brush.event(d3.select(".brush").transition().delay(1000))
