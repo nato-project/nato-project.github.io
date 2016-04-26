@@ -124,6 +124,17 @@ function regionClick(regionId) {
 	heatMatrixVis.wrangleData();
 }
 
+function circleLabelClick(circleType) {
+	if (mapVis.circleFilter == circleType) {
+		mapVis.circleFilter = "";
+	}
+	else {
+		mapVis.circleFilter = circleType;
+	}
+	// Update
+	mapVis.wrangleData();
+}
+
 function regionColorSelect() {
 
 	var selectBox = document.getElementById("regionColorSelect");
@@ -140,7 +151,8 @@ function circleColorSelect() {
 	if (mapVis.circleType != selectBox.options[selectBox.selectedIndex].value) {
 		mapVis.circleType = selectBox.options[selectBox.selectedIndex].value;
 		mapVis.circleLabel = selectBox.options[selectBox.selectedIndex].text;
-		mapVis.updateVis();
+		mapVis.circleFilter = "";
+		mapVis.wrangleData();
 	}
 }
 

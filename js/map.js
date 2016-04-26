@@ -20,6 +20,7 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     // For circle color
     this.circleType = "type";
     this.circleLabel = "Type";
+    this.circleFilter = "";
 
     this.initVis();
 }
@@ -99,6 +100,7 @@ Map.prototype.initVis = function(){
         .call(vis.ctrtip)
         .on("click", function(d){
             regionClick("");
+            circleLabelClick("");
         });
 
     // Regions
@@ -117,6 +119,7 @@ Map.prototype.initVis = function(){
         .call(vis.tip)
    	    .on("click", function(d){
    	    	regionClick(d.id);
+            circleLabelClick("");
    	    });
 
     regionsG.selectAll("text")
@@ -208,7 +211,6 @@ Map.prototype.initVis = function(){
     vis.clegendlabels = vis.clegend.append("text")
         .attr("class", "circleColorLabels");
 
-
     // Create circles group
     vis.circlesG = vis.svg.append("g");
 
@@ -235,6 +237,27 @@ Map.prototype.wrangleData = function() {
             var second = new Date(d.date) <= vis.filter[1];
             return first && second;
         });
+    }
+
+    // Filter type
+    if (vis.circleFilter != "") {
+        if (vis.circleFilter == "Killed") {
+            vis.displayData = vis.displayData.filter(function (d) {
+                return d.kia > 0;
+            });
+        } else if (vis.circleFilter == "Wounded") {
+            vis.displayData = vis.displayData.filter(function (d) {
+                return d.wia > 0 && d.kia == 0;
+            });
+        } else if (vis.circleFilter == "No Casualities") {
+            vis.displayData = vis.displayData.filter(function (d) {
+                return d.wia == 0 && d.kia == 0;
+            });
+        } else {
+            vis.displayData = vis.displayData.filter(function (d) {
+                return d.type == vis.circleFilter;
+            });
+        }
     }
 
     // Update the visualization
@@ -301,8 +324,12 @@ Map.prototype.updateVis = function() {
         	return d.tx + vis.proj([d.lng, d.lat])[0];})
         .attr("cy", function(d) {
         	return d.ty + vis.proj([d.lng, d.lat])[1];})
-        .attr("r", 4)
+        .attr("r", function(d) {
+            if (vis.circleFilter != "") return 6;
+            return 4;
+        })
         .attr("fill", function(d) {
+            if (vis.circleFilter != "") return "orange";
             if(vis.circleType == "type") {
                 return vis.circleColor(d.type);
             }else{
@@ -344,5 +371,14 @@ Map.prototype.updateVis = function() {
         .attr("y", 15)
         .text(function(d,i){
             return vis.circleColor.domain()[i];
+        })
+        .attr("fill", function (d,i) {
+            if (vis.circleFilter == vis.circleColor.domain()[i])
+                return "orange";
+            return "black";
+        })
+        .on("click", function(d,i){
+            circleLabelClick(vis.circleColor.domain()[i]);
+            console.log(vis.circleColor.domain()[i]);
         });
 }
