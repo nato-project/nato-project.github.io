@@ -4,8 +4,11 @@ $(function() {
 
     $('#header').load('templates/header.html', function() {
 
-        var page = document.location.pathname.match(/[^\/]+$/)[0];
-        console.log(page);
+        var page = "index.html";
+        if(document.location.pathname){
+            document.location.pathname.match(/[^\/]+$/)[0];
+            console.log(page);
+        }
 
         switch(page) {
             case "index.html":
