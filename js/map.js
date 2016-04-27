@@ -35,7 +35,7 @@ Map.prototype.initVis = function(){
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
     vis.width = 700 - vis.margin.left - vis.margin.right,
-        vis.height = 600 - vis.margin.top - vis.margin.bottom;
+        vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -54,7 +54,7 @@ Map.prototype.initVis = function(){
     	});
         
     // Create projection
-    var projection = d3.geo.mercator().scale([2150]).center([34.5, 48.5]);
+    var projection = d3.geo.mercator().scale([2210]).center([34.5, 48.7]);
     vis.proj = projection;
 
     // Create D3 geo path
@@ -64,7 +64,7 @@ Map.prototype.initVis = function(){
     var countries = topojson.feature(mapData, mapData.objects.countries).features;
     var regions = topojson.feature(mapData, mapData.objects.regions).features;
 
-    // Tool Tip
+    // Tooltip
     vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
         // Color
         var data;
@@ -72,7 +72,7 @@ Map.prototype.initVis = function(){
             if (r.region_id == d.id) data = r;
         });
         var tipContent = "";
-        tipContent += "<div class='tooltip-content text-center'>" + d.properties.name + " Oblast</div>";
+        tipContent += "<div class='tooltip-content text-center'><img src='img/flags/"+ d.id + ".png' style='margin:5px'>" + d.properties.name + " Oblast</div>";
         tipContent += "<div class='tooltip-content text-center'>IED Events: " + data.IEDevents + " / Killed: " + data.KIA + " / Wounded: "+data.WIA+"</div>";
         tipContent += "<div class='tooltip-content text-center'>Area: " + data.area + "km2 / Population: "+ data.population + "</div>";
 
@@ -378,6 +378,7 @@ Map.prototype.updateVis = function() {
             return "black";
         })
         .on("click", function(d,i){
+            regionClick("");
             circleLabelClick(vis.circleColor.domain()[i]);
             console.log(vis.circleColor.domain()[i]);
         });
