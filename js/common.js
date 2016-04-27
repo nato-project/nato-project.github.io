@@ -5,10 +5,12 @@ $(function() {
     $('#header').load('templates/header.html', function() {
 
         var page = "index.html";
-        if(document.location.pathname){
-            document.location.pathname.match(/[^\/]+$/)[0];
-            console.log(page);
+
+        var match = document.location.pathname.match(/[^\/]+$/);
+        if(match){
+            page = match[0];
         }
+        console.log(page);
 
         switch(page) {
             case "index.html":
