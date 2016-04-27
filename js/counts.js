@@ -4,7 +4,7 @@
  * @param _data				-- the ied data
  */
 
-Counts = function(_parentElement, _iedData,_width,_height){
+Counts = function(_parentElement, _iedData,_width,_height,_animate){
     this.parentElement = _parentElement;
     this.iedData = _iedData;
 
@@ -20,6 +20,10 @@ Counts = function(_parentElement, _iedData,_width,_height){
         this.height = _height
     }else{
         this.height = 200;
+    }
+    this.animate = false;
+    if(_animate){
+        this.animate = _animate;
     }
 
 
@@ -46,6 +50,42 @@ Counts.prototype.initVis = function() {
         vis.counts_total = vis.svg.select("#counts_total");
         vis.counts_wia = vis.svg.select("#counts_wia");
         vis.counts_kia = vis.svg.select("#counts_kia");
+
+        // Animate the counts
+        var total =650;
+        var kia =65;
+        var wia =152;
+        var duration = 4000;
+        if(vis.animate){
+            // Total Count
+            vis.counts_total.transition()
+                .duration(duration)
+                .tween("text", function() {
+                    var i = d3.interpolateRound(0, total);
+                    return function(t) {
+                        this.textContent = i(t);
+                    };
+                });
+            // Killed
+            vis.counts_kia.transition()
+                .duration(duration)
+                .tween("text", function() {
+                    var i = d3.interpolateRound(0, kia);
+                    return function(t) {
+                        this.textContent = i(t);
+                    };
+                });
+
+            // Wounded
+            vis.counts_wia.transition()
+                .duration(duration)
+                .tween("text", function() {
+                    var i = d3.interpolateRound(0, wia);
+                    return function(t) {
+                        this.textContent = i(t);
+                    };
+                });
+        }
 
     });
 
