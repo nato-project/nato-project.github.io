@@ -29,8 +29,8 @@ FullText.prototype.initVis = function() {
 
     vis.margin = {top: 10, right: 0, bottom: 10, left: 0};
 
-    vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.width = 745 - vis.margin.left - vis.margin.right;
+    vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -60,12 +60,11 @@ FullText.prototype.initVis = function() {
 
     // Node Text Font Size
     vis.nodeTextFontSize = d3.scale.linear();
-    vis.nodeTextFontSize.domain([1,600]).range([10,30]);
+    vis.nodeTextFontSize.domain([1,300]).range([12,30]);
 
     vis.typeList = [];
     vis.texttimelinetitle = d3.select("#text-timeline-title");
 
-    var node;
     vis.findNode = function(id){
         //return vis.nodes[id];
         return _.find(this.displayData, function(o) { return o.id == id; });
@@ -73,7 +72,12 @@ FullText.prototype.initVis = function() {
 
     // Create nodes and links
     vis.iedData.forEach(function(d) {
-        vis.nodes.push({name: d.id,id: d.id});
+        //if(d.id ==24){
+        //    vis.nodes.push({name: d.id,id: d.id,x:365, y:90, fixed:true});
+        //}else{
+            vis.nodes.push({name: d.id,id: d.id});
+        //}
+
         if(vis.typeList.indexOf(d.type) == -1){
             vis.typeList.push(d.type);
         }
@@ -95,9 +99,31 @@ FullText.prototype.initVis = function() {
         }
         //vis.links.push({source: d.s_id-1,target: d.t_id-1,cs_value: d.cs_value});
     });
-    console.log(vis.nodes);
-    console.log(vis.links);
-    console.log(vis.typeList);
+    //console.log(vis.nodes);
+    //console.log(vis.links);
+    //console.log(vis.typeList);
+
+    vis.generateNodeWords();
+
+    // Assign x,y to node word nodes
+    //console.log(vis.nodeWords);
+    vis.nodewordPositions = [[320,60],[360,420],[220,100],[260,390],[480,370],[420,120],[180,180],[330,150],[380,350],[520,200],[180,270],[350,300],[350,230],[350,200],[490,270]];
+
+    vis.positionNodeWords =  function(){
+        if(vis.nodeWords.length <10){
+            return;
+        }
+        vis.nodeWords.forEach(function(d,i){
+            //console.log(d);
+            var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
+            if(node){
+                node.x = vis.nodewordPositions[i][0];
+                node.y = vis.nodewordPositions[i][1];
+                node.fixed = true;
+            }
+        });
+    }
+    vis.positionNodeWords();
 
     // 1) INITIALIZE FORCE-LAYOUT
     vis.force = d3.layout.force()
@@ -118,7 +144,7 @@ FullText.prototype.initVis = function() {
     vis.force.nodes(vis.nodes)
         .links(vis.links);
 
-    vis.generateNodeWords();
+
     vis.generateKilledWounded();
     //console.log(vis.killed_wounded);
 
@@ -152,6 +178,7 @@ FullText.prototype.initVis = function() {
 
     vis.nodeClickTextList = [];
     vis.nodeClick = function(d){
+        console.log(d);
         vis.nodeClickTextList.unshift(vis.findNode(d.id));
         vis.texttimelinetitle.text("");
         vis.displayText(vis.nodeClickTextList);
@@ -181,6 +208,18 @@ FullText.prototype.initVis = function() {
     }
 
     // Node Text
+    vis.nodeTextRectItems = vis.svg.append("g").selectAll(".force-layout-text-rect")
+        .data(vis.nodeWords)
+        .enter().append("rect")
+        .attr("class", "force-layout-text-rect")
+        .style("fill", "#FFFDC4")
+        .style("fill-opacity",0.4)
+        .on("click", function(d) {
+            vis.nodeTextClick(d);
+        })
+        .style("cursor","pointer");
+
+    // Node Text
     vis.nodeTextItems = vis.svg.append("g").selectAll(".force-layout-text")
         .data(vis.nodeWords)
         .enter().append("text")
@@ -193,10 +232,17 @@ FullText.prototype.initVis = function() {
         .text(function(d) { return d.words; })
         .on("click", function(d) {
             vis.nodeTextClick(d);
-        });
+        })
+        .style("cursor","pointer");
+
+    // Set the width/height of the rect behind node word
+    vis.nodeTextRectItems.attr("width",function(d,i){
+        return vis.nodeTextItems[0][i].clientWidth;
+    }).attr("height",function(d,i){
+        return vis.nodeTextItems[0][i].clientHeight;
+    });
 
     vis.nodeTextClick = function(d){
-        console.dir(d);
         // Find all children for node word
         var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
         var nodes = [];
@@ -255,6 +301,23 @@ FullText.prototype.initVis = function() {
                 var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
                 if(node){
                     return node.y;
+                }else{
+                    return 2000;
+                }
+            });
+        vis.nodeTextRectItems.attr("x", function(d) {
+                var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
+                if(node){
+                    return node.x-50;
+                }else{
+                    return 2000;
+                }
+
+            })
+            .attr("y", function(d) {
+                var node = _.find(vis.nodes, function(o) { return o.id == d.id; });
+                if(node){
+                    return node.y- d.font_size;
                 }else{
                     return 2000;
                 }
@@ -373,26 +436,6 @@ FullText.prototype.initVis = function() {
     vis.textTimeline2 = d3.select("#text-timeline2");
     vis.textTimeline3 = d3.select("#text-timeline3");
 
-    // Tool Tip
-    //var node;
-    //vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-    //    node = vis.findNode(d.id);
-    //    var tipContent = "";
-    //    tipContent += "<div class='tooltip-content text-center'>" + node.text + "</div>";
-    //    tipContent += "<div class='tooltip-content text-center'>Region: " + node.region + " / City: "+node.city+"</div>";
-    //    tipContent += "<div class='tooltip-content text-center'>Killed: " + node.kia + " / Wounded: "+node.wia+"</div>";
-    //
-    //    return tipContent;
-    //});
-
-    // Invoke tooltip
-    //vis.nodeItems.on('mouseover', vis.tip.show)
-    //    .on('mouseout', vis.tip.hide);
-    //vis.nodeItems.call(vis.tip);
-
-    // Wrangle and update
-    //vis.wrangleData();
-
     // Simulate a node word click
     setTimeout(function() { vis.nodeTextClick({id:24,words:"station, metro, central"}); }, 3000);
 
@@ -460,6 +503,8 @@ FullText.prototype.updateVis = function() {
     var node;
 
     vis.force.stop();
+
+    vis.positionNodeWords();
 
     vis.force.nodes(vis.nodes)
         .links(vis.links);
@@ -549,6 +594,19 @@ FullText.prototype.updateVis = function() {
             vis.nodeCasualtyClick(d);
         });
 
+    // Update Text Rectangles
+    vis.nodeTextRectItems = vis.nodeTextRectItems.data(vis.nodeWords);
+    vis.nodeTextRectItems.exit().remove();
+    vis.nodeTextRectItems.enter()
+        .append("rect")
+        .attr("class", "force-layout-text-rect")
+        .style("fill", "#FFFDC4")
+        .style("fill-opacity",0.4)
+        .on("click", function(d) {
+            vis.nodeTextClick(d);
+        })
+        .style("cursor","pointer");
+
     // Update Text
     vis.nodeTextItems = vis.nodeTextItems.data(vis.nodeWords);
     vis.nodeTextItems.exit().remove();
@@ -563,11 +621,17 @@ FullText.prototype.updateVis = function() {
         })
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
+        .style("cursor","pointer")
         .on("click", function(d) {
             vis.nodeTextClick(d);
         });
 
-
+    // Set the width/height of the rect behind node word
+    vis.nodeTextRectItems.attr("width",function(d,i){
+        return vis.nodeTextItems[0][i].clientWidth;
+    }).attr("height",function(d,i){
+        return vis.nodeTextItems[0][i].clientHeight;
+    });
 
     // Legend
     vis.legend = vis.legend.data(vis.typeList);
@@ -597,11 +661,6 @@ FullText.prototype.updateVis = function() {
             vis.legendClick(d);
         });
 
-    // Invoke tooltip
-    //vis.nodeItems.on('mouseover', vis.tip.show)
-    //    .on('mouseout', vis.tip.hide);
-    //vis.nodeItems.call(vis.tip);
-
 }
 
 FullText.prototype.displayText = function(nodes,words){
@@ -617,9 +676,9 @@ FullText.prototype.displayText = function(nodes,words){
     var nodes1 =[];
     var nodes2 =[];
     var nodes3 =[];
-    if(nodes.length > 5){
-        var extraItems = nodes.length-5;
-        for(var i=5;i<nodes.length;i++){
+    if(nodes.length > 4){
+        var extraItems = nodes.length-4;
+        for(var i=4;i<nodes.length;i++){
             nodes1.push(nodes[i]);
             if(i+1 < nodes.length) {
                 nodes2.push(nodes[i]);
@@ -630,7 +689,7 @@ FullText.prototype.displayText = function(nodes,words){
                 i++;
             }
         }
-        nodes = _.slice(nodes,0,5);
+        nodes = _.slice(nodes,0,4);
     }
 
     displayTextOnSection(vis.textTimeline,nodes,words);
@@ -762,31 +821,6 @@ FullText.prototype.generateNodeWords = function (){
     topNodes = _.slice(topNodes,0,maxNodes);
     //console.log(topNodes);
 
-    // Option 1: Get the top 3 words size for the top nodes
-    //topNodes.forEach(function(d) {
-    //    var parent = _.find(vis.topwordsData, function(o) { return o.id== d.key; });
-    //    parent.font_size =5;
-    //
-    //    d.values.forEach(function(c){
-    //        var child = _.find(vis.topwordsData, function(o) { return o.id== c.t_id; });
-    //        var font_size = 5;
-    //        if((parent.word_1 == child.word_1) || (parent.word_1 == child.word_2) || (parent.word_1 == child.word_3)){
-    //            parent.font_size++;
-    //        }
-    //        if((parent.word_2 == child.word_1) || (parent.word_2 == child.word_2) || (parent.word_2 == child.word_3)){
-    //            parent.font_size++;
-    //        }
-    //        if((parent.word_3 == child.word_1) || (parent.word_3 == child.word_2) || (parent.word_3 == child.word_3)){
-    //            parent.font_size++;
-    //        }
-    //    });
-    //
-    //    if(parent.font_size > 30){
-    //        parent.font_size =30;
-    //    }
-    //    vis.nodeWords.push(parent);
-    //});
-
     // Option 2: Get the top 3 words for each node - Based on word count (Words already ranked based on score in topwords)
     topNodes.forEach(function(d) {
         var parent = _.find(vis.topwordsData, function(o) { return o.id== d.key; });
@@ -819,6 +853,7 @@ FullText.prototype.generateNodeWords = function (){
         });
         //console.log(words);
         allWords = _.orderBy(allWords, ['count'],['desc']);
+        //console.log(allWords);
         allWords = _.slice(allWords,0,3);
         vis.nodeWords.push({id:parent.id,words:allWords[0].word+", "+allWords[1].word+", "+allWords[2].word,font_size:vis.nodeTextFontSize(allWords[0].count)});
     });
