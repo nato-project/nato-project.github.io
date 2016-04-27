@@ -64,11 +64,13 @@ TimelineIndex.prototype.initVis = function(){
         .call(vis.xAxis)
         .selectAll(".tick text")
         .style("text-anchor", "start")
-        .attr("x", 6)
-        .attr("y", 6);
-    vis.svg.select("timeline-axis")
-        .selectAll("text")
-        .attr("style","font-size:25;");
+        .attr("x", 8)
+        .attr("y", 6)
+        .attr("style","font-size:13;");
+
+    //vis.svg.select("timeline-axis")
+    //    .selectAll("text")
+    //    .attr("style","font-size:25;");
 
     // Prepare Data for Timeline
     vis.data = _.orderBy(vis.data, ['date'],['asc']);
@@ -181,11 +183,11 @@ TimelineIndex.prototype.initVis = function(){
     vis.svgmain.append("text")
         .attr("style","font-size:15;")
         .attr("x",2)
-        .attr("y",vis.height+23)
+        .attr("y",vis.height+25)
         .text("2014");
     vis.svgmain.append("text")
         .attr("style","font-size:15;")
-        .attr("x",vis.width+30)
+        .attr("x",vis.width+33)
         .attr("y",vis.height+25)
         .text("2015");
 
