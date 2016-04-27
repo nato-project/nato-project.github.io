@@ -69,6 +69,7 @@ TimelineIndex.prototype.initVis = function(){
         .attr("style","font-size:25;");
 
     // Prepare Data for Timeline
+    vis.data = _.orderBy(vis.data, ['date'],['asc']);
     vis.killed_wounded = [];
     vis.data.forEach(function (d, i) {
         var index =0;
@@ -96,14 +97,25 @@ TimelineIndex.prototype.initVis = function(){
         .append("g")
         .attr("transform", function(d, i) { return "translate(" + (vis.x(d.date)) + ",0)"; });
 
+    var increment = 50;
+
     // Incidents
     vis.bar.append("rect")
         .attr("y", function(d) { return 20; })
         .attr("height", function(d) { return vis.height-20; })
         .attr("width", 1)
-        .attr("fill",COMMON_COLORS.INCIDENT);
+        .attr("fill",COMMON_COLORS.INCIDENT)
+        .style("opacity", 0)
+        .transition()
+        .delay(function(d, i) {
+            increment = increment +5;
+            return increment;
+        })
+        .duration(250)
+        .style("opacity", 1);
 
     // Killed or Wounded
+    var increment = 50;
     vis.circle.append("svg:image")
         .attr("x",1)
         .attr("y", function(d) {
@@ -117,7 +129,15 @@ TimelineIndex.prototype.initVis = function(){
             }else{
                 return "img/person-wounded.svg";
             }
-        });
+        })
+        .style("opacity", 0)
+        .transition()
+        .delay(function(d, i) {
+            increment = increment +15;
+            return increment;
+        })
+        .duration(250)
+        .style("opacity", 1);
 
     // Legend
     vis.svgmain.append("svg:image")
