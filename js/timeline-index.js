@@ -27,7 +27,7 @@ TimelineIndex = function(_parentElement, _data,_width,_height){
 TimelineIndex.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 10, right: 30, bottom: 20, left: 40};
+    vis.margin = {top: 10, right: 50, bottom: 20, left: 50};
 
     vis.width = vis.width - vis.margin.left - vis.margin.right,
         vis.height = vis.height - vis.margin.top - vis.margin.bottom;
@@ -38,8 +38,6 @@ TimelineIndex.prototype.initVis = function(){
     vis.svgmain = d3.select("#" + vis.parentElement).append("svg")
         .attr("x",0)
         .attr("y",0)
-        .attr("class", "img-responsive")
-        .attr("preserveAspectRatio","xMidYMid")
         .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom));
 
     vis.svg = vis.svgmain.append("g")
@@ -64,13 +62,11 @@ TimelineIndex.prototype.initVis = function(){
         .call(vis.xAxis)
         .selectAll(".tick text")
         .style("text-anchor", "start")
-        .attr("x", 8)
-        .attr("y", 6)
-        .attr("style","font-size:13;");
-
-    //vis.svg.select("timeline-axis")
-    //    .selectAll("text")
-    //    .attr("style","font-size:25;");
+        .attr("x", 6)
+        .attr("y", 6);
+    vis.svg.select("timeline-axis")
+        .selectAll("text")
+        .attr("style","font-size:25;");
 
     // Prepare Data for Timeline
     vis.data = _.orderBy(vis.data, ['date'],['asc']);
@@ -183,11 +179,11 @@ TimelineIndex.prototype.initVis = function(){
     vis.svgmain.append("text")
         .attr("style","font-size:15;")
         .attr("x",2)
-        .attr("y",vis.height+25)
+        .attr("y",vis.height+23)
         .text("2014");
     vis.svgmain.append("text")
         .attr("style","font-size:15;")
-        .attr("x",vis.width+33)
+        .attr("x",vis.width+40)
         .attr("y",vis.height+25)
         .text("2015");
 

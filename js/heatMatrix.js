@@ -24,7 +24,7 @@ HeatMatrix.prototype.initVis = function(){
 
 	vis.barColor = "lightgrey";
 	vis.matrixW = 550, vis.matrixH = 900, vis.cityBarW = 60, vis.timeBarH = 60;
-	vis.timeBottom = 15; // Included in vis.height
+	vis.timeBottom = 20; // Included in vis.height
 	vis.cityLeft = 5; // Included in vis.width
 	vis.maxRows = 60;
 	vis.rowHeight = vis.matrixH/vis.maxRows;
@@ -127,9 +127,34 @@ HeatMatrix.prototype.initTimeBarChart = function() {
 		vis.timeBarData.push(0);
 	}
 	
-    // Create scale
+    // Create time scale and axis
     vis.yScale = d3.scale.linear()
         .range([0, vis.timeBarH]);
+	vis.time = d3.time.scale()
+		.domain([new Date(2014, 0, 1), new Date(2015, 11, 31)])
+		.range([0, vis.matrixW]);
+	vis.timeAxis = d3.svg.axis()
+		.scale(vis.time)
+		.orient("bottom")
+		.ticks(d3.time.months)
+		.tickSize(3, 0)
+		.tickFormat(d3.time.format("%b"));
+	tbcsvg.append("g")
+		.attr("class", "timeline-axis")
+		.attr("transform", "translate(0," + (vis.timeBarH+2) + ")")
+		.call(vis.timeAxis)
+
+	// Add year titles
+	tbcsvg.append("text")
+		.attr("style","font-size:10;")
+		.attr("x", -33)
+		.attr("y", vis.timeBarH+10)
+		.text("2014");
+	tbcsvg.append("text")
+		.attr("style","font-size:10;")
+		.attr("x", vis.matrixW+5)
+		.attr("y", vis.timeBarH+10)
+		.text("2015");
 
     // Create a bar for each month
     tbcsvg.append("g").attr("id", "monthBarG").selectAll(".monthBar")
@@ -152,7 +177,7 @@ HeatMatrix.prototype.initTimeBarChart = function() {
    	    .style("text-anchor", "end");
 
     // Custom bar axis labels
-    tbcsvg.append("g").attr("id", "monthLabelG").selectAll(".monthLabel")
+    /*tbcsvg.append("g").attr("id", "monthLabelG").selectAll(".monthLabel")
 	    .data(vis.timeBarData)
 	    .enter()
 	    .append("text")
@@ -165,7 +190,7 @@ HeatMatrix.prototype.initTimeBarChart = function() {
 	    	return month + "/" + year;
 	    })
 	    .style("font-size", "10px")
-	    .style("text-anchor", "end");
+	    .style("text-anchor", "end");*/
 }
 
 HeatMatrix.prototype.initCityBarChart = function(){

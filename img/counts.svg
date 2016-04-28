@@ -2,7 +2,7 @@
 <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 963 162" class="img-responsive" xml:space="preserve">
+	 viewBox="0 0 963 162" style="enable-background:new 0 0 963 162;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
 	.st1{fill:#ff8100;}
@@ -22,13 +22,13 @@
 <rect x="800" y="100" class="st0" width="163" height="55"/>
 <text transform="matrix(1 0 0 1 800 125.7036)" class="st13 st2 st3">Incidents</text>
 <rect x="452" y="100" class="st0" width="163" height="55"/>
-<text transform="matrix(1 0 0 1 455 125.7036)" class="st1 st2 st3">Wounded</text>
+<text transform="matrix(1 0 0 1 452 125.7036)" class="st1 st2 st3">Wounded</text>
 <rect x="165" y="100" class="st0" width="115" height="55"/>
 <text transform="matrix(1 0 0 1 165 125.7036)" class="st4 st2 st3">Killed</text>
 <rect x="800" y="33" class="st0" width="124" height="61"/>
 <text id="counts_total" transform="matrix(1 0 0 1 800 84.4072)" class="st13 st2 st5">650</text>
 <rect x="443" y="33" class="st0" width="124" height="61"/>
-<text id="counts_wia" transform="matrix(1 0 0 1 452 84.4072)" class="st1 st2 st5">152</text>
+<text id="counts_wia" transform="matrix(1 0 0 1 443 84.4072)" class="st1 st2 st5">152</text>
 <rect x="164" y="33" class="st0" width="110" height="61"/>
 <text id="counts_kia" transform="matrix(1 0 0 1 164 84.4072)" class="st4 st2 st5">65</text>
 <g>
