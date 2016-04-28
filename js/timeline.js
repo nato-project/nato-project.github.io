@@ -36,6 +36,7 @@ Timeline.prototype.initVis = function(){
 	vis.svgmain = d3.select("#" + vis.parentElement).append("svg")
 		.attr("x",0)
 		.attr("y",0)
+		.attr("class", "img-responsive")
 		.attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom));
 
 	vis.svg = vis.svgmain.append("g")
