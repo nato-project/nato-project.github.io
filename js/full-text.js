@@ -37,7 +37,7 @@ FullText.prototype.initVis = function() {
         .attr("x",0)
         .attr("y",0)
         .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
-        .attr("class","vis-container")
+        .attr("class","img-responsive")
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
@@ -60,9 +60,9 @@ FullText.prototype.initVis = function() {
 
     // Node Text Font Size
     vis.nodeTextFontSize = d3.scale.linear();
-    vis.nodeTextFontSize.domain([1,300]).range([12,30]);
+    vis.nodeTextFontSize.domain([1,300]).range([10,25]);
 
-    vis.typeList = [];
+
     vis.texttimelinetitle = d3.select("#text-timeline-title");
 
     vis.findNode = function(id){
@@ -71,16 +71,17 @@ FullText.prototype.initVis = function() {
     }
 
     // Create nodes and links
-    vis.iedData.forEach(function(d) {
+    vis.displayData.forEach(function(d) {
         //if(d.id ==24){
         //    vis.nodes.push({name: d.id,id: d.id,x:365, y:90, fixed:true});
         //}else{
             vis.nodes.push({name: d.id,id: d.id});
         //}
 
-        if(vis.typeList.indexOf(d.type) == -1){
-            vis.typeList.push(d.type);
-        }
+        //if(vis.typeList.indexOf(d.type) == -1){
+        //    vis.typeList.push(d.type);
+        //}
+
         // Add nodes only if we have a link
         //if((_.findIndex(vis.textLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
         //    vis.nodes.push({name: d.id,id: d.id});
@@ -89,6 +90,18 @@ FullText.prototype.initVis = function() {
         //    }
         //}
     });
+
+    vis.getTypeList = function(){
+        vis.typeList = [];
+        var uniqTypes = _.uniqBy(vis.displayData, 'type');
+        uniqTypes.forEach(function(d) {
+            vis.typeList.push({type:d.type});
+        });
+        vis.typeList = _.orderBy(vis.typeList, ['type']);
+    }
+    vis.getTypeList();
+
+
     var src,tgt;
     vis.textLinkData.forEach(function(d) {
         src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
@@ -101,7 +114,7 @@ FullText.prototype.initVis = function() {
     });
     //console.log(vis.nodes);
     //console.log(vis.links);
-    //console.log(vis.typeList);
+    console.log(vis.typeList);
 
     vis.generateNodeWords();
 
@@ -109,7 +122,7 @@ FullText.prototype.initVis = function() {
     //console.log(vis.nodeWords);
     vis.nodewordPositions = [[320,60],[360,420],[220,100],[260,390],[480,370],[420,120],[180,180],[330,150],[380,350],[520,200],[180,270],[350,300],[350,230],[350,200],[490,270]];
 
-    vis.positionNodeWords =  function(){
+    vis.positionNodeWords =  function(fix){
         if(vis.nodeWords.length <10){
             return;
         }
@@ -119,11 +132,11 @@ FullText.prototype.initVis = function() {
             if(node){
                 node.x = vis.nodewordPositions[i][0];
                 node.y = vis.nodewordPositions[i][1];
-                node.fixed = true;
+                node.fixed = fix;
             }
         });
     }
-    vis.positionNodeWords();
+    vis.positionNodeWords(true);
 
     // 1) INITIALIZE FORCE-LAYOUT
     vis.force = d3.layout.force()
@@ -207,13 +220,16 @@ FullText.prototype.initVis = function() {
         vis.displayText(vis.nodeClickTextList);
     }
 
-    // Node Text
+    // Node Text Bg Rectangle
     vis.nodeTextRectItems = vis.svg.append("g").selectAll(".force-layout-text-rect")
         .data(vis.nodeWords)
         .enter().append("rect")
         .attr("class", "force-layout-text-rect")
-        .style("fill", "#FFFDC4")
-        .style("fill-opacity",0.4)
+        .attr("id",function(d,i){
+            return "nodeTextRectItems_"+i;
+        })
+        .style("fill", "none")
+        .style("fill-opacity",0.7)
         .on("click", function(d) {
             vis.nodeTextClick(d);
         })
@@ -230,8 +246,20 @@ FullText.prototype.initVis = function() {
         })
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
-        .on("click", function(d) {
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#nodeTextRectItems_"+i).style("fill", "#FFFDC4");
             vis.nodeTextClick(d);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#nodeTextRectItems_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#nodeTextRectItems_"+i).style("fill", "none");
+            }
         })
         .style("cursor","pointer");
 
@@ -257,7 +285,12 @@ FullText.prototype.initVis = function() {
 
 
     // 5) Force TICK
-    vis.force.on("tick", function() {
+    vis.force.on("tick", function(e) {
+
+        //console.log(e);
+        //if(e.alpha > 0.05 && e.alpha < 0.06){
+        //    vis.positionNodeWords(true);
+        //}
 
         // Update edge coordinates
         vis.linkItems.attr("x1", function(d) { return d.source.x; })
@@ -333,12 +366,38 @@ FullText.prototype.initVis = function() {
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
         .style("cursor","pointer");
+
+    vis.legendRect = vis.legend.append("rect")
+        .attr("width",80)
+        .attr("height",15)
+        .attr("id",function(d,i){
+            return "legendRect_"+i;
+        })
+        .style("fill", "none")
+        .style("fill-opacity",0.7)
+        .on("click", function(d) {
+            vis.legendClick(d.type);
+        })
+        .style("cursor","pointer");
+
     vis.legendbox = vis.legend.append("rect")
         .attr("width", 15)
         .attr("height", 15)
-        .style("fill", function(d){return vis.color(d);})
-        .on("click", function(d) {
-            vis.legendClick(d);
+        .style("fill", function(d){return vis.color(d.type);})
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+            vis.legendClick(d.type);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#legendRect_"+i).style("fill", "none");
+            }
         });
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
@@ -349,11 +408,23 @@ FullText.prototype.initVis = function() {
             return "#000000";
         })
         .text(function(d){
-            return d;
+            return d.type;
         })
         .style("font-size",8)
-        .on("click", function(d) {
-            vis.legendClick(d);
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+            vis.legendClick(d.type);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#legendRect_"+i).style("fill", "none");
+            }
         });
 
     vis.legendClick = function(d){
@@ -375,13 +446,24 @@ FullText.prototype.initVis = function() {
     vis.casualtyLegend = vis.svg.append("g")
         .attr("transform", "translate(" + (vis.width - 70) + "," + (10) + ")")
         .selectAll("g")
-        .data(["Killed","Wounded"])
+        .data([{name:"Killed"},{name:"Wounded"}])
         .enter()
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
         .style("cursor","pointer");
 
-    //vis.casualtyLegendRect = vis.casualtyLegend.append("rect")
+    vis.casualtyLegendRect = vis.casualtyLegend.append("rect")
+        .attr("width",55)
+        .attr("height",15)
+        .style("fill", "none")
+        .style("fill-opacity",0.7)
+        .attr("id",function(d,i){
+            return "casualtyLegendRect_"+i;
+        })
+        .on("click", function(d) {
+            vis.casualtyLegendClick(d.name);
+        })
+        .style("cursor","pointer");
 
     vis.casualtyLegendIcon = vis.casualtyLegend.append("svg:image")
         .attr("width",13)
@@ -393,8 +475,20 @@ FullText.prototype.initVis = function() {
                 return "img/person-wounded.svg";
             }
         })
-        .on("click", function(d) {
-            vis.casualtyLegendClick(d);
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#casualtyLegendRect_"+i).style("fill", "#FFFDC4");
+            vis.casualtyLegendClick(d.name);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#casualtyLegendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#casualtyLegendRect_"+i).style("fill", "none");
+            }
         });
     vis.casualtyLegendLabels = vis.casualtyLegend.append("text")
         .attr("class", "force-layout-casualtylegend-labels")
@@ -402,11 +496,23 @@ FullText.prototype.initVis = function() {
         .attr("y", 10)
         .style("fill", "#000000")
         .text(function(d){
-            return d;
+            return d.name;
         })
         .style("font-size",8)
-        .on("click", function(d) {
-            vis.casualtyLegendClick(d);
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#casualtyLegendRect_"+i).style("fill", "#FFFDC4");
+            vis.casualtyLegendClick(d.name);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#casualtyLegendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#casualtyLegendRect_"+i).style("fill", "none");
+            }
         });
 
     vis.casualtyLegendClick = function(d){
@@ -430,6 +536,24 @@ FullText.prototype.initVis = function() {
         vis.displayText(nodes);
     }
 
+    vis.unSelectAllLegends = function(){
+
+        // Casuality Legend
+        vis.casualtyLegendRect.style("fill", function(d){
+            d.clicked = false;
+            return "none";
+        });
+        // Types Legend
+        vis.legendRect.style("fill", function(d){
+            d.clicked = false;
+            return "none";
+        });
+        // Node Words
+        vis.nodeTextRectItems.style("fill", function(d){
+            d.clicked = false;
+            return "none";
+        });
+    }
 
     vis.textTimeline = d3.select("#text-timeline");
     vis.textTimeline1 = d3.select("#text-timeline1");
@@ -457,7 +581,6 @@ FullText.prototype.wrangleData = function() {
 
     // Build Nodes and links from new dataset
     vis.nodes =[];
-    vis.typeList = [];
     vis.displayTextLinkData = [];
     vis.textLinkData.forEach(function(d) {
         if (d.cs_value >= (vis.threshold / 100)) {
@@ -466,9 +589,9 @@ FullText.prototype.wrangleData = function() {
     });
     vis.displayData.forEach(function(d) {
         vis.nodes.push({name: d.id,id: d.id});
-        if(vis.typeList.indexOf(d.type) == -1){
-            vis.typeList.push(d.type);
-        }
+        //if(vis.typeList.indexOf(d.type) == -1){
+        //    vis.typeList.push(d.type);
+        //}
         //// Add nodes only if we have a link
         //if((_.findIndex(vis.displayTextLinkData,function(o){ return (o.s_id == d.id) || (o.t_id == d.id)}) > -1)){
         //    vis.nodes.push({name: d.id,id: d.id});
@@ -477,6 +600,8 @@ FullText.prototype.wrangleData = function() {
         //    }
         //}
     });
+    vis.getTypeList();
+
     var src,tgt;
     vis.links = [];
 
@@ -504,7 +629,7 @@ FullText.prototype.updateVis = function() {
 
     vis.force.stop();
 
-    vis.positionNodeWords();
+    vis.positionNodeWords(true);
 
     vis.force.nodes(vis.nodes)
         .links(vis.links);
@@ -600,8 +725,11 @@ FullText.prototype.updateVis = function() {
     vis.nodeTextRectItems.enter()
         .append("rect")
         .attr("class", "force-layout-text-rect")
-        .style("fill", "#FFFDC4")
-        .style("fill-opacity",0.4)
+        .attr("id",function(d,i){
+            return "nodeTextRectItems_"+i;
+        })
+        .style("fill", "none")
+        .style("fill-opacity",0.7)
         .on("click", function(d) {
             vis.nodeTextClick(d);
         })
@@ -622,8 +750,20 @@ FullText.prototype.updateVis = function() {
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
         .style("cursor","pointer")
-        .on("click", function(d) {
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#nodeTextRectItems_"+i).style("fill", "#FFFDC4");
             vis.nodeTextClick(d);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#nodeTextRectItems_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#nodeTextRectItems_"+i).style("fill", "none");
+            }
         });
 
     // Set the width/height of the rect behind node word
@@ -639,11 +779,42 @@ FullText.prototype.updateVis = function() {
     vis.legend.enter()
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+
+    vis.legendRect.remove();
+    vis.legendRect = vis.legend.append("rect")
+        .attr("width",80)
+        .attr("height",15)
+        .attr("id",function(d,i){
+            return "legendRect_"+i;
+        })
+        .style("fill", "none")
+        .style("fill-opacity",0.7)
+        .on("click", function(d) {
+            vis.legendClick(d.type);
+        })
+        .style("cursor","pointer");
+
     vis.legendbox.remove();
     vis.legendbox = vis.legend.append("rect")
         .attr("width", 15)
         .attr("height", 15)
-        .style("fill", function(d){return vis.color(d);});
+        .style("fill", function(d){return vis.color(d.type);})
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+            vis.legendClick(d.type);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#legendRect_"+i).style("fill", "none");
+            }
+        });
+
     vis.legendlabels.remove();
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
@@ -654,11 +825,23 @@ FullText.prototype.updateVis = function() {
             return "#000000";
         })
         .text(function(d){
-            return d;
+            return d.type;
         })
         .style("font-size",8)
-        .on("click", function(d) {
-            vis.legendClick(d);
+        .on("click", function(d,i) {
+            vis.unSelectAllLegends();
+            d.clicked = true;
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+            vis.legendClick(d.type);
+        })
+        .on("mouseover",function(d,i){
+            d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
+        })
+        .on("mouseout",function(d,i){
+            //console.log(d);
+            if(!d.clicked){
+                d3.select("#legendRect_"+i).style("fill", "none");
+            }
         });
 
 }
