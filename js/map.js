@@ -15,8 +15,8 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.selectedRegion = "";
 
     // For region color
-    this.dataType = "population";
-    this.dataLabel = "Population";
+    this.dataType = "pct_russian_speakers";
+    this.dataLabel = "% Russian Spearkers";
     // For circle color
     this.circleType = "type";
     this.circleLabel = "Type";
@@ -74,7 +74,7 @@ Map.prototype.initVis = function(){
         var tipContent = "";
         tipContent += "<div class='tooltip-content text-center'><img src='img/flags/"+ d.id + ".png' style='margin:5px'>" + d.properties.name + " Oblast</div>";
         tipContent += "<div class='tooltip-content text-center'>IED Events: " + data.IEDevents + " / Killed: " + data.KIA + " / Wounded: "+data.WIA+"</div>";
-        tipContent += "<div class='tooltip-content text-center'>Area: " + data.area + "km2 / Population: "+ data.population + "</div>";
+        tipContent += "<div class='tooltip-content text-center'>Area: " + nbFormat(data.area) + "km2 / Population: "+ nbFormat(data.population) + "</div>";
 
         return tipContent;
     });
@@ -150,18 +150,17 @@ Map.prototype.initVis = function(){
     vis.side = 20;
 
     // Create legend
-    var legend = vis.svg.append("g")
-        .attr("transform", "translate(100, 315)")
+    vis.legend = vis.svg.append("g")
+        .attr("transform", "translate(110, 330)")
         .attr("id", "legend");
-
     // Legend title
-    legend.append("text")
+    vis.legend.append("text")
         .attr("text-anchor","end")
-        .attr("transform", "translate(10, -8)")
+        .attr("transform", "translate(25, -8)")
         .attr("id","legendTitle");
 
     // Add color squares
-    legend.append("g").selectAll("rect")
+    vis.legend.append("g").selectAll("rect")
         .data(legendColors)
         .enter()
         .append("rect")
@@ -175,7 +174,7 @@ Map.prototype.initVis = function(){
         });
 
     // Add values
-    legend.append("g").selectAll("text")
+    vis.legend.append("g").selectAll("text")
         .data(legendValues)
         .enter()
         .append("text")
@@ -194,8 +193,10 @@ Map.prototype.initVis = function(){
     vis.circleColor = vis.circleColorType;
 
     // Legend
-    vis.clegend = vis.svg.append("g")
-        .attr("transform", "translate(130,300)")
+    var topLegend = vis.svg.append("g")
+        .attr("id", "topLegend");
+    vis.clegend = topLegend.append("g")
+        .attr("transform", "translate(150,300)")
         .selectAll("g")
         .data(vis.circleColor.range())
         .enter()
@@ -296,7 +297,7 @@ Map.prototype.updateVis = function() {
     d3.select("#legendTitle").text(vis.dataLabel);
     var legendValues = [0];
     vis.colors.range().forEach(function(d,i) {
-        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
+        legendValues.push(nbFormat(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1]))));
     });
     legendValues[legendValues.length-1] = "No data";
     var entries = vis.svg.selectAll(".legendValue")
@@ -350,6 +351,11 @@ Map.prototype.updateVis = function() {
     circ.exit().remove();
 
     // Circle legend
+    if (vis.circleType == "type") {
+        d3.select("#topLegend").attr("transform", "translate(0,0)");
+    } else {
+        d3.select("#topLegend").attr("transform", "translate(0,50)");
+    }
     d3.select("#colorLegendTitle").text(vis.circleLabel);
     vis.clegend = vis.clegend.data(vis.circleColor.range());
     vis.clegend.exit().remove();
@@ -383,3 +389,53 @@ Map.prototype.updateVis = function() {
             console.log(vis.circleColor.domain()[i]);
         });
 }
+
+function nbFormat(number) {
+    // Add comma between thousands
+    return number.toLocaleString('en-US', {minimumFractionDigits: 0});
+}
+
+/*
+Map.prototype.displayTextOnSection = function(textTimeline,nodes,words) {
+    var wordList = [];
+    if(words){
+        wordList = words.split(', ');
+    }
+    var textTimelineBlock = textTimeline.selectAll("div")
+        .data(nodes)
+        .enter()
+        .append("div")
+        .attr("class","cd-timeline-block");
+
+    var textTimelineBlockImg = textTimelineBlock.append("div")
+        .attr("class","cd-timeline-img cd-picture")
+        .append("img")
+        .attr("src",function(d){
+            if(d.kia >0){
+                return "img/person-killed.svg";
+            }else if(d.wia >0){
+                return "img/person-wounded.svg";
+            }else {
+                return "img/bomb.svg";
+            }
+        });
+
+    var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
+    textTimelineBlockContent.append("h2").text(function(d){
+        return vis.dateFormat(d.date);
+    });
+    textTimelineBlockContent.append("p").html(function(d){
+        var text = d.text;
+        wordList.forEach(function(d){
+            text = _.replace(text, new RegExp(d, "gi"), "<span class='important-word'>"+d+"</span>")
+        });
+
+        return text;
+    });
+    textTimelineBlockContent.append("span")
+        .attr("class","cd-date")
+        .text(function(d){
+            return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+        });
+}*/
+
