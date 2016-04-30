@@ -4,71 +4,17 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
 
     //funtion to return IED Type tooltip description
     formatIEDTypesTip = function(d) {
-        if ( d.name == "UNKNOWN" )
-        {
-            return "UNKNOWN" +
-                "\nDesc: For many incidents, the type of IED was not identified." +
+
+        if (IED_TYPE_DESC[d.name]) {
+            return d.name +
+                "\nDesc: " + IED_TYPE_DESC[d.name] +
                 "\nTotal: " + format(d.value);
         }
-        else if ( d.name == "CACHE/FOUND" )
-        {
-            return "CACHE/FOUND" +
-                "\nDesc: In some cases, the authorities discovered the IED before it could cause damage." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "HOAX/FALSE" )
-        {
-            return "HOAX/FALSE" +
-                "\nDesc: Some of the reported incidents turned out to be fake." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "VOIED" )
-        {
-            return "VOIED" +
-                "\nDesc: Victim-Operated IEDs, also known as booby traps, are designed to function upon contact with a victim. Switching methods include tripwire, pressure mats, spring-loaded release, push, pull or tilt." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "PROJECTED" )
-        {
-            return "PROJECTED" +
-                "\nDesc: Thrown or projected IEDs are used mostly from overhead passes." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "VBIED" )
-        {
-            return "VBIED" +
-                "\nDesc: A Vehicle Borne IED (VBIED) is a device that uses a vehicle as the package or container of the device." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "RCIED" )
-        {
-            return "RCIED" +
-                "\nDesc: The trigger for a Radio-Controlled IED (RCIED) is controlled by radio link." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "S-PBIED" )
-        {
-            return "S-PBIED" +
-                "\nDesc: Suicide Person-Borne IED usually refers to an individual wearing explosives and detonating them in order to kill others including themselves." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "CWIED" )
-        {
-            return "CWIED" +
-                "\nDesc: A Command-Wire IED uses an electrical firing cable that affords the user complete control over the device right up until the moment of initiation." +
-                "\nTotal: " + format(d.value);
-        }
-        else if ( d.name == "TIME DELAY" )
-        {
-            return "TIME DELAY" +
-                "\nDesc: This type of IED uses a time delay fuse to detonate at a later time." +
-                "\nTotal: " + format(d.value);
-        }
-        else
-        {
+        else {
             return d.name +
                 "\nTotal: " + format(d.value);
         }
+
 
     }
 
@@ -545,14 +491,6 @@ SankeyVis.prototype.updateVis = function() {
                 vis.tableFilter.outcome = d.outcome;
 
                 vis.texttimelinetitle.text(d.source.name + " → " + d.target.name);
-                /*
-                 vis.iedDetailDisplayData = vis.iedData.filter(function(s) {
-                 return ( s.city ).length > 1
-                 & ( s.type == d.type )
-                 & (( s.kia > 0 & d.outcome == "KIA")
-                 || ( s.wia > 0 & d.outcome == "WIA"))
-                 });
-                 */
                 vis.sankeyChanged = 0;
                 vis.wrangleData();
             });
