@@ -25,6 +25,19 @@ queue()
 
         // Create the visualizations
         createVis();
+
+        // Add mouse over to the explore data boxes
+        var exploreBoxes = d3.selectAll(".explore-data-container");
+        console.log(exploreBoxes);
+
+        exploreBoxes.on("mouseover",function(d){
+                d3.select(this).select("p").transition().duration(500).style("visibility", "hidden");
+                d3.select(this).select("img").transition().duration(500).style("opacity", 1);
+            })
+            .on("mouseout",function(d){
+                d3.select(this).select("p").transition().duration(500).style("visibility", "visible");
+                d3.select(this).select("img").transition().duration(500).style("opacity", 0.3);
+            })
     });
 
 function createVis() {

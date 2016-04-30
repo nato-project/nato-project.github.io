@@ -1,6 +1,9 @@
 body{
     font-family: "Open Sans", sans-serif;
 }
+a, a:link, a:visited {
+    text-decoration: none;
+}
 #nav-header {
 
     border-bottom: 4px solid #FFD500;
@@ -51,16 +54,63 @@ body{
     font-size: 24px;
     line-height: 30px;
 }
-.panel-info {
+.intro-vis-panel{
     border-color: #005BBB;
     border-radius: 0px;
 }
-.panel-info>.panel-heading {
+.explore-summary-panel{
+    border-color: #005BBB;
+    border-radius: 0px;
+}
+.explore-summary-panel>.panel-heading {
     color: #ffffff;
     background-color: #005BBB;
     border-color: #005BBB;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+}
+
+.explore-data-panel {
+    border-color: #005BBB;
+    border-radius: 0px;
+}
+.explore-data-panel>.panel-heading {
+    color: #ffffff;
+    background-color: #005BBB;
+    border-color: #005BBB;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.explore-data-panel>.panel-body {
+    height: 220px;
+    padding: 0px;
+
+}
+
+.explore-data-container {
+    position: relative;
+    overflow: hidden;
+
+}
+.explore-data-container p {
+    padding-top:70px;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-bottom:90px;
+    color: #005BBB;
+    font-size: 18pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+.explore-data-container img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.3;
 }
 
 .navbar {
