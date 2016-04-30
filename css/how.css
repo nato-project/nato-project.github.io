@@ -288,15 +288,16 @@
 }
 
 .range.range-primary input[type="range"]::-webkit-slider-thumb {
-    background-color: rgb(3, 20, 71);
+    background-color: #FFD500;
+    border: solid 1px #0f0f0f;
     /*background-color: rgb(66, 139, 202);*/
 }
 .range.range-primary input[type="range"]::-moz-range-thumb {
-    background-color: rgb(66, 139, 202);
+    background-color: #FFD500;
 }
 .range.range-primary output {
-    background-color: rgb(66, 139, 202);
+    background-color: #005BBB;
 }
 .range.range-primary input[type="range"] {
-    outline-color: rgb(66, 139, 202);
+    outline-color: #005BBB;
 }

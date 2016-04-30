@@ -133,7 +133,7 @@ h1,h2,h3,h4{
 }
 .page-header{
     padding-bottom: 9px;
-    margin-top: 40px;
+    margin-top: 25px;
     margin-right: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -234,7 +234,9 @@ body {
     height: 220px;
 }
 
-
+.index-box{
+    padding: 10px;
+}
 
 /*********************/
 /*  TOOLTIP OVERLAY  */
