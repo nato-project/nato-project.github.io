@@ -6,49 +6,67 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
     formatIEDTypesTip = function(d) {
         if ( d.name == "UNKNOWN" )
         {
-            return "Type: UNKNOWN" +
-                "\nDesc: The explosive type could not be identified" +
+            return "UNKNOWN" +
+                "\nDesc: For many incidents, the type of IED was not identified." +
                 "\nTotal: " + format(d.value);
         }
         else if ( d.name == "CACHE/FOUND" )
         {
-            return "Type: CACHE/FOUND" +
-                "\nDesc: The explosive device has been found before the blast" +
+            return "CACHE/FOUND" +
+                "\nDesc: In some cases, the authorities discovered the IED before it could cause damage." +
                 "\nTotal: " + format(d.value);
         }
-        else if ( d.name == "VOIDED" )
+        else if ( d.name == "HOAX/FALSE" )
         {
-            return "Type: VOIDED" +
-                "\nDesc: Exact definition missing" +
+            return "HOAX/FALSE" +
+                "\nDesc: Some of the reported incidents turned out to be fake." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "VOIED" )
+        {
+            return "VOIED" +
+                "\nDesc: Victim-Operated IEDs, also known as booby traps, are designed to function upon contact with a victim. Switching methods include tripwire, pressure mats, spring-loaded release, push, pull or tilt." +
                 "\nTotal: " + format(d.value);
         }
         else if ( d.name == "PROJECTED" )
         {
-            return "Type: PROJECTED" +
-                "\nDesc: Improvised grenades or mortars, used mostly from overhead passes." +
+            return "PROJECTED" +
+                "\nDesc: Thrown or projected IEDs are used mostly from overhead passes." +
                 "\nTotal: " + format(d.value);
         }
         else if ( d.name == "VBIED" )
         {
-            return "Type: VBIED" +
-                "\nDesc: Vehicle borne IEDs (VBIEDs) are devices that use a vehicle as the package or container of the device." +
+            return "VBIED" +
+                "\nDesc: A Vehicle Borne IED (VBIED) is a device that uses a vehicle as the package or container of the device." +
                 "\nTotal: " + format(d.value);
         }
         else if ( d.name == "RCIED" )
         {
-            return "Type: RCIED" +
-                "\nDesc: An RCIED is an IED which is Remotely Controlled and triggered by wireless communication." +
+            return "RCIED" +
+                "\nDesc: The trigger for a Radio-Controlled IED (RCIED) is controlled by radio link." +
                 "\nTotal: " + format(d.value);
         }
         else if ( d.name == "S-PBIED" )
         {
-            return "Type: S-PBIED" +
-                "\nDesc: The Suicide Pedestrian-Borne IED." +
+            return "S-PBIED" +
+                "\nDesc: Suicide Person-Borne IED usually refers to an individual wearing explosives and detonating them in order to kill others including themselves." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "CWIED" )
+        {
+            return "CWIED" +
+                "\nDesc: A Command-Wire IED uses an electrical firing cable that affords the user complete control over the device right up until the moment of initiation." +
+                "\nTotal: " + format(d.value);
+        }
+        else if ( d.name == "TIME DELAY" )
+        {
+            return "TIME DELAY" +
+                "\nDesc: This type of IED uses a time delay fuse to detonate at a later time." +
                 "\nTotal: " + format(d.value);
         }
         else
         {
-            return "Type: " + d.name +
+            return d.name +
                 "\nTotal: " + format(d.value);
         }
 

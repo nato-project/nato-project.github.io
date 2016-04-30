@@ -39,6 +39,8 @@ body {
     padding-left: 10px;
 }
 
+
+
 .cd-timeline-img-bot {
     position: absolute;
     top: 50px;
@@ -68,6 +70,10 @@ body {
 .cd-timeline-img-bot.cd-location {
     background: #f0ca45;
 }
+
+/*
+    Styles to format the button layout
+*/
 
 .button-list {
     display: table;
