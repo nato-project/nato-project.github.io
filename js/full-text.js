@@ -123,6 +123,7 @@ FullText.prototype.initVis = function() {
     vis.nodewordPositions = [[320,60],[360,420],[220,100],[260,390],[480,370],[420,120],[180,180],[330,150],[380,350],[520,200],[180,270],[350,300],[350,230],[350,200],[490,270]];
 
     vis.positionNodeWords =  function(fix){
+        console.log(vis.nodeWords);
         if(vis.nodeWords.length <10){
             return;
         }
@@ -241,9 +242,7 @@ FullText.prototype.initVis = function() {
         .enter().append("text")
         .attr("class", "force-layout-text")
         .style("font-size", function(d) { return d.font_size; })
-        .style("opacity", function(d) {
-            return 1;
-        })
+        .style("opacity", 0)
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
         .on("click", function(d,i) {
@@ -260,8 +259,11 @@ FullText.prototype.initVis = function() {
             if(!d.clicked){
                 d3.select("#nodeTextRectItems_"+i).style("fill", "none");
             }
-        })
-        .style("cursor","pointer");
+        });
+
+    vis.nodeTextItems.transition().delay(2000).duration(1000)
+        .style("cursor","pointer")
+        .style("opacity", 1);
 
     // Set the width/height of the rect behind node word
     vis.nodeTextRectItems.attr("width",function(d,i){
@@ -278,7 +280,7 @@ FullText.prototype.initVis = function() {
         relatedNodes.forEach(function(o){
             nodes.unshift(vis.findNode(o.t_id));
         });
-        vis.texttimelinetitle.text(d.words);
+        vis.texttimelinetitle.text("Top Words: "+d.words);
         vis.displayText(nodes, d.words);
     }
 
@@ -286,11 +288,6 @@ FullText.prototype.initVis = function() {
 
     // 5) Force TICK
     vis.force.on("tick", function(e) {
-
-        //console.log(e);
-        //if(e.alpha > 0.05 && e.alpha < 0.06){
-        //    vis.positionNodeWords(true);
-        //}
 
         // Update edge coordinates
         vis.linkItems.attr("x1", function(d) { return d.source.x; })
@@ -438,7 +435,7 @@ FullText.prototype.initVis = function() {
             }
         });
         //console.log(nodes.length);
-        vis.texttimelinetitle.text(d);
+        vis.texttimelinetitle.text("IED Type: "+d);
         vis.displayText(nodes);
     }
 
@@ -532,7 +529,7 @@ FullText.prototype.initVis = function() {
             }
         });
         //console.log(nodes.length);
-        vis.texttimelinetitle.text(d);
+        vis.texttimelinetitle.text("Casualty Outcome: "+d);
         vis.displayText(nodes);
     }
 
@@ -561,7 +558,10 @@ FullText.prototype.initVis = function() {
     vis.textTimeline3 = d3.select("#text-timeline3");
 
     // Simulate a node word click
-    setTimeout(function() { vis.nodeTextClick({id:24,words:"station, metro, central"}); }, 3000);
+    setTimeout(function() {
+        vis.nodeTextClick({id:24,words:"station, metro, central"});
+        d3.select("#nodeTextRectItems_0").style("fill", "#FFFDC4");
+    }, 2000);
 
 }
 
@@ -582,11 +582,13 @@ FullText.prototype.wrangleData = function() {
     // Build Nodes and links from new dataset
     vis.nodes =[];
     vis.displayTextLinkData = [];
+    var filteredDisplayTextLinkData = [];
     vis.textLinkData.forEach(function(d) {
         if (d.cs_value >= (vis.threshold / 100)) {
-            vis.displayTextLinkData.push(d);
+            filteredDisplayTextLinkData.push(d);
         }
     });
+
     vis.displayData.forEach(function(d) {
         vis.nodes.push({name: d.id,id: d.id});
         //if(vis.typeList.indexOf(d.type) == -1){
@@ -605,14 +607,20 @@ FullText.prototype.wrangleData = function() {
     var src,tgt;
     vis.links = [];
 
-    vis.displayTextLinkData.forEach(function(d) {
+    filteredDisplayTextLinkData.forEach(function(d) {
         src = _.findIndex(vis.nodes,function(o){ return o.id == d.s_id});
         tgt = _.findIndex(vis.nodes,function(o){ return o.id == d.t_id});
         //console.log(src + " / "+ tgt);
         if(src > -1 && tgt > -1) {
             vis.links.push({source: src, target: tgt, cs_value: d.cs_value});
+            vis.displayTextLinkData.push(d);
         }
     });
+    console.log(vis.displayTextLinkData);
+
+    console.log("Node count: "+vis.nodes.length);
+    console.log("Links count: "+vis.links.length);
+    console.log("displayTextLinkData count: "+vis.displayTextLinkData.length);
 
     vis.generateNodeWords();
     vis.generateKilledWounded();
@@ -628,6 +636,8 @@ FullText.prototype.updateVis = function() {
     var node;
 
     vis.force.stop();
+
+    vis.unSelectAllLegends();
 
     vis.positionNodeWords(true);
 
@@ -744,9 +754,7 @@ FullText.prototype.updateVis = function() {
         .text(function(d) { return d.words; });
 
     vis.nodeTextItems.style("font-size", function(d) { return d.font_size; })
-        .style("opacity", function(d) {
-            return 1;
-        })
+        .style("opacity", 0)
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
         .style("cursor","pointer")
@@ -765,6 +773,9 @@ FullText.prototype.updateVis = function() {
                 d3.select("#nodeTextRectItems_"+i).style("fill", "none");
             }
         });
+    vis.nodeTextItems.transition().delay(2000).duration(1000)
+        .style("cursor","pointer")
+        .style("opacity", 1);
 
     // Set the width/height of the rect behind node word
     vis.nodeTextRectItems.attr("width",function(d,i){
