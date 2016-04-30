@@ -6,7 +6,7 @@ var formatNumber = d3.format(",.0f"),    // zero decimal places
     formatIEDTypesTip = function(d) {
         if ( d.name == "UNKNOWN" )
         {
-            return "Type: UNKONWN" +
+            return "Type: UNKNOWN" +
                 "\nDesc: The explosive type could not be identified" +
                 "\nTotal: " + format(d.value);
         }
@@ -729,7 +729,20 @@ SankeyVis.prototype.displayText = function(nodes,words){
                 }else {
                     return "img/bomb.svg";
                 }
-            });
+            })
+            ;
+
+        var textTimelineBlockImgBot = textTimelineBlock.append("div")
+            .attr("class","cd-timeline-img-bot cd-picture")
+            .append("img")
+            .attr("src",function(d){
+                if(d.kia > 0 & d.wia > 0){
+                    return "img/person-wounded.svg";
+                }else {
+                    return "img/bomb.svg";
+                }
+            })
+            ;
 
         var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
         textTimelineBlockContent.append("h2").text(function(d){

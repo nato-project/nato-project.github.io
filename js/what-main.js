@@ -82,4 +82,52 @@ $("input:radio[name=reporttype]").click(function(){
 
         sankeyVis.wrangleData();
     }
-});
+})
+
+function showMeHoaxes(){
+    $("input:radio[name=reporttype]:radio[value=byTypeAndOutcome]").prop('checked', true);
+
+        sankeyVis.sankeySelection = "byTypeAndOutcome";
+        sankeyVis.sankeyChanged = 1;
+        sankeyVis.tableFilter.type = "HOAX/FALSE";
+        sankeyVis.tableFilter.outcome = "N/A";
+        sankeyVis.texttimelinetitle.text("HOAX/FALSE → No Casualties");
+
+        sankeyVis.wrangleData();
+}
+
+function showMeFound(){
+    $("input:radio[name=reporttype]:radio[value=byTypeAndOutcome]").prop('checked', true);
+
+    sankeyVis.sankeySelection = "byTypeAndOutcome";
+    sankeyVis.sankeyChanged = 1;
+    sankeyVis.tableFilter.type = "CACHE/FOUND";
+    sankeyVis.tableFilter.outcome = "N/A";
+    sankeyVis.texttimelinetitle.text("CACHE/FOUND → No Casualties");
+
+    sankeyVis.wrangleData();
+}
+
+function showMeRCIED(){
+    $("input:radio[name=reporttype]:radio[value=byType]").prop('checked', true);
+
+    sankeyVis.sankeySelection = "byType";
+    sankeyVis.sankeyChanged = 1;
+    sankeyVis.tableFilter.type = "RCIED";
+    sankeyVis.tableFilter.outcome = "Wounded";
+    sankeyVis.texttimelinetitle.text("RCIED → Wounded");
+
+    sankeyVis.wrangleData();
+}
+
+function showMeVBIED(){
+    $("input:radio[name=reporttype]:radio[value=byType]").prop('checked', true);
+
+    sankeyVis.sankeySelection = "byType";
+    sankeyVis.sankeyChanged = 1;
+    sankeyVis.tableFilter.type = "VBIED";
+    sankeyVis.tableFilter.outcome = "Killed";
+    sankeyVis.texttimelinetitle.text("VBIED → Killed");
+
+    sankeyVis.wrangleData();
+}
