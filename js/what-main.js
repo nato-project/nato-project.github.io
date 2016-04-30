@@ -73,8 +73,13 @@ $("input:radio[name=reporttype]").click(function(){
     if (sankeyVis.sankeySelection != $("input:radio[name=reporttype]:checked").val()) {
         sankeyVis.sankeySelection = $("input:radio[name=reporttype]:checked").val();
         sankeyVis.sankeyChanged = 1;
-        sankeyVis.tableFilter.type = "N/A";
-        sankeyVis.tableFilter.outcome = "N/A";
+//        sankeyVis.tableFilter.type = "N/A";
+//        sankeyVis.tableFilter.outcome = "N/A";
+        // initialize default selection
+        sankeyVis.tableFilter.type = "PROJECTED";
+        sankeyVis.tableFilter.outcome = "Wounded";
+        sankeyVis.texttimelinetitle.text("PROJECTED → Wounded");
+
         sankeyVis.wrangleData();
     }
 });
