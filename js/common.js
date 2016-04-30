@@ -56,3 +56,16 @@ var COMMON_COLORS ={
     "VBIED":"#fdb462",
     "VOIED":"#b3de69"
 }
+
+var IED_TYPE_DESC = {
+    "UNKNOWN": "For many incidents, the type of IED was not identified.",
+    "CACHE/FOUND": "In some cases, the authorities discovered the IED before it could cause damage.",
+    "HOAX/FALSE": "Some of the reported incidents turned out to be fake.",
+    "VOIED": "Victim-Operated IEDs, also known as booby traps, are designed to function upon contact with a victim. Switching methods include tripwire, pressure mats, spring-loaded release, push, pull or tilt.",
+    "PROJECTED": "Thrown or projected IEDs are used mostly from overhead passes.",
+    "VBIED": "A Vehicle Borne IED (VBIED) is a device that uses a vehicle as the package or container of the device.",
+    "RCIED": "The trigger for a Radio-Controlled IED (RCIED) is controlled by radio link.",
+    "S-PBIED": "Suicide Person-Borne IED usually refers to an individual wearing explosives and detonating them in order to kill others including themselves.",
+    "CWIED": "A Command-Wire IED uses an electrical firing cable that affords the user complete control over the device right up until the moment of initiation.",
+    "TIME DELAY": "This type of IED uses a time delay fuse to detonate at a later time."
+}
