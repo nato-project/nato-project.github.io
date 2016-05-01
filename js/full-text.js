@@ -430,10 +430,12 @@ FullText.prototype.initVis = function() {
             vis.legendClick(d.type);
         })
         .on("mouseover",function(d,i){
+            vis.iedTypeTip.show(d);
             d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
         })
         .on("mouseout",function(d,i){
             //console.log(d);
+            vis.iedTypeTip.hide(d);
             if(!d.clicked){
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
@@ -468,7 +470,14 @@ FullText.prototype.initVis = function() {
         vis.displayText(nodes);
     }
 
-
+    // IED Types legend tool tip
+    vis.iedTypeTip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+            return "<strong>"+ d.type+" "+IED_TYPE_DESC[d.type]+"</strong>";
+        });
+    vis.legend.call(vis.iedTypeTip);
 
     // Casualty Legend
     vis.casualtyLegend = vis.svg.append("g")
