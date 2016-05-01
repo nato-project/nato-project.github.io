@@ -994,6 +994,23 @@ FullText.prototype.displayText = function(nodes,words){
                 }
             });
 
+        var textTimelineBlockImgBot = textTimelineBlock.append("div")
+            .attr("class",function(d) {
+                if(d.kia > 0 & d.wia > 0){
+                    return "cd-timeline-img-bot cd-picture"
+                } else {
+                    return "";
+                }
+            })
+            .append("img")
+            .attr("src",function(d){
+                if(d.kia > 0 & d.wia > 0){
+                    return "img/person-wounded.svg";
+                }else {
+                    return "";
+                }
+            });
+
         var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
         textTimelineBlockContent.append("h2").text(function(d){
             return vis.dateFormat(d.date);

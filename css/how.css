@@ -119,6 +119,36 @@
     background: #f0ca45;
 }
 
+.cd-timeline-img-bot {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.cd-timeline-img-bot img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin-left: -12px;
+    margin-top: -12px;
+}
+.cd-timeline-img-bot.cd-picture {
+    background: #dfdfdf;
+}
+.cd-timeline-img-bot.cd-movie {
+    background: #c03b44;
+}
+.cd-timeline-img-bot.cd-location {
+    background: #f0ca45;
+}
+
 .cd-timeline-content {
     position: relative;
     margin-left: 60px;
