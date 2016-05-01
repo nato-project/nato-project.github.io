@@ -24,12 +24,12 @@ a, a:link, a:visited {
 .bgimage {
     background-image: url('../img/pg-26-ukraine-getty.png');
     background-size: 100%;
-    height: 338px;
+    height: 390px;
     padding-right: 0px;
     padding-left: 0px;
 }
 .bgimage-inside {
-    height: 338px;
+    height: 390px;
     background: linear-gradient(to bottom, #14babd 0%, rgba(20, 186, 189, 0.3) 50%, rgba(20, 186, 189, 0) 100%) !important;
 }
 
