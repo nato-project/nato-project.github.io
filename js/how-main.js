@@ -85,4 +85,10 @@ $("input:radio[name=reporttype]").click(function(){
     //fullTextVis.wrangleData();
 });
 
+function showMeSoldiersKilled() {
+    fullTextVis.SoldiersKilled();
+}
+function showMeWeaponsNoCasuality() {
+    fullTextVis.WeaponsNoCasuality();
+}
 

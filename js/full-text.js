@@ -192,7 +192,7 @@ FullText.prototype.initVis = function() {
 
     vis.nodeClickTextList = [];
     vis.nodeClick = function(d){
-        console.log(d);
+        //console.log(d);
         vis.nodeClickTextList.unshift(vis.findNode(d.id));
         vis.texttimelinetitle.text("");
         vis.displayText(vis.nodeClickTextList);
@@ -246,6 +246,7 @@ FullText.prototype.initVis = function() {
         .style("stroke", "#000000")
         .text(function(d) { return d.words; })
         .on("click", function(d,i) {
+            //console.log(i);
             vis.unSelectAllLegends();
             d.clicked = true;
             d3.select("#nodeTextRectItems_"+i).style("fill", "#FFFDC4");
@@ -273,6 +274,7 @@ FullText.prototype.initVis = function() {
     });
 
     vis.nodeTextClick = function(d){
+        console.log(d);
         // Find all children for node word
         var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
         var nodes = [];
@@ -283,7 +285,6 @@ FullText.prototype.initVis = function() {
         vis.texttimelinetitle.text("Top Words: "+d.words);
         vis.displayText(nodes, d.words);
     }
-
 
 
     // 5) Force TICK
@@ -365,7 +366,7 @@ FullText.prototype.initVis = function() {
         .style("cursor","pointer");
 
     vis.legendRect = vis.legend.append("rect")
-        .attr("width",80)
+        .attr("width",100)
         .attr("height",15)
         .attr("id",function(d,i){
             return "legendRect_"+i;
@@ -413,7 +414,7 @@ FullText.prototype.initVis = function() {
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
         .attr("x", 20)
-        .attr("y", 10)
+        .attr("y", 6)
         .style("fill", function(d){
             //return d;
             return "#000000";
@@ -437,7 +438,7 @@ FullText.prototype.initVis = function() {
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
         });
-    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 18).style("font-size",7);
+    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 14).style("font-size",7);
 
     vis.legendlabelsTspan.text(function(d){
         var kw = vis.NumberOfKilledWoundedByType(d.type);
@@ -565,6 +566,8 @@ FullText.prototype.initVis = function() {
 
     vis.unSelectAllLegends = function(){
 
+        vis.nodeClickTextList =[];
+
         // Casuality Legend
         vis.casualtyLegendRect.style("fill", function(d){
             d.clicked = false;
@@ -593,6 +596,16 @@ FullText.prototype.initVis = function() {
         d3.select("#nodeTextRectItems_0").style("fill", "#FFFDC4");
     }, 2000);
 
+    vis.SoldiersKilled = function(){
+        vis.unSelectAllLegends();
+        vis.nodeTextClick({id:49,words:"killed, soldier, due"});
+        d3.select("#nodeTextRectItems_6").style("fill", "#FFFDC4");
+    }
+    vis.WeaponsNoCasuality = function(){
+        vis.unSelectAllLegends();
+        vis.nodeTextClick({id:19,words:"weapons, explosives, cache"});
+        d3.select("#nodeTextRectItems_1").style("fill", "#FFFDC4");
+    }
 }
 
 FullText.prototype.wrangleData = function() {
@@ -819,11 +832,11 @@ FullText.prototype.updateVis = function() {
     vis.legend.exit().remove();
     vis.legend.enter()
         .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; });
+        .attr("transform", function(d, i) { return "translate(0," + (i * 25) + ")"; });
 
     vis.legendRect.remove();
     vis.legendRect = vis.legend.append("rect")
-        .attr("width",80)
+        .attr("width",100)
         .attr("height",15)
         .attr("id",function(d,i){
             return "legendRect_"+i;
@@ -860,7 +873,7 @@ FullText.prototype.updateVis = function() {
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
         .attr("x", 20)
-        .attr("y", 10)
+        .attr("y", 6)
         .style("fill", function(d){
             //return d;
             return "#000000";
@@ -884,7 +897,7 @@ FullText.prototype.updateVis = function() {
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
         });
-    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 18).style("font-size",7);
+    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 14).style("font-size",7);
 
     vis.legendlabelsTspan.text(function(d){
         var kw = vis.NumberOfKilledWoundedByType(d.type);
