@@ -114,7 +114,7 @@ FullText.prototype.initVis = function() {
     });
     //console.log(vis.nodes);
     //console.log(vis.links);
-    console.log(vis.typeList);
+    //console.log(vis.typeList);
 
     vis.generateNodeWords();
 
@@ -178,6 +178,7 @@ FullText.prototype.initVis = function() {
             return vis.linkWidth(d.cs_value);
         });
 
+
     // 4) DRAW THE NODES (SVG CIRCLE)
     vis.nodeItems = vis.svg.append("g").selectAll(".force-layout-node")
         .data(vis.nodes)
@@ -189,6 +190,17 @@ FullText.prototype.initVis = function() {
         .on("click", function(d) {
             vis.nodeClick(d);
         });
+
+    // Node tool tip
+    vis.nodeItemsTip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+
+            return "<p> "+ vis.findNode(d.id).text+"</p>";
+        });
+    vis.nodeItems.on("mouseover",vis.nodeItemsTip.show).on("mouseout",vis.nodeItemsTip.hide);
+    vis.nodeItems.call(vis.nodeItemsTip);
 
     vis.nodeClickTextList = [];
     vis.nodeClick = function(d){
@@ -214,6 +226,8 @@ FullText.prototype.initVis = function() {
         .on("click", function(d) {
             vis.nodeCasualtyClick(d);
         });
+    vis.nodeCasualtyItems.on("mouseover",vis.nodeItemsTip.show).on("mouseout",vis.nodeItemsTip.hide);
+    vis.nodeCasualtyItems.call(vis.nodeItemsTip);
 
     vis.nodeCasualtyClick = function(d){
         vis.nodeClickTextList.unshift(vis.findNode(d.id));
@@ -365,6 +379,15 @@ FullText.prototype.initVis = function() {
         .attr("transform", function(d, i) { return "translate(0," + (i * 25) + ")"; })
         .style("cursor","pointer");
 
+    // IED Types legend tool tip
+    vis.iedTypeTip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+            return "<p class='tooltip-title'>"+ d.type+"</p><p> "+IED_TYPE_DESC[d.type]+"</p>";
+        });
+    vis.legend.call(vis.iedTypeTip);
+
     vis.legendRect = vis.legend.append("rect")
         .attr("width",100)
         .attr("height",15)
@@ -389,10 +412,12 @@ FullText.prototype.initVis = function() {
             vis.legendClick(d.type);
         })
         .on("mouseover",function(d,i){
+            vis.iedTypeTip.show(d);
             d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
         })
         .on("mouseout",function(d,i){
             //console.log(d);
+            vis.iedTypeTip.hide(d);
             if(!d.clicked){
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
@@ -470,14 +495,8 @@ FullText.prototype.initVis = function() {
         vis.displayText(nodes);
     }
 
-    // IED Types legend tool tip
-    vis.iedTypeTip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function(d) {
-            return "<strong>"+ d.type+" "+IED_TYPE_DESC[d.type]+"</strong>";
-        });
-    vis.legend.call(vis.iedTypeTip);
+
+
 
     // Casualty Legend
     vis.casualtyLegend = vis.svg.append("g")
@@ -729,39 +748,15 @@ FullText.prototype.updateVis = function() {
     vis.nodeItems.enter()
         .append("circle")
         .attr("class", "force-layout-node")
-        .attr("r", 3);
+        .attr("r", 2);
 
-    vis.nodeItems.style("fill", function(d) {
-            node = vis.findNode(d.id);
-            if(vis.displaytype == "incidenttype") {
-                return vis.color(node.type);
-            }else{
-                if(node.kia >0){
-                    return vis.color("Killed");
-                }else if(node.wia >0){
-                    return vis.color("Wounded");
-                }else{
-                    return vis.color("No Casualities");
-                }
-            }
-        })
-        .style("stroke", function(d) {
-            node = vis.findNode(d.id);
-            if(vis.displaytype == "incidenttype") {
-                return vis.color(node.type);
-            }else{
-                if(node.kia >0){
-                    return vis.color("Killed");
-                }else if(node.wia >0){
-                    return vis.color("Wounded");
-                }else{
-                    return vis.color("No Casualities");
-                }
-            }
-        })
+    vis.nodeItems.style("fill", function(d) { return vis.color(vis.findNode(d.id).type); })
+        .style("stroke", function(d) { return vis.color(vis.findNode(d.id).type); })
         .on("click", function(d) {
             vis.nodeClick(d);
         });
+    vis.nodeItems.on("mouseover",vis.nodeItemsTip.show).on("mouseout",vis.nodeItemsTip.hide);
+    vis.nodeItems.call(vis.nodeItemsTip);
 
     // Update Casualty Icon
     vis.nodeCasualtyItems = vis.nodeCasualtyItems.data(vis.killed_wounded);
@@ -843,6 +838,8 @@ FullText.prototype.updateVis = function() {
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 25) + ")"; });
 
+    vis.legend.call(vis.iedTypeTip);
+
     vis.legendRect.remove();
     vis.legendRect = vis.legend.append("rect")
         .attr("width",100)
@@ -855,6 +852,8 @@ FullText.prototype.updateVis = function() {
         .on("click", function(d) {
             vis.legendClick(d.type);
         })
+        .on("mouseover",vis.iedTypeTip.show)
+        .on("mouseout",vis.iedTypeTip.hide)
         .style("cursor","pointer");
 
     vis.legendbox.remove();
@@ -869,14 +868,17 @@ FullText.prototype.updateVis = function() {
             vis.legendClick(d.type);
         })
         .on("mouseover",function(d,i){
+            vis.iedTypeTip.show(d);
             d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
         })
         .on("mouseout",function(d,i){
+            vis.iedTypeTip.hide(d);
             //console.log(d);
             if(!d.clicked){
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
-        });
+        })
+        .style("cursor","pointer");
 
     vis.legendlabels.remove();
     vis.legendlabels = vis.legend.append("text")
@@ -898,14 +900,18 @@ FullText.prototype.updateVis = function() {
             vis.legendClick(d.type);
         })
         .on("mouseover",function(d,i){
+            vis.iedTypeTip.show(d);
             d3.select("#legendRect_"+i).style("fill", "#FFFDC4");
         })
         .on("mouseout",function(d,i){
+            vis.iedTypeTip.hide(d);
             //console.log(d);
             if(!d.clicked){
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
-        });
+        })
+        .style("cursor","pointer");
+
     vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 14).style("font-size",7);
 
     vis.legendlabelsTspan.text(function(d){
