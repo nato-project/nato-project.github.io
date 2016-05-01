@@ -311,3 +311,23 @@ body {
 .d3-tip:after {
 
 }
+
+/*
+    Styles to format the button layout
+*/
+
+.button-list {
+    display: table;
+    width: 100%;
+}
+.button-list span {
+    display: table-cell;
+    text-align: center;
+}
+
+.button-list span:first-child {
+    text-align: left;
+}
+.button-list span:last-child {
+    text-align: right;
+}

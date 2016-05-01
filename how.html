@@ -23,23 +23,33 @@
             <h4>How the Incidents Occurred? - Interpreting the Free Text Reports</h4>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="fact">
                     <p>
-                        In this exploration we want to analyze the free text summary written for each incident. For the process of finding report similarity, we first used the TF-IDF and Cosine Similarity algorithms to find similarity between all the incident reports. Then for our analysis we consider two reports to be similar only if their threshold is 50% or higher.
-
-                        To gather important words across report clusters, we first find the three most important words in each of the reports. This was found using TF-IDF (Term Frequency, Inverse Document Frequency) scores. Then for each cluster of nodes we gather all the important words from each node and take the top three scored word. The font size of the words is determined by the frequency of occurrence in the cluster.
-
-
+                        In this exploration we want to analyze the free text summary written for each incident. Here we are visualizing the reports in bulk, as opposed to using keyword searches or word clouds in an attempt to figure out which of the 650 reports we should be reading. Rather than counting words we determine the most unusually occurring words in each report. Then we use a clustering algorithm to group reports that are similar. For this analysis we only include reports with a similarity of 50% or higher.
                     </p>
                     <p>
-                        By clustering the incident reports in this method we can see that most similar incidents that were reported in metro stations, administration buildings were hoax or false reports which leaded to no causalities.
-
+                        By clustering the incident reports in this method we can see that most similar incidents that were reported in metro stations and administration buildings were hoax or false reports which leaded to no causalities.
                     </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="fact">
+                    <p>
+                        Find out more about where these incidents occurred.
+                    </p>
+
+                    <a href="map.html" class="btn btn-primary" >Continue to Where Exploration <i class="fa fa-play" aria-hidden="true"></i></a>
+                    <br>
+                    <br>
+                    <p>
+                        In the reported incidents, many different types of IEDs were mentioned. Some types are more dangerous than others.
+                    </p>
+
+                    <a href="what.html" class="btn btn-primary" >Continue to IED Types Exploration <i class="fa fa-play" aria-hidden="true"></i></a>
 
                 </div>
             </div>
-
         </div>
         <div class="row-spacer"></div>
         <div class="row">
