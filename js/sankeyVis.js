@@ -134,6 +134,9 @@ SankeyVis.prototype.initVis = function() {
     vis.texttimelinetitle = d3.select("#text-timeline-title");
     vis.texttimelinetitle.text("");
 
+    vis.texttimelineiedtype = d3.select("#text-timeline-ied-type");
+    vis.texttimelineiedtype.text("");
+
     vis.textTimeline = d3.select("#text-timeline");
     vis.textTimeline1 = d3.select("#text-timeline1");
     vis.textTimeline2 = d3.select("#text-timeline2");
@@ -144,6 +147,7 @@ SankeyVis.prototype.initVis = function() {
     vis.tableFilter.outcome = "Wounded";
 
     vis.texttimelinetitle.text("PROJECTED → Wounded");
+    vis.texttimelineiedtype.text("(PROJECTED: " + IED_TYPE_DESC["PROJECTED"] + ")");
 
     // Wrangle and update
     vis.wrangleData();
@@ -590,6 +594,13 @@ SankeyVis.prototype.updateVis = function() {
                 vis.tableFilter.outcome = d.outcome;
 
                 vis.texttimelinetitle.text(d.source.name + " → " + d.target.name);
+
+                if (IED_TYPE_DESC[d.source.name]) {
+                    vis.texttimelineiedtype.text("(" + d.source.name + ": " + IED_TYPE_DESC[d.source.name] + ")");
+                } else {
+                    vis.texttimelineiedtype.text("");
+                }
+
                 vis.sankeyChanged = 0;
                 vis.wrangleData();
             });
@@ -800,7 +811,7 @@ SankeyVis.prototype.displayText = function(nodes,words){
                 if(d.kia > 0 & d.wia > 0){
                     return "img/person-wounded.svg";
                 }else {
-                    return null;
+                    return "";
                 }
             })
             ;
