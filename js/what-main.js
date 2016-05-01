@@ -85,6 +85,7 @@ $("input:radio[name=reporttype]").click(function(){
             sankeyVis.tableFilter.type = "PROJECTED";
             sankeyVis.tableFilter.outcome = "Wounded";
             sankeyVis.texttimelinetitle.text("PROJECTED → Wounded");
+            sankeyVis.texttimelineiedtype.text("(PROJECTED: " + IED_TYPE_DESC["PROJECTED"] + ")");
         }
 
         sankeyVis.wrangleData();
