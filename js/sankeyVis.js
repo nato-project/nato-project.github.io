@@ -60,6 +60,7 @@ SankeyVis.prototype.initVis = function() {
     vis.tableFilter = new Object();
     vis.tableFilter.type = "N/A";
     vis.tableFilter.outcome = "N/A";
+    vis.tableFilter.region = "N/A";
     vis.sankeyChanged = 1;
     vis.sankeySelection = "byType";
 
@@ -202,6 +203,18 @@ SankeyVis.prototype.wrangleData = function() {
                         );
 
 
+            return third & fourth;
+        });
+    }
+    if (vis.sankeySelection == "byRegion") {
+
+        vis.iedDetailDisplayData = vis.iedDetailDisplayData.filter(function (d) {
+
+            var third = (vis.tableFilter.region == d.region) || vis.tableFilter.region == "N/A";
+            var fourth = ( vis.tableFilter.outcome == "Wounded" & d.wia > 0 )
+                || ( vis.tableFilter.outcome == "Killed" & d.kia > 0 )
+                || vis.tableFilter.outcome == "N/A";
+            return third & fourth;
             return third & fourth;
         });
     }
@@ -448,6 +461,91 @@ SankeyVis.prototype.wrangleData = function() {
 
     }
 
+    if (vis.sankeySelection == "byRegion") {
+
+        units = "Casualties";
+        //add main nodes
+        for (var i = 0; i < vis.displayData.length; i++) {
+            if (destinationNodesArray.indexOf(vis.displayData[i].region) < 0
+                & (vis.displayData[i].kia > 0 || vis.displayData[i].wia > 0 )) {
+                newNode = new Object()
+                newNode.node = vis.nodes.length;
+                newNode.name = vis.displayData[i].region;
+                vis.nodes.push(newNode);
+                destinationNodesArray[destinationNodesArray.length] = vis.displayData[i].region;
+            }
+        }
+        //add destination nodes
+        destinationNodesArray[destinationNodesArray.length] = 'Wounded';
+        destinationNodesArray[destinationNodesArray.length] = 'Killed';
+
+        newNode = new Object();
+        newNode.node = vis.nodes.length;
+        newNode.name = "Wounded";
+        vis.nodes.push(newNode);
+
+        newNode = new Object();
+        newNode.node = vis.nodes.length;
+        newNode.name = "Killed";
+        vis.nodes.push(newNode);
+
+        var newEdge;
+        var existingEdge = -1;
+        //add edges
+        for (var i = 0; i < vis.displayData.length; i++) {
+            if (vis.displayData[i].kia > 0) {
+                existingEdge = -1;
+                for (var j = 0; j < vis.edges.length; j++) {
+                    if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].region)
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Killed')) {
+                        existingEdge = j;
+                    }
+                }
+
+                if (existingEdge > -1) {
+                    vis.edges[existingEdge].value = vis.edges[existingEdge].value + vis.displayData[i].kia;
+                }
+                else {
+                    //create new edge
+                    newEdge = new Object();
+                    newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].region);
+                    newEdge.target = destinationNodesArray.indexOf('Killed');
+                    newEdge.value = vis.displayData[i].kia;
+                    newEdge.region = vis.displayData[i].region;
+                    newEdge.outcome = 'Killed';
+
+                    vis.edges.push(newEdge);
+                }
+            }
+
+            if (vis.displayData[i].wia > 0) {
+                existingEdge = -1;
+                for (var j = 0; j < vis.edges.length; j++) {
+                    if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].region)
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Wounded')) {
+                        existingEdge = j;
+                    }
+                }
+
+                if (existingEdge > -1) {
+                    vis.edges[existingEdge].value = vis.edges[existingEdge].value + vis.displayData[i].wia;
+                }
+                else {
+                    //create new edge
+                    newEdge = new Object();
+                    newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].region);
+                    newEdge.target = destinationNodesArray.indexOf('Wounded');
+                    newEdge.value = vis.displayData[i].wia;
+                    newEdge.region = vis.displayData[i].region;
+                    newEdge.outcome = 'Wounded';
+
+                    vis.edges.push(newEdge);
+                }
+            }
+        }
+        ;
+    }
+
     // Update the visualization
     vis.updateVis();
 
@@ -488,6 +586,7 @@ SankeyVis.prototype.updateVis = function() {
             .on("mouseover", function (d) {
 
                 vis.tableFilter.type = d.type;
+                vis.tableFilter.region = d.region;
                 vis.tableFilter.outcome = d.outcome;
 
                 vis.texttimelinetitle.text(d.source.name + " → " + d.target.name);

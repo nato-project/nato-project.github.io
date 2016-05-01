@@ -76,9 +76,16 @@ $("input:radio[name=reporttype]").click(function(){
 //        sankeyVis.tableFilter.type = "N/A";
 //        sankeyVis.tableFilter.outcome = "N/A";
         // initialize default selection
-        sankeyVis.tableFilter.type = "PROJECTED";
-        sankeyVis.tableFilter.outcome = "Wounded";
-        sankeyVis.texttimelinetitle.text("PROJECTED → Wounded");
+        if (sankeyVis.sankeySelection == "byRegion")
+        {
+            sankeyVis.tableFilter.region = "DONETSK";
+            sankeyVis.tableFilter.outcome = "Wounded";
+            sankeyVis.texttimelinetitle.text("DONETSK → Wounded");
+        } else {
+            sankeyVis.tableFilter.type = "PROJECTED";
+            sankeyVis.tableFilter.outcome = "Wounded";
+            sankeyVis.texttimelinetitle.text("PROJECTED → Wounded");
+        }
 
         sankeyVis.wrangleData();
     }
