@@ -59,6 +59,7 @@ var COMMON_COLORS ={
 
 var IED_TYPE_DESC = {
     "UNKNOWN": "For many incidents, the type of IED was not identified.",
+    "CRIME": "IEDs related to criminal activities.",
     "CACHE/FOUND": "In some cases, the authorities discovered the IED before it could cause damage.",
     "HOAX/FALSE": "Some of the reported incidents turned out to be fake.",
     "VOIED": "Victim-Operated IEDs, also known as booby traps, are designed to function upon contact with a victim. Switching methods include tripwire, pressure mats, spring-loaded release, push, pull or tilt.",

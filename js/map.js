@@ -22,6 +22,7 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
     this.circleLabel = "Type";
     this.circleFilter = "";
 
+    this.dateFormat = d3.time.format("%b %d %Y");
     this.initVis();
 }
 
@@ -80,6 +81,30 @@ Map.prototype.initVis = function(){
     });
     vis.ctrtip = d3.tip().attr('class', 'd3-tip').html(function(d) {
         var tipContent = "<div class='tooltip-content text-center'>" + d.properties.name + "</div>";
+        return tipContent;
+    });
+    vis.typetip = d3.tip().attr('class', 'd3-tip').html(function(d,i) {
+        var desc = IED_TYPE_DESC[vis.circleColor.domain()[i]];
+        var tipContent = "<div class='tooltip-content text-center'>" + desc + "</div>";
+        return tipContent;
+    });
+    vis.iedtip = d3.tip().attr('class', 'd3-tip').html(function(d) {
+        var tipContent = "";
+        var img = "img/bomb.svg";
+        if (d.kia >0){
+            img = "img/person-killed.svg";
+        } else if(d.wia >0){
+            img = "img/person-wounded.svg";
+        }
+        var date = vis.dateFormat(d.date);
+        var last = d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+
+        tipContent += "<div class='cd-timeline-img cd-picture' style='left:15px; top:15px'><img src='" + img +"'></div>";
+        tipContent += "<div class='cd-timeline-content'><h2>" + date + "</h2>";
+        tipContent += "<p style='color:black'>" + d.text + "</p>";
+        tipContent += "<span class='cd-date' style='color:black'>" + last + "</span>";
+        tipContent += "</div>";
+
         return tipContent;
     });
 
@@ -151,12 +176,27 @@ Map.prototype.initVis = function(){
 
     // Create legend
     vis.legend = vis.svg.append("g")
-        .attr("transform", "translate(110, 330)")
-        .attr("id", "legend");
+        .attr("transform", "translate(110, 335)")
+        .attr("id", "legend")
+
+    // Add background rectangle
+    vis.legend.append("rect")
+        .attr("x", -60)
+        .attr("y", -4)
+        .attr("height", 198)
+        .attr("width", 95)
+        .attr("fill", "rgba(0, 0, 0, 0.1)");
+    vis.legend.append("rect")
+        .attr("x", -140)
+        .attr("y", -29)
+        .attr("height", 25)
+        .attr("width", 175)
+        .attr("fill", "rgba(0, 0, 0, 0.1)");
+
     // Legend title
     vis.legend.append("text")
         .attr("text-anchor","end")
-        .attr("transform", "translate(25, -8)")
+        .attr("transform", "translate(25, -12)")
         .attr("id","legendTitle");
 
     // Add color squares
@@ -195,6 +235,16 @@ Map.prototype.initVis = function(){
     // Legend
     var topLegend = vis.svg.append("g")
         .attr("id", "topLegend");
+    // Add background rectangle
+    topLegend.append("rect")
+        .attr("transform", "translate(150,300)")
+        .attr("id", "typeRect")
+        .attr("x", 0)
+        .attr("y", -7)
+        .attr("height", 250)
+        .attr("width", 125)
+        .attr("fill", "rgba(0, 0, 0, 0.1)");
+    // Legend data
     vis.clegend = topLegend.append("g")
         .attr("transform", "translate(150,300)")
         .selectAll("g")
@@ -345,7 +395,16 @@ Map.prototype.updateVis = function() {
         })
         .attr("stroke", "black")
         .attr("stroke-width", 1)
-        .attr("opacity", 1);
+        .attr("opacity", 1)
+        .on("mouseover", vis.iedtip.show)
+        .on("mouseout", vis.iedtip.hide)
+        .call(vis.iedtip)
+        .on("click", function(d){
+            regionClick("");
+            circleLabelClick(d.type);
+        });
+
+
 
     // Exit
     circ.exit().remove();
@@ -361,7 +420,7 @@ Map.prototype.updateVis = function() {
     vis.clegend.exit().remove();
     vis.clegend.enter()
         .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side) + 20) + ")"; });
+        .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side) + 15) + ")"; });
     vis.clegendbox.remove();
     vis.clegendbox = vis.clegend.append("circle")
         .attr("r", 5)
@@ -388,54 +447,21 @@ Map.prototype.updateVis = function() {
             circleLabelClick(vis.circleColor.domain()[i]);
             console.log(vis.circleColor.domain()[i]);
         });
+
+        if (vis.circleType == "type") {
+            vis.clegendlabels.on("mouseover", vis.typetip.show)
+                .on("mouseout", vis.typetip.hide)
+                .call(vis.typetip);
+                d3.select("#typeRect").attr("height", 250);
+        } else {
+            vis.clegendlabels.on("mouseover", null);
+            d3.select("#typeRect").attr("height", 90);
+        }
+
 }
 
 function nbFormat(number) {
     // Add comma between thousands
     return number.toLocaleString('en-US', {minimumFractionDigits: 0});
 }
-
-/*
-Map.prototype.displayTextOnSection = function(textTimeline,nodes,words) {
-    var wordList = [];
-    if(words){
-        wordList = words.split(', ');
-    }
-    var textTimelineBlock = textTimeline.selectAll("div")
-        .data(nodes)
-        .enter()
-        .append("div")
-        .attr("class","cd-timeline-block");
-
-    var textTimelineBlockImg = textTimelineBlock.append("div")
-        .attr("class","cd-timeline-img cd-picture")
-        .append("img")
-        .attr("src",function(d){
-            if(d.kia >0){
-                return "img/person-killed.svg";
-            }else if(d.wia >0){
-                return "img/person-wounded.svg";
-            }else {
-                return "img/bomb.svg";
-            }
-        });
-
-    var textTimelineBlockContent = textTimelineBlock.append("div").attr("class","cd-timeline-content");
-    textTimelineBlockContent.append("h2").text(function(d){
-        return vis.dateFormat(d.date);
-    });
-    textTimelineBlockContent.append("p").html(function(d){
-        var text = d.text;
-        wordList.forEach(function(d){
-            text = _.replace(text, new RegExp(d, "gi"), "<span class='important-word'>"+d+"</span>")
-        });
-
-        return text;
-    });
-    textTimelineBlockContent.append("span")
-        .attr("class","cd-date")
-        .text(function(d){
-            return d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
-        });
-}*/
 

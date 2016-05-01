@@ -217,7 +217,7 @@ function showMapKiev() {
 
 	// Color regions by number of events
 	var selectBox = document.getElementById("regionColorSelect");
-	selectBox.selectedIndex = 2;
+	selectBox.selectedIndex = 5;
 	mapVis.dataType = selectBox.options[selectBox.selectedIndex].value;
 	mapVis.dataLabel = selectBox.options[selectBox.selectedIndex].text;
 
@@ -250,9 +250,9 @@ function showMapDonestk() {
 	mapVis.selectedRegion = "dn";
 	heatMatrixVis.selectedRegion = "dn";
 
-	// Color regions by number of events
+	// Color regions by number of persons killed
 	var selectBox = document.getElementById("regionColorSelect");
-	selectBox.selectedIndex = 3;
+	selectBox.selectedIndex = 6;
 	mapVis.dataType = selectBox.options[selectBox.selectedIndex].value;
 	mapVis.dataLabel = selectBox.options[selectBox.selectedIndex].text;
 

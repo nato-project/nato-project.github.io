@@ -30,7 +30,7 @@ HeatMatrix.prototype.initVis = function(){
 	vis.rowHeight = vis.matrixH/vis.maxRows;
 	vis.colWidth = vis.matrixW/24;
 	
-	vis.margin = {top: 15, right: 25, bottom: 0, left: 130};
+	vis.margin = {top: 15, right: 25, bottom: 0, left: 133};
 
 	vis.width = vis.matrixW + vis.cityBarW + vis.cityLeft;
 	vis.height = vis.matrixH + vis.timeBarH + vis.timeBottom;
@@ -491,7 +491,7 @@ HeatMatrix.prototype.updateLegend = function() {
 	    d3.selectAll(".heatLegendColor").attr("visibility","visible");
     
 	    // Update legend
-	    vis.svg.select("#heatLegendTitle").text("IED Events");
+	    vis.svg.select("#heatLegendTitle").text("IED Events in " + COMMON_REGIONS[vis.selectedRegion]);
 	    var legendValues = [0];
 	    vis.colors.range().forEach(function(d,i) {
 	        legendValues.push(Math.round(vis.typeScale.invert(vis.colors.invertExtent(d)[1])));
