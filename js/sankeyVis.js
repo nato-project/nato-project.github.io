@@ -52,8 +52,8 @@ SankeyVis.prototype.initVis = function() {
 
     //Initialize color schema
     vis.color = d3.scale.ordinal();
-    vis.color.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED","No Casualties", "Killed", "Wounded", "Incidents"]);
-    vis.color.range([COMMON_COLORS["CACHE/FOUND"],COMMON_COLORS["CRIME"],COMMON_COLORS["CWIED"],COMMON_COLORS["HOAX/FALSE"],COMMON_COLORS["PROJECTED"],COMMON_COLORS["RCIED"],COMMON_COLORS["S-PBIED"],COMMON_COLORS["TIME DELAY"],COMMON_COLORS["UNKNOWN"],COMMON_COLORS["VBIED"],COMMON_COLORS["VOIED"], COMMON_COLORS["NO_CASUALITY"],COMMON_COLORS["KILLED"],COMMON_COLORS["WOUNDED"],COMMON_COLORS["INCIDENT"]]);
+    vis.color.domain(["CACHE/FOUND","CRIME","CWIED","HOAX/FALSE","PROJECTED","RCIED","S-PBIED","TIME DELAY","UNKNOWN","VBIED","VOIED","No Casualties", "Killed", "Wounded", "Incidents","Causing Deaths", "Causing Injuries"]);
+    vis.color.range([COMMON_COLORS["CACHE/FOUND"],COMMON_COLORS["CRIME"],COMMON_COLORS["CWIED"],COMMON_COLORS["HOAX/FALSE"],COMMON_COLORS["PROJECTED"],COMMON_COLORS["RCIED"],COMMON_COLORS["S-PBIED"],COMMON_COLORS["TIME DELAY"],COMMON_COLORS["UNKNOWN"],COMMON_COLORS["VBIED"],COMMON_COLORS["VOIED"], COMMON_COLORS["NO_CASUALITY"],COMMON_COLORS["KILLED"],COMMON_COLORS["WOUNDED"],COMMON_COLORS["INCIDENT"],COMMON_COLORS["KILLED"],COMMON_COLORS["WOUNDED"]]);
 
 
     //Initialize global variables
@@ -323,19 +323,19 @@ SankeyVis.prototype.wrangleData = function() {
             }
         }
         //add destination nodes
-        destinationNodesArray[destinationNodesArray.length] = 'Killed';
-        destinationNodesArray[destinationNodesArray.length] = 'Wounded';
+        destinationNodesArray[destinationNodesArray.length] = 'Causing Deaths';
+        destinationNodesArray[destinationNodesArray.length] = 'Causing Injuries';
         destinationNodesArray[destinationNodesArray.length] = 'No Casualties';
         destinationNodesArray[destinationNodesArray.length] = 'Incidents';
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "Killed";
+        newNode.name = "Causing Deaths";
         vis.nodes.push(newNode);
 
         newNode = new Object();
         newNode.node = vis.nodes.length;
-        newNode.name = "Wounded";
+        newNode.name = "Causing Injuries";
         vis.nodes.push(newNode);
 
         newNode = new Object();
@@ -360,7 +360,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('Killed')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Causing Deaths')) {
                         existingEdge = j;
                     }
                 }
@@ -372,7 +372,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('Killed');
+                    newEdge.target = destinationNodesArray.indexOf('Causing Deaths');
                     newEdge.value = 1;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'Killed';
@@ -386,7 +386,7 @@ SankeyVis.prototype.wrangleData = function() {
                 existingEdge = -1;
                 for (var j = 0; j < vis.edges.length; j++) {
                     if (vis.edges[j].source == destinationNodesArray.indexOf(vis.displayData[i].type)
-                        & vis.edges[j].target == destinationNodesArray.indexOf('Wounded')) {
+                        & vis.edges[j].target == destinationNodesArray.indexOf('Causing Injuries')) {
                         existingEdge = j;
                     }
                 }
@@ -398,7 +398,7 @@ SankeyVis.prototype.wrangleData = function() {
                     //create new edge
                     newEdge = new Object();
                     newEdge.source = destinationNodesArray.indexOf(vis.displayData[i].type);
-                    newEdge.target = destinationNodesArray.indexOf('Wounded');
+                    newEdge.target = destinationNodesArray.indexOf('Causing Injuries');
                     newEdge.value = 1;
                     newEdge.type = vis.displayData[i].type;
                     newEdge.outcome = 'Wounded';
@@ -436,7 +436,7 @@ SankeyVis.prototype.wrangleData = function() {
         };
 
         newEdge = new Object();
-        newEdge.source = destinationNodesArray.indexOf("Killed");
+        newEdge.source = destinationNodesArray.indexOf("Causing Deaths");
         newEdge.target = destinationNodesArray.indexOf("Incidents");
         newEdge.value = killed;
         newEdge.type = "N/A";
@@ -444,7 +444,7 @@ SankeyVis.prototype.wrangleData = function() {
         vis.edges.push(newEdge);
 
         newEdge = new Object();
-        newEdge.source = destinationNodesArray.indexOf("Wounded");
+        newEdge.source = destinationNodesArray.indexOf("Causing Injuries");
         newEdge.target = destinationNodesArray.indexOf("Incidents");
         newEdge.value = wounded;
         newEdge.type = "N/A";
@@ -629,7 +629,7 @@ SankeyVis.prototype.updateVis = function() {
             })
             .attr("width", vis.sankey.nodeWidth())
             .style("fill", function (d) {
-                return d.color = vis.color(d.name.replace(/ .*/, ""));
+                return d.color = vis.color(d.name);//vis.color(d.name.replace(/ .*/, ""));
             })
             .style("stroke", function (d) {
                 return d3.rgb(d.color).darker(2);
@@ -788,13 +788,19 @@ SankeyVis.prototype.displayText = function(nodes,words){
             ;
 
         var textTimelineBlockImgBot = textTimelineBlock.append("div")
-            .attr("class","cd-timeline-img-bot cd-picture")
+            .attr("class",function(d) {
+                if(d.kia > 0 & d.wia > 0){
+                    return "cd-timeline-img-bot cd-picture"
+                } else {
+                    return "";
+                }
+            })
             .append("img")
             .attr("src",function(d){
                 if(d.kia > 0 & d.wia > 0){
                     return "img/person-wounded.svg";
                 }else {
-                    return "img/bomb.svg";
+                    return null;
                 }
             })
             ;
