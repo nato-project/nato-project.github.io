@@ -69,3 +69,32 @@ var IED_TYPE_DESC = {
     "CWIED": "A Command-Wire IED uses an electrical firing cable that affords the user complete control over the device right up until the moment of initiation.",
     "TIME DELAY": "This type of IED uses a time delay fuse to detonate at a later time."
 }
+
+var COMMON_REGIONS ={
+    "volyn": "Volyn",
+    "rv": "Rivne",
+    "zt":"Zhytomyr",
+    "kiev": "Kiev",
+    "cn": "Chernihiv",
+    "sm": "Sumy",
+    "lviv": "L'viv",
+    "uz": "Transcarpathia",
+    "if": "Ivano-Frankivs'k",
+    "te": "Ternopil'",
+    "cv": "Chernivtsi",
+    "km": "Khmel'nyts'kyy",
+    "vn": "Vinnytsya",
+    "ck": "Cherkasy",
+    "pl": "Poltava",
+    "kh": "Kharkiv",
+    "kr": "Kirovohrad",
+    "od": "Odessa",
+    "mk": "Mykolayiv",
+    "dp": "Dnipropetrovs'k",
+    "ks": "Kherson",
+    "crimea": "Crimea",
+    "zp": "Zaporizhzhya",
+    "dn": "Donets'k",
+    "lu": "Luhans'k",
+    "": "Ukraine"
+}
