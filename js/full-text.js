@@ -361,7 +361,7 @@ FullText.prototype.initVis = function() {
         .data(vis.typeList)
         .enter()
         .append("g")
-        .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
+        .attr("transform", function(d, i) { return "translate(0," + (i * 25) + ")"; })
         .style("cursor","pointer");
 
     vis.legendRect = vis.legend.append("rect")
@@ -396,6 +396,20 @@ FullText.prototype.initVis = function() {
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
         });
+
+    vis.NumberOfKilledWoundedByType = function(type){
+        var killedWounded = [0,0];
+
+        vis.displayData.forEach(function(d){
+            if(d.type == type) {
+                killedWounded[0] += d.kia;
+                killedWounded[1] += d.wia;
+            }
+        });
+
+        return killedWounded;
+    }
+
     vis.legendlabels = vis.legend.append("text")
         .attr("class", "force-layout-legend-labels")
         .attr("x", 20)
@@ -423,6 +437,20 @@ FullText.prototype.initVis = function() {
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
         });
+    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 18).style("font-size",7);
+
+    vis.legendlabelsTspan.text(function(d){
+        var kw = vis.NumberOfKilledWoundedByType(d.type);
+        var text = "";
+        if(kw[0] > 0){
+            text += " Killed: "+kw[0];
+
+        }
+        if(kw[1] > 0){
+            text += " Wounded: "+kw[1];
+        }
+        return text;
+    });
 
     vis.legendClick = function(d){
         //console.log(d);
@@ -439,9 +467,11 @@ FullText.prototype.initVis = function() {
         vis.displayText(nodes);
     }
 
+
+
     // Casualty Legend
     vis.casualtyLegend = vis.svg.append("g")
-        .attr("transform", "translate(" + (vis.width - 70) + "," + (10) + ")")
+        .attr("transform", "translate(" + (vis.width - 90) + "," + (10) + ")")
         .selectAll("g")
         .data([{name:"Killed"},{name:"Wounded"}])
         .enter()
@@ -854,6 +884,20 @@ FullText.prototype.updateVis = function() {
                 d3.select("#legendRect_"+i).style("fill", "none");
             }
         });
+    vis.legendlabelsTspan = vis.legendlabels.append("tspan").attr("x", 18).attr("y", 18).style("font-size",7);
+
+    vis.legendlabelsTspan.text(function(d){
+        var kw = vis.NumberOfKilledWoundedByType(d.type);
+        var text = "";
+        if(kw[0] > 0){
+            text += " Killed: "+kw[0];
+
+        }
+        if(kw[1] > 0){
+            text += " Wounded: "+kw[1];
+        }
+        return text;
+    });
 
 }
 
