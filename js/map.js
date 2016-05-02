@@ -66,51 +66,57 @@ Map.prototype.initVis = function(){
     var regions = topojson.feature(mapData, mapData.objects.regions).features;
 
     // Tooltip
-    vis.tip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-        // Color
-        var data;
-        vis.regionData.forEach(function(r) {
-            if (r.region_id == d.id) data = r;
-        });
-        var tipContent = "";
-        tipContent += "<div class='tooltip-content text-center'><img src='img/flags/"+ d.id + ".png' style='margin:5px'>" + d.properties.name + " Oblast</div>";
-        tipContent += "<div class='tooltip-content text-center'>IED Events: " + data.IEDevents + " / Killed: " + data.KIA + " / Wounded: "+data.WIA+"</div>";
-        tipContent += "<div class='tooltip-content text-center'>Area: " + nbFormat(data.area) + "km2 / Population: "+ nbFormat(data.population) + "</div>";
-
-        return tipContent;
-    });
-    vis.ctrtip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-        var tipContent = "<div class='tooltip-content text-center'>" + d.properties.name + "</div>";
-        return tipContent;
-    });
-    vis.typetip = d3.tip().attr('class', 'd3-tip').html(function(d,i) {
-        var desc = IED_TYPE_DESC[vis.circleColor.domain()[i]];
-        var tipContent = "<div class='tooltip-content text-center'>" + desc + "</div>";
-        return tipContent;
-    });
-    vis.iedtip = d3.tip().attr('class', 'd3-tip').html(function(d) {
-        var tipContent = "";
-        var img = "img/bomb.svg";
-        if (d.kia >0){
-            img = "img/person-killed.svg";
-        } else if(d.wia >0){
-            img = "img/person-wounded.svg";
-        }
-        var date = vis.dateFormat(d.date);
-        var last = d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
-
-        tipContent += "<div class='cd-timeline-img cd-picture' style='left:15px; top:15px'><img src='" + img +"'></div>";
-        tipContent += "<div class='cd-timeline-content'><h2>" + date + "</h2>";
-        tipContent += "<p style='color:black'>" + d.text + "</p>";
-        tipContent += "<span class='cd-date' style='color:black'>" + last + "</span>";
-        tipContent += "</div>";
-
-        return tipContent;
-    });
+    vis.tip = d3.tip()
+	    .attr('class', 'd3-tip').html(function(d) {
+	        // Color
+	        var data;
+	        vis.regionData.forEach(function(r) {
+	            if (r.region_id == d.id) data = r;
+	        });
+	        var tipContent = "";
+	        tipContent += "<div class='tooltip-content text-center'><img src='img/flags/"+ d.id + ".png' style='margin:5px'>" + d.properties.name + " Oblast</div>";
+	        tipContent += "<div class='tooltip-content text-center'>IED Events: " + data.IEDevents + " / Killed: " + data.KIA + " / Wounded: "+data.WIA+"</div>";
+	        tipContent += "<div class='tooltip-content text-center'>Area: " + nbFormat(data.area) + "km2 / Population: "+ nbFormat(data.population) + "</div>";
+	
+	        return tipContent;
+	    });
+    vis.ctrtip = d3.tip()
+	    .offset([50, 0])
+	    .attr('class', 'd3-tip').html(function(d) {
+	        var tipContent = "<div class='tooltip-content text-center'>" + d.properties.name + "</div>";
+	        return tipContent;
+	    });
+    vis.typetip = d3.tip()
+    	.attr('class', 'd3-tip').html(function(d,i) {
+	        var desc = IED_TYPE_DESC[vis.circleColor.domain()[i]];
+	        var tipContent = "<div class='tooltip-content text-center'>" + desc + "</div>";
+	        return tipContent;
+	    });
+    vis.iedtip = d3.tip()
+	    .offset([-15, 0])
+	    .attr('class', 'd3-tip').html(function(d) {
+	        var tipContent = "";
+	        var img = "img/bomb.svg";
+	        if (d.kia >0){
+	            img = "img/person-killed.svg";
+	        } else if(d.wia >0){
+	            img = "img/person-wounded.svg";
+	        }
+	        var date = vis.dateFormat(d.date);
+	        var last = d.kia+" killed, "+ d.wia+" wounded in "+ d.city+", "+ d.region;
+	
+	        tipContent += "<div class='cd-timeline-img cd-picture' style='left:15px; top:15px'><img src='" + img +"'></div>";
+	        tipContent += "<div class='cd-timeline-content'><h2>" + date + "</h2>";
+	        tipContent += "<p style='color:black'>" + d.text + "</p>";
+	        tipContent += "<span class='cd-date' style='color:black'>" + last + "</span>";
+	        tipContent += "</div>";
+	
+	        return tipContent;
+	    });
 
     // Map TopoJSON data to the screen
     // Countries
-    ctrG = vis.svg.append("g");
+    var ctrG = vis.svg.append("g");
     ctrG.selectAll("path")
         .data(countries)
         .enter().append("path")
@@ -122,14 +128,14 @@ Map.prototype.initVis = function(){
         .style("fill", "#efefef")
         .on('mouseover', vis.ctrtip.show)
         .on('mouseout', vis.ctrtip.hide)
-        .call(vis.ctrtip)
         .on("click", function(d){
             regionClick("");
             circleLabelClick("");
         });
-
+    vis.svg.call(vis.ctrtip);
+    
     // Regions
-    regionsG = vis.svg.append("g");
+    var regionsG = vis.svg.append("g");
     regionsG.selectAll("path")
         .data(regions)
         .enter().append("path")
@@ -141,12 +147,13 @@ Map.prototype.initVis = function(){
         .style("fill", "lightgrey")
         .on('mouseover', vis.tip.show)
         .on('mouseout', vis.tip.hide)
-        .call(vis.tip)
+        //.call(vis.tip)
    	    .on("click", function(d){
    	    	regionClick(d.id);
             circleLabelClick("");
    	    });
-
+    vis.svg.call(vis.tip);
+    
     regionsG.selectAll("text")
 	    .data(regions)
 	    .enter().append("text")
@@ -157,8 +164,8 @@ Map.prototype.initVis = function(){
 	    })
 	    .attr("id", function(d) { return d.id;})
 	    .on("mouseover", vis.tip.show)
-	    .on("mouseout", vis.tip.hide)
-	    .call(vis.tip);
+	    .on("mouseout", vis.tip.hide);
+	    //.call(vis.tip);
 
     // Set region type and color scales
     vis.colors = d3.scale.quantize().domain([0,1]).range(colorbrewer.Blues[7]);
@@ -181,10 +188,10 @@ Map.prototype.initVis = function(){
 
     // Add background rectangle
     vis.legend.append("rect")
-        .attr("x", -60)
+        .attr("x", -70)
         .attr("y", -4)
         .attr("height", 198)
-        .attr("width", 95)
+        .attr("width", 105)
         .attr("fill", "rgba(0, 0, 0, 0.1)");
     vis.legend.append("rect")
         .attr("x", -140)
@@ -242,7 +249,7 @@ Map.prototype.initVis = function(){
         .attr("x", 0)
         .attr("y", -7)
         .attr("height", 250)
-        .attr("width", 125)
+        .attr("width", 130)
         .attr("fill", "rgba(0, 0, 0, 0.1)");
     // Legend data
     vis.clegend = topLegend.append("g")
