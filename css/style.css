@@ -112,7 +112,7 @@ a, a:link, a:visited {
     top: 0;
     width: 100%;
     height: auto;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .read-data-container {
@@ -132,13 +132,14 @@ a, a:link, a:visited {
     position: relative;
     z-index: 2;
 }
+
 .read-data-container img {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: auto;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .explore-data-panel {

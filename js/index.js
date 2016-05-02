@@ -35,7 +35,7 @@ queue()
                 d3.select(this).select("img").transition().delay(250).duration(250).style("opacity", 1);
             })
             .on("mouseout",function(d){
-                d3.select(this).select("img").transition().duration(250).style("opacity", 0.3);
+                d3.select(this).select("img").transition().duration(250).style("opacity", 0.4);
                 d3.select(this).select("p").transition().delay(250).duration(250).style("visibility", "visible");
 
             });
@@ -48,7 +48,7 @@ queue()
                 d3.select(this).select("img").transition().delay(250).duration(250).style("opacity", 1);
             })
             .on("mouseout",function(d){
-                d3.select(this).select("img").transition().duration(250).style("opacity", 0.3);
+                d3.select(this).select("img").transition().duration(250).style("opacity", 0.4);
                 d3.select(this).select("p").transition().delay(250).duration(250).style("visibility", "visible");
 
             })
