@@ -23,7 +23,7 @@ HeatMatrix.prototype.initVis = function(){
 	var vis = this; // read about the this
 
 	vis.barColor = "lightgrey";
-	vis.matrixW = 550, vis.matrixH = 900, vis.cityBarW = 60, vis.timeBarH = 60;
+	vis.matrixW = 450, vis.matrixH = 900, vis.cityBarW = 60, vis.timeBarH = 60;
 	vis.timeBottom = 20; // Included in vis.height
 	vis.cityLeft = 5; // Included in vis.width
 	vis.maxRows = 60;

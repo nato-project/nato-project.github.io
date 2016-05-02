@@ -55,7 +55,7 @@ Map.prototype.initVis = function(){
     	});
         
     // Create projection
-    var projection = d3.geo.mercator().scale([2210]).center([34.5, 48.7]);
+    var projection = d3.geo.mercator().scale([2150]).center([34.5, 48.7]);
     vis.proj = projection;
 
     // Create D3 geo path
@@ -245,7 +245,7 @@ Map.prototype.initVis = function(){
         .attr("id", "topLegend");
     // Add background rectangle
     topLegend.append("rect")
-        .attr("transform", "translate(150,300)")
+        .attr("transform", "translate(145,300)")
         .attr("id", "typeRect")
         .attr("x", 0)
         .attr("y", -7)
@@ -254,7 +254,7 @@ Map.prototype.initVis = function(){
         .attr("fill", "rgba(0, 0, 0, 0.1)");
     // Legend data
     vis.clegend = topLegend.append("g")
-        .attr("transform", "translate(150,300)")
+        .attr("transform", "translate(145,300)")
         .selectAll("g")
         .data(vis.circleColor.range())
         .enter()

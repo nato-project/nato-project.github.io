@@ -6,7 +6,7 @@ var regionData = [];
 var cityData = [];
 
 // Variables for the visualization instances
-var mapVis, areaVis, timelineVis, countsVis;
+var mapVis, timelineVis, countsVis;
 //var dsv = d3.dsv(";", "text/plain");
 
 // Start application by loading the data
@@ -93,7 +93,6 @@ queue()
 function createVis() {
 	// Instantiate visualization objects here
 	mapVis = new Map("mapVis", iedData, mapData, regionData);
-	areaVis = new AreaChart("areaVis", iedData);
 	timelineVis = new Timeline("timelineVis", iedData);
 	heatMatrixVis = new HeatMatrix("heatMatrixVis", cityData);
 	countsVis = new Counts("countsVis", iedData,900,300);
