@@ -87,6 +87,7 @@ Map.prototype.initVis = function(){
 	        return tipContent;
 	    });
     vis.typetip = d3.tip()
+    	.offset([-10, 0])
     	.attr('class', 'd3-tip').html(function(d,i) {
 	        var desc = IED_TYPE_DESC[vis.circleColor.domain()[i]];
 	        var tipContent = "<div class='tooltip-content text-center'>" + desc + "</div>";
