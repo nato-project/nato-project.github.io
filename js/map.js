@@ -16,7 +16,7 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
 
     // For region color
     this.dataType = "pct_russian_speakers";
-    this.dataLabel = "% Russian Spearkers";
+    this.dataLabel = "% Russian Speakers";
     // For circle color
     this.circleType = "type";
     this.circleLabel = "Type";
