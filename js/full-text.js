@@ -502,14 +502,14 @@ FullText.prototype.initVis = function() {
     vis.casualtyLegend = vis.svg.append("g")
         .attr("transform", "translate(" + (vis.width - 90) + "," + (10) + ")")
         .selectAll("g")
-        .data([{name:"Killed"},{name:"Wounded"}])
+        .data([{name:"Killed"},{name:"Wounded"},{name:"No Casualty"}])
         .enter()
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i * 20) + ")"; })
         .style("cursor","pointer");
 
     vis.casualtyLegendRect = vis.casualtyLegend.append("rect")
-        .attr("width",55)
+        .attr("width",65)
         .attr("height",15)
         .style("fill", "none")
         .style("fill-opacity",0.7)
@@ -522,13 +522,15 @@ FullText.prototype.initVis = function() {
         .style("cursor","pointer");
 
     vis.casualtyLegendIcon = vis.casualtyLegend.append("svg:image")
-        .attr("width",13)
+        .attr("width",15)
         .attr("height",13)
         .attr('xlink:href',function(d,i){
             if(i==0){
                 return "img/person-killed.svg";
-            }else{
+            }else if(i==1){
                 return "img/person-wounded.svg";
+            }else{
+                return "img/bomb.svg";
             }
         })
         .on("click", function(d,i) {
@@ -576,8 +578,10 @@ FullText.prototype.initVis = function() {
         var allNodes = [];
         if(d=="Killed"){
             allNodes = _.filter(vis.displayData, function(o) { return o.kia > 0; });
-        }else{
+        }else if(d== "Wounded"){
             allNodes = _.filter(vis.displayData, function(o) { return o.wia > 0; });
+        }else if(d== "No Casualty"){
+            allNodes = _.filter(vis.displayData, function(o) { return (o.kia == 0 && o.wia == 0); });
         }
 
         //console.log(allNodes.length);
@@ -626,8 +630,9 @@ FullText.prototype.initVis = function() {
 
     vis.SoldiersKilled = function(){
         vis.unSelectAllLegends();
-        vis.nodeTextClick({id:49,words:"killed, soldier, due"});
-        d3.select("#nodeTextRectItems_6").style("fill", "#FFFDC4");
+        //vis.nodeTextClick({id:49,words:"killed, soldier, due"});
+        //d3.select("#nodeTextRectItems_6").style("fill", "#FFFDC4");
+        vis.casualtyLegendClick("Killed");
     }
     vis.WeaponsNoCasuality = function(){
         vis.unSelectAllLegends();
