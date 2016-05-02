@@ -35,14 +35,15 @@ Map.prototype.initVis = function(){
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
-    vis.width = 700 - vis.margin.left - vis.margin.right,
-        vis.height = 560 - vis.margin.top - vis.margin.bottom;
+    vis.width = 585 - vis.margin.left - vis.margin.right,
+        vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
         .attr("x",0)
         .attr("y",0)
         .attr("viewBox","0 0 "+(vis.width + vis.margin.left + vis.margin.right)+" "+(vis.height + vis.margin.top + vis.margin.bottom))
+        .attr("class","img-responsive")
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
@@ -55,7 +56,7 @@ Map.prototype.initVis = function(){
     	});
         
     // Create projection
-    var projection = d3.geo.mercator().scale([2150]).center([34.5, 48.7]);
+    var projection = d3.geo.mercator().scale([1800]).center([37.25, 47.7]);
     vis.proj = projection;
 
     // Create D3 geo path
@@ -96,6 +97,7 @@ Map.prototype.initVis = function(){
     vis.iedtip = d3.tip()
 	    .offset([-15, 0])
 	    .attr('class', 'd3-tip').html(function(d) {
+
 	        var tipContent = "";
 	        var img = "img/bomb.svg";
 	        if (d.kia >0){
@@ -184,7 +186,7 @@ Map.prototype.initVis = function(){
 
     // Create legend
     vis.legend = vis.svg.append("g")
-        .attr("transform", "translate(110, 335)")
+        .attr("transform", "translate(110, 392)")
         .attr("id", "legend")
 
     // Add background rectangle
@@ -193,13 +195,13 @@ Map.prototype.initVis = function(){
         .attr("y", -4)
         .attr("height", 198)
         .attr("width", 105)
-        .attr("fill", "rgba(0, 0, 0, 0.1)");
+        .attr("fill", "#ffffff");
     vis.legend.append("rect")
         .attr("x", -140)
         .attr("y", -29)
-        .attr("height", 25)
+        .attr("height", 198)
         .attr("width", 175)
-        .attr("fill", "rgba(0, 0, 0, 0.1)");
+        .attr("fill", "#ffffff");
 
     // Legend title
     vis.legend.append("text")
@@ -231,7 +233,8 @@ Map.prototype.initVis = function(){
         .attr("transform", function(d, i) {
             if (i==8) return "translate(0," + (i*(vis.side+3)-3) +")";
             return "translate(0," + (i*(vis.side+3) + 5) +")";
-        });
+        })
+        .style("font-size",10);
 
     // Set circle color legend
     vis.circleColorType = d3.scale.ordinal();
@@ -245,16 +248,16 @@ Map.prototype.initVis = function(){
         .attr("id", "topLegend");
     // Add background rectangle
     topLegend.append("rect")
-        .attr("transform", "translate(145,300)")
+        .attr("transform", "translate(145,370)")
         .attr("id", "typeRect")
         .attr("x", 0)
         .attr("y", -7)
         .attr("height", 250)
         .attr("width", 130)
-        .attr("fill", "rgba(0, 0, 0, 0.1)");
+        .attr("fill", "#ffffff");
     // Legend data
     vis.clegend = topLegend.append("g")
-        .attr("transform", "translate(145,300)")
+        .attr("transform", "translate(145,375)")
         .selectAll("g")
         .data(vis.circleColor.range())
         .enter()
@@ -429,6 +432,8 @@ Map.prototype.updateVis = function() {
     vis.clegend.enter()
         .append("g")
         .attr("transform", function(d, i) { return "translate(0," + (i*(vis.side) + 15) + ")"; });
+
+
     vis.clegendbox.remove();
     vis.clegendbox = vis.clegend.append("circle")
         .attr("r", 5)
@@ -450,6 +455,7 @@ Map.prototype.updateVis = function() {
                 return "orange";
             return "black";
         })
+        .style("font-size",8)
         .on("click", function(d,i){
             regionClick("");
             circleLabelClick(vis.circleColor.domain()[i]);
@@ -458,8 +464,10 @@ Map.prototype.updateVis = function() {
 
         if (vis.circleType == "type") {
             vis.clegendlabels.on("mouseover", vis.typetip.show)
-                .on("mouseout", vis.typetip.hide)
-                .call(vis.typetip);
+                .on("mouseout", vis.typetip.hide);
+
+                vis.clegendlabels.call(vis.typetip);
+
                 d3.select("#typeRect").attr("height", 250);
         } else {
             vis.clegendlabels.on("mouseover", null);
