@@ -10,7 +10,7 @@ $(function() {
         if(match){
             page = match[0];
         }
-        console.log(page);
+        //console.log(page);
 
         switch(page) {
             case "index.html":

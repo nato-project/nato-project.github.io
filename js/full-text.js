@@ -123,7 +123,7 @@ FullText.prototype.initVis = function() {
     vis.nodewordPositions = [[320,60],[360,420],[220,100],[260,390],[480,370],[420,120],[180,180],[330,150],[380,350],[520,200],[180,270],[350,300],[350,230],[350,200],[490,270]];
 
     vis.positionNodeWords =  function(fix){
-        console.log(vis.nodeWords);
+        //console.log(vis.nodeWords);
         if(vis.nodeWords.length <10){
             return;
         }
@@ -288,7 +288,7 @@ FullText.prototype.initVis = function() {
     });
 
     vis.nodeTextClick = function(d){
-        console.log(d);
+        //console.log(d);
         // Find all children for node word
         var relatedNodes = _.filter(vis.displayTextLinkData, function(o) { return o.s_id== d.id; });
         var nodes = [];
@@ -687,11 +687,11 @@ FullText.prototype.wrangleData = function() {
             vis.displayTextLinkData.push(d);
         }
     });
-    console.log(vis.displayTextLinkData);
+    //console.log(vis.displayTextLinkData);
 
-    console.log("Node count: "+vis.nodes.length);
-    console.log("Links count: "+vis.links.length);
-    console.log("displayTextLinkData count: "+vis.displayTextLinkData.length);
+    //console.log("Node count: "+vis.nodes.length);
+    //console.log("Links count: "+vis.links.length);
+    //console.log("displayTextLinkData count: "+vis.displayTextLinkData.length);
 
     vis.generateNodeWords();
     vis.generateKilledWounded();
@@ -932,7 +932,7 @@ FullText.prototype.updateVis = function() {
 FullText.prototype.displayText = function(nodes,words){
     var vis = this;
 
-    console.log(nodes);
+    //console.log(nodes);
 
     vis.textTimeline.selectAll("div").remove();
     vis.textTimeline1.selectAll("div").remove();
@@ -1046,7 +1046,7 @@ FullText.prototype.generateNodeWords = function (){
         maxNodes = 5;
     }
 
-    console.log(vis.displayTextLinkData.length);
+    //console.log(vis.displayTextLinkData.length);
 
     // Create Node words
     var topNodes = d3.nest()
