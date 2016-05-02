@@ -57,10 +57,12 @@ a, a:link, a:visited {
 .intro-vis-panel{
     border-color: #005BBB;
     border-radius: 0px;
+    min-height: 246px;
 }
 .explore-summary-panel{
     border-color: #005BBB;
     border-radius: 0px;
+    text-align:justify;
 }
 .explore-summary-panel>.panel-heading {
     color: #ffffff;
@@ -93,10 +95,10 @@ a, a:link, a:visited {
 
 }
 .explore-data-container p {
-    padding-top:70px;
+    padding-top:60px;
     padding-left:20px;
     padding-right: 20px;
-    padding-bottom:90px;
+    padding-bottom:100px;
     color: #005BBB;
     font-size: 18pt;
     font-family: "Open Sans", sans-serif;
@@ -111,6 +113,37 @@ a, a:link, a:visited {
     width: 100%;
     height: auto;
     opacity: 0.3;
+}
+
+.read-data-container {
+    position: relative;
+    overflow: hidden;
+
+}
+.read-data-container p {
+    padding-top:40px;
+    padding-left:20px;
+    padding-right: 20px;
+    padding-bottom:120px;
+    color: #005BBB;
+    font-size: 18pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+.read-data-container img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.3;
+}
+
+.explore-data-panel {
+    border-color: #005BBB;
+    border-radius: 0px;
 }
 
 .navbar {
