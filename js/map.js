@@ -132,7 +132,7 @@ Map.prototype.initVis = function(){
             regionClick("");
             circleLabelClick("");
         });
-    vis.svg.call(vis.ctrtip);
+    ctrG.call(vis.ctrtip);
     
     // Regions
     var regionsG = vis.svg.append("g");
@@ -152,7 +152,7 @@ Map.prototype.initVis = function(){
    	    	regionClick(d.id);
             circleLabelClick("");
    	    });
-    vis.svg.call(vis.tip);
+    regionsG.call(vis.tip);
     
     regionsG.selectAll("text")
 	    .data(regions)
