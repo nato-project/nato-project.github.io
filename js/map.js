@@ -1,5 +1,5 @@
 /*
- * StackedAreaChart - Object constructor function
+ * Map - Object constructor function
  * @param _parentElement 	-- the HTML element in which to draw the visualization
  * @param _iedData			-- the ied data
  * @param _mapData			-- the map data
@@ -27,7 +27,7 @@ Map = function(_parentElement, _iedData, _mapData, _regionData){
 }
 
 /*
- * Initialize area chart with brushing component
+ * Initialize map
  */
 
 Map.prototype.initVis = function(){
@@ -36,7 +36,7 @@ Map.prototype.initVis = function(){
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
 
     vis.width = 700 - vis.margin.left - vis.margin.right,
-        vis.height = 700 - vis.margin.top - vis.margin.bottom;
+        vis.height = 560 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
