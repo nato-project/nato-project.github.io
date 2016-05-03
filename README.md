@@ -22,6 +22,7 @@ https://github.com/nato-project/nato-project.github.io
 Screencast Video
 --------------------------------------------------------------------------
 Screencast video link:
+https://youtu.be/x-oR9qGgtNk
 
 --------------------------------------------------------------------------
 Our Code
