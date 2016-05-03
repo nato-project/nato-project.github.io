@@ -316,7 +316,7 @@ body {
     color: rgba(255, 255, 255, 0.9);;
     padding: 15px;
     text-align:justify;
-    height: 220px;
+    min-height: 220px;
 }
 
 .index-box{
